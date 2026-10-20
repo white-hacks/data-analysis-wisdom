@@ -37,7 +37,7 @@
 
 - id: tableau-data-interpreter
   title: Clean Data from Excel, CSV, PDF, and Google Sheets with Data Interpreter
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/data_interpreter.htm
   summary: How Data Interpreter detects headers and sub-tables, how to review its results, and when to follow up with pivots and splits.
@@ -46,7 +46,7 @@
 
 - id: tableau-prep-clean
   title: Clean and Shape Data in Tableau Prep
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Prep Help
   url: https://help.tableau.com/current/prep/en-us/prep_clean.htm
   summary: Reference for every cleaning operation (filter, rename, split, group, remove), Prep's automatic recommendations, and which step types allow which operations.
@@ -64,10 +64,10 @@
 
 - id: wagner-split-and-pivot
   title: Split and Pivot Your Data with Tableau Prep
-  authors: [K. Wagner]
+  authors: [Katie Wagner]
   publisher: InterWorks
   url: https://interworks.com/blog/kwagner/2018/12/27/split-and-pivot-your-data-with-tableau-prep/
-  published: 2018-12-27
+  published: 2018-12-28
   summary: A nine-step recipe for turning a concatenated field into tidy rows (split → pivot → clean), a classic Data School-style prep task.
   placements:
     - topic: tableau-basics/data-cleaning
@@ -76,7 +76,7 @@
 
 - id: tableau-relate-your-data
   title: Relate Your Data
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/relate_tables.htm
   summary: The core explanation of relationships (logical layer) vs. joins (physical layer) vs. blends, and why relationships avoid duplication and filtering problems.
@@ -85,7 +85,7 @@
 
 - id: tableau-join-your-data
   title: Join Your Data
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/joining_tables.htm
   summary: Inner, left, right and full outer joins, matching data types on join fields, and when a join is still the right tool.
@@ -94,7 +94,7 @@
 
 - id: tableau-union-your-data
   title: Union Your Data
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/union.htm
   summary: Unions append rows (whereas joins add columns), including how to merge mismatched field names.
@@ -103,7 +103,7 @@
 
 - id: tableau-relationship-perf-options
   title: Optimize Relationship Queries Using Performance Options
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/datasource_relationships_perfoptions.htm
   summary: What the cardinality and referential-integrity settings do, and when you should (and shouldn't) change them.
@@ -112,7 +112,7 @@
 
 - id: tableau-cardinality-ri
   title: Cardinality and Referential Integrity
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/cardinality_and_ri.htm
   summary: Defaults are Many and "Some records match"; cardinality decides whether aggregation happens before or after the join.
@@ -123,7 +123,7 @@
 
 - id: tableau-assume-ri
   title: Assuming Referential Integrity for Joins
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/joins_assume_refinteg.htm
   summary: The physical-layer equivalent of performance options. Join culling with "Assume Referential Integrity" (inner joins only), and the risk of unreliable results if it's wrong.
@@ -132,7 +132,7 @@
 
 - id: tableau-data-model
   title: The Tableau Data Model
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/server/en-us/datasource_datamodel.htm
   summary: A diagram-led explanation of the logical vs. physical layers introduced in 2020.2.
@@ -202,15 +202,15 @@
     - topic: visualization/best-practices
       note: The single best free compendium of Sleeper's best practices (data-ink ratio, brand colours, avoiding unnecessary colour on bars).
     - topic: visualization/dashboard-interactivity
-      note: See the chapter "3 Ways to Use Tableau Dashboard Actions" for practical uses of filter, highlight and URL actions that guide users from overview to detail.
+      note: Chapter 5, "3 Ways to Use Google with Tableau Dashboard Actions", uses URL actions to open Google Image searches, paid search ads and Google Trends. Chapter 4 has its own card on this page (Practical Tableau, 3 Creative Ways to Use Dashboard Actions).
 
 - id: flerlage-beyond-show-me
   title: The 'Tableau Twins' Take You Beyond Show Me
-  authors: [Ken Flerlage, Kevin Flerlage]
+  authors: [Ken Flerlage]
   publisher: The Flerlage Twins
   url: https://www.flerlagetwins.com/2019/11/ShowMe2019.html
-  published: 2019-11
-  summary: Building charts beyond the Show Me panel once the basics are solid.
+  published: 2019-11-15
+  summary: "Ken's companion to the twins' TC19 talk: links to their posts on the three pillars of custom charts (X and Y coordinates, trigonometry, data densification), plus Sankey and radar chart templates."
   placements:
     - topic: tableau-basics/basic-charting
 
@@ -218,7 +218,7 @@
 
 - id: tableau-data-types
   title: Data Types
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/datafields_typesandroles_datatypes.htm
   summary: Lists Tableau's data types (string, number, date, date & time, Boolean, geographic) and how to change them.
@@ -227,7 +227,7 @@
 
 - id: tableau-type-conversion
   title: Type Conversion
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/functions_functions_typeconversion.htm
   summary: INT, FLOAT, STR, DATE, DATEPARSE and friends for converting types inside calculations.
@@ -238,7 +238,7 @@
 
 - id: tableau-writing-calculations
   title: Writing Calculations in Tableau
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/functions_operators.htm
   summary: How data types determine which functions and operators are valid.
@@ -261,7 +261,7 @@
 
 - id: tableau-dimensions-measures
   title: Dimensions and Measures, Blue and Green
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/datafields_typesandroles.htm
   summary: "The definitive reference: blue = discrete (headers), green = continuous (axes); strings and Booleans can never be continuous; a discrete measure is still aggregated."
@@ -500,10 +500,16 @@
 - id: flerlage-chart-catalog
   title: The Tableau Chart Catalog
   authors: [Kevin Flerlage]
-  publisher: The Flerlage Twins
-  url: https://www.flerlagetwins.com/2019/08/the-tableau-chart-catalog_97.html
-  published: 2019-08
-  summary: A visual catalogue of 100 chart types from 74 authors, each linked to a how-to.
+  publisher: Tableau Public
+  url: https://public.tableau.com/app/profile/kevin.flerlage/viz/TheTableauChartCatalog/TableauChartExamples
+  published: 2019-08-05
+  summary: A single-page gallery of 100 chart types and variations built in Tableau by 74 community authors, from arc diagrams to word clouds. Each thumbnail opens the author's Tableau Public workbook, so you can study the chart in a real use case and download it.
+  caveat: An interactive Tableau Public viz rather than an article. It shows examples, not build steps, and its own note warns that inclusion does not mean a chart is the best choice for its data.
+  alternates:
+    - publisher: The Flerlage Twins
+      url: https://www.flerlagetwins.com/2019/08/the-tableau-chart-catalog_97.html
+      published: 2019-08-07
+      note: Kevin's introduction to the catalogue, which points to other guides for building each chart.
   placements:
     - topic: visualization/chart-types
     - topic: extra/tableau-public-portfolio
@@ -532,7 +538,7 @@
 
 - id: tableau-create-story
   title: Create a Story
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/story_create.htm
   summary: Story points, sizing, captions and formatting.
@@ -541,7 +547,7 @@
 
 - id: tableau-story-example
   title: Example – A Story That Examines a Trend
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/story_example.htm
   summary: A worked earthquake-data story showing narrative sequencing.
@@ -550,7 +556,7 @@
 
 - id: tableau-tutorial-story
   title: "Step 7: Build a story to present"
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Get Started tutorial
   url: https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-story.htm
   summary: Frames a story as a slideshow of sheets and dashboards, contrasting it with an interactive dashboard.
@@ -561,7 +567,7 @@
 
 - id: tableau-actions
   title: Actions
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-gb/actions.htm
   summary: The six action types (Filter, Highlight, Go to URL, Go to Sheet, Change Parameter, Change Set Values) and the order they run in.
@@ -667,7 +673,8 @@
   authors: [Bethany Lyons]
   publisher: Tableau blog
   url: https://www.tableau.com/blog/LOD-expressions
-  summary: "The canonical list: customer order frequency, cohorts, percent of total under filters, top deals per rep, daily active trends."
+  published: 2015-04-07
+  summary: "Fifteen downloadable examples from the Tableau 9.0 launch: customer order frequency, cohorts, percent of total that survives filters, top deals per sales rep, the value on the last day of a period, proportional brushing and more."
   placements:
     - topic: data-manipulation/lod-expressions
 
@@ -683,20 +690,22 @@
 
 - id: flerlage-include-exclude
   title: Understanding INCLUDE and EXCLUDE LODs
-  authors: [Kevin Flerlage]
+  authors: [Kirk Munroe]
   publisher: The Flerlage Twins
   url: https://www.flerlagetwins.com/2024/08/includeexclude.html
-  published: 2024-08
-  summary: Demystifies the two "relative" LODs and shows when INCLUDE is the most efficient tool.
+  published: 2024-08-19
+  summary: What "in the view" really means, where FIXED, INCLUDE and EXCLUDE sit relative to context and dimension filters, why EXCLUDE is rarely needed, and INCLUDE's strongest use case, the value on the last day of each period.
+  caveat: A guest post on The Flerlage Twins blog.
   placements:
     - topic: data-manipulation/lod-expressions
 
 - id: li-three-lod-use-cases
   title: Three Use Cases of LOD Expressions
-  authors: [Fayong Li]
+  authors: [Romy Li]
   publisher: The Data School Down Under
   url: https://www.thedataschool.com.au/blogs/three-use-cases-of-lod-expressions/
-  summary: Order-frequency histograms and other FIXED-LOD patterns.
+  published: 2020-08-31
+  summary: "Three Superstore use cases: cohort analysis and order-frequency histograms with FIXED, then average city sales on a state map with INCLUDE."
   placements:
     - topic: data-manipulation/lod-expressions
 
@@ -714,7 +723,7 @@
 
 - id: tableau-date-functions
   title: Date Functions
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/functions_functions_date.htm
   summary: DATEDIFF, DATEPART, DATETRUNC and #date# literals.
@@ -723,7 +732,7 @@
 
 - id: tableau-number-functions
   title: Number Functions
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/functions_functions_number.htm
   summary: ROUND, ABS, ZN and the rest of the numeric toolbox.
@@ -734,7 +743,7 @@
 
 - id: tableau-custom-geocoding
   title: Geocode Locations Tableau Does Not Recognize and Plot Them on a Map
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/custom_geocoding.htm
   summary: Building the CSV and using Map › Geocoding › Import Custom Geocoding.
@@ -743,7 +752,7 @@
 
 - id: tableau-blending-vs-geocoding
   title: Data Blending vs. Custom Geocoding
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/maps_customgeocode_datablend.htm
   summary: Choosing between the two ways to plot unrecognised locations.
@@ -752,7 +761,7 @@
 
 - id: tableau-custom-territories
   title: Create Territories on a Map
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/maps_custom_territories.htm
   summary: Grouping geographies into custom sales or service territories.
@@ -761,7 +770,7 @@
 
 - id: tableau-geographic-roles
   title: Assign Geographic Roles
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/maps_geographicroles.htm
   summary: Setting geographic roles so Tableau generates latitude and longitude.
@@ -790,7 +799,7 @@
 
 - id: tableau-set-actions
   title: Set Actions
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/actions_sets.htm
   summary: Creating set actions, with examples like proportional brushing. Note that set actions can't be used in Stories.
@@ -800,7 +809,7 @@
 
 - id: tableau-parameter-actions
   title: Parameter Actions
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/actions_parameters.htm
   summary: Changing a parameter by clicking marks, including aggregating multiple selected marks into one value.
@@ -823,10 +832,10 @@
 
 - id: flerlage-playing-with-parameter-actions
   title: "Playing with Parameter Actions: Tableau 2019.2"
-  authors: [Ken Flerlage, Kevin Flerlage]
+  authors: [Kevin Flerlage]
   publisher: The Flerlage Twins
   url: https://www.flerlagetwins.com/2019/05/playing-with-parameter-actions-tableau_18.html
-  published: 2019-05
+  published: 2019-05-22
   summary: Four key differences (multi-select vs. single, values not in the data source, etc.) and why set actions are better for drill-downs that need "remove all values" on clear.
   placements:
     - topic: data-manipulation/sets-vs-parameters
@@ -955,7 +964,7 @@
   publisher: The Data School UK
   url: https://www.thedataschool.co.uk/a/jack-parry/a-walk-through-guide-to-the-ds-application-process/
   summary: Meet-and-greets, the screening call (talk through your viz iterations) and final interview advice.
-  caveat: Describes an older format (5-minute presentation, two panels); compare with Grasland's current description.
+  caveat: "Describes an older format: two interviews with two panels, presenting your own application viz. Today it is one interview of about 45 minutes on a dataset sent in advance; see Grasland's description."
   placements:
     - topic: data-career-tips/companies-hiring
       section: information-lab-data-school
@@ -1040,7 +1049,7 @@
 
 - id: tableau-optimize-workbook-performance
   title: Optimize Workbook Performance
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/performance_tips.htm
   summary: Start with the performance recorder; a slow data source makes everything slow.
@@ -1049,7 +1058,7 @@
 
 - id: tableau-performance-checklist
   title: Tableau Workbook Performance Checklist
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/perf_checklist.htm
   summary: Limit data, use extract and data source filters, prefer native features to calcs. Context filters no longer speed up queries.
@@ -1058,7 +1067,7 @@
 
 - id: tableau-performance-recording-server
   title: Create a Performance Recording
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Server Help
   url: https://help.tableau.com/current/server/en-us/perf_record_create_server.htm
   summary: Recording and reading performance on Tableau Server.
@@ -1584,10 +1593,12 @@
   publisher: The Data School UK
   url: https://www.thedataschool.co.uk/a/eve-thomas/creating-a-simple-highlight-parameter-action-in-tableau/
   published: 2019-09-24
-  summary: A step-by-step guide to the parameter action behind her Makeover Monday viz, from creating the parameter to wiring the dashboard action.
+  summary: "The highlight behind her Makeover Monday viz: a Boolean calculation ([Sponsor] = [Sponsor Parameter]) on Colour and Size, driven by a Change Parameter dashboard action that runs on hover."
   placements:
     - topic: data-manipulation/sets-vs-parameters
       section: set-actions-vs-parameter-actions
+    - topic: visualization/dashboard-interactivity
+      note: "A parameter action used as a highlight: one Boolean calculation on Colour and Size, triggered on hover."
 
 - id: thomas-qa-exam
   title: Passing the Tableau QA Exam (second time's the charm!)
@@ -1725,7 +1736,7 @@
 
 - id: tableau-customize-map-interaction
   title: Customize How People Interact with your Map
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/maps_customize_interaction.htm
   summary: "How the Map Options dialog sets what viewers can do with a map: adding a scale in metric or US units, hiding map search or the view toolbar, and switching off pan and zoom, with the knock-on effects of each."
@@ -1734,7 +1745,7 @@
 
 - id: tableau-fixed-lod-expressions
   title: FIXED Level of Detail Expressions
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/calculations_calculatedfields_lod_fixed.htm
   summary: "How FIXED LODs compute at the dimensions you name while ignoring those in the view, shown in two Superstore builds: a customer-acquisition cohort chart based on first purchase dates, and regional totals that repeat on every state row unless you switch to INCLUDE."
@@ -1743,7 +1754,7 @@
 
 - id: tableau-lod-reconciling-view
   title: Reconciling Level of Detail Expressions with the View Level of Detail
-  authors: [Tableau (official documentation)]
+  authors: [Tableau]
   publisher: Tableau Help
   url: https://help.tableau.com/current/pro/desktop/en-us/calculations_calculatedfields_lod_replication.htm
   summary: "How Tableau reconciles an LOD with the view: coarser expressions repeat values across marks, finer ones are aggregated up. Covers why INCLUDE never replicates, EXCLUDE always does and FIXED can do either, and the SUM, AVG or ATTR Tableau wraps around LODs on shelves."
@@ -1788,17 +1799,6 @@
   placements:
     - topic: visualization/chart-types
 
-- id: flerlage-chart-catalog-viz
-  title: The Tableau Chart Catalog
-  authors: [Kevin Flerlage]
-  publisher: Tableau Public
-  url: https://public.tableau.com/app/profile/kevin.flerlage/viz/TheTableauChartCatalog/TableauChartExamples
-  published: 2019-08-05
-  summary: A single-page gallery of 100 chart types and variations built in Tableau by 74 community authors, from arc diagrams to word clouds. Each thumbnail opens the author's Tableau Public workbook, so you can study the chart in a real use case and download it.
-  caveat: An interactive Tableau Public viz rather than an article. It shows examples, not build steps, and its own note warns that inclusion does not mean a chart is the best choice for its data.
-  placements:
-    - topic: visualization/chart-types
-
 - id: kennedy-5-things-i-wish-i-knew
   title: "5 things I wish I knew about Tableau when I started"
   authors: [Robin Kennedy]
@@ -1809,9 +1809,10 @@
   caveat: "Written in 2013, before LOD expressions existed: its order-of-operations list is simplified, so compare it with Tableau's current Order of Operations page."
   placements:
     - topic: data-manipulation/table-calculations
-    - topic: data-manipulation/table-calculations
       section: partitioning-vs-addressing
       note: "Partitioning is the 'for each', addressing the 'for every': read the table calc as one plain-English sentence."
+    - topic: tableau-basics/blue-vs-green
+      note: "Lesson 1: blue pills give headers, categorical colours and multi-select filters; green pills give axes, gradient colours and range filters."
 
 - id: shaar-dataviz-principles-examples
   title: "Data visualization guide: principles and examples"
@@ -1904,6 +1905,7 @@
   caveat: Playfair Data asks for a free account to read past the introduction.
   placements:
     - topic: extra/performance-optimization
+      note: "Written in 2017. Tableau now says context filters no longer speed up queries (see the Performance Checklist on this page), so use them to control the order of operations, not for speed."
     - topic: tableau-basics/data-cleaning
       note: "Why crosstab Excel reports break in Tableau, and how to reshape them: one column per field, no totals, real dates."
 

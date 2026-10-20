@@ -4,11 +4,11 @@
 name: The Tableau Repo
 url: https://thetableaurepo.com
 tagline: Tableau data visualization tips & principles
+# Meta description for the home page and pages without their own (aim for
+# 160 characters or fewer: search results cut longer ones).
 description: >-
-  The Tableau Repo collects Tableau data visualization tips & principles from
-  the community's best teachers: articles, Tableau Public visualizations and
-  short quotes from The Information Lab, The Data School, Playfair Data, the
-  Flerlage Twins, Tableau Public authors and more.
+  Tableau data visualization tips & principles: free articles, Tableau Public
+  vizzes and short quotes from The Data School, Playfair Data and more.
 # Shown in the footer.
 footerNote: >-
   Articles, quotes and visualizations belong to their authors. Every card

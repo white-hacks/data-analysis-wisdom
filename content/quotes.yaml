@@ -25,7 +25,7 @@
   article: kriebel-split-custom-split-replace
 
 - text: Considering both performance and ease of use, prepping your data before it enters Tableau Desktop has many benefits.
-  author: K. Wagner
+  author: Katie Wagner
   article: wagner-split-and-pivot
 
 - text: One huge takeaway from our first lesson with Carl Allchin was how helpful planning out your steps in advance is!
@@ -49,7 +49,7 @@
   article: gao-optimizing-relationships
 
 - text: We recommend using relationships as your first approach to combining your data because it makes data preparation and analysis easier and more intuitive.
-  author: Tableau Help
+  author: Tableau
   article: tableau-relate-your-data
 
 - text: Simplicity beats purity every time when it comes to adoption.
@@ -146,10 +146,6 @@
   author: Kevin Flerlage
   article: flerlage-little-design
 
-- text: These simple dashboard design tips will help you build cleaner, more actionable dashboards that feel less like data dumps and more like real business tools.
-  author: Andy Kriebel
-  article: kriebel-design-mistakes
-
 - text: Wireframes enable collaborative design, resulting in products that truly support business goals.
   author: Shreya Arya
   article: arya-b2vb-wireframe
@@ -222,7 +218,7 @@
   author: Export Calculated Fields
   article: ecf-table-calcs-explained
 
-- text: If you are like me and won't rest until you understand every detail of Tableau's functionality, then this post is for you.
+- text: The particular challenge with ordinal functions like INDEX(), FIRST(), and the rank functions is that we absolutely have to understand how addressing and partitioning works in Tableau…
   author: Jonathan Drummey
   article: drummey-partitioning
 
@@ -238,12 +234,12 @@
   author: Bethany Lyons
   article: lyons-top-15-lods
 
-- text: Again, Tableau will always aggregate your data to the level of detail in the view.
-  author: Kevin Flerlage
+- text: Level of detail calculations are really "level of aggregation NOT based on the detail in the view."
+  author: Kirk Munroe
   article: flerlage-include-exclude
 
 - text: To be able to use LODs accurately and efficiently, it is key to understand both the granularity of the data set and what elements affect the level of detail on the view.
-  author: Fayong Li
+  author: Romy Li
   article: li-three-lod-use-cases
 
 - text: If the answer should be the same no matter how you slice the view, use FIXED.
@@ -263,16 +259,12 @@
   author: Shreya Arya
   article: arya-comments-in-calculations
 
-- text: Stop doing this in Excel. Tableau has a cleaner, more powerful way to count only the weekdays between any two dates.
-  author: Andy Kriebel
-  article: kriebel-count-weekdays
-
 - text: Date functions make it easy to analyse periods and spot performance cycles.
   author: Shreya Arya
   article: arya-b2vb-date-functions
 
 - text: A geographic role associates each value in a field with a latitude and longitude value.
-  author: Tableau Help
+  author: Tableau
   article: tableau-geographic-roles
 
 - text: …if you don't have Alteryx to hand or you just want to improve your Tableau skills then here is an alternative way to make a density map in Tableau using hexbins.
@@ -396,15 +388,15 @@
 # --- Extra ----------------------------------------------------------------------
 
 - text: The majority of slow dashboards are caused by poor design—in particular, too many charts on a single dashboard, or trying to show too much data at once.
-  author: Tableau Help
+  author: Tableau
   article: tableau-performance-checklist
 
 - text: Remember that all environments are different and there is no simple cure for workbook performance.
-  author: Tableau Help
+  author: Tableau
   article: tableau-performance-checklist
 
 - text: The bigger and more complicated the data, the longer it takes to interpret and render.
-  author: Tableau Help
+  author: Tableau
   article: tableau-optimize-workbook-performance
 
 - text: …my first point of advice for any future data schoolers who also struggle with exams is to simply ask for help.
@@ -444,15 +436,15 @@
 # --- Second reading list (October 2026) ---------------------------------------
 
 - text: FIXED level of detail expressions compute a value using the specified dimensions, without reference to the dimensions in the view.
-  author: Tableau Help
+  author: Tableau
   article: tableau-fixed-lod-expressions
 
 - text: When you add a level of detail expression to the view, Tableau must reconcile two levels of detail—the one in the view, and the one in your expression.
-  author: Tableau Help
+  author: Tableau
   article: tableau-lod-reconciling-view
 
 - text: When values are being replicated, changing the aggregation for the relevant field in the view (for example, from AVG to SUM) will not change the result of the aggregation.
-  author: Tableau Help
+  author: Tableau
   article: tableau-lod-reconciling-view
 
 - text: "…if we want to calculate an aggregation at a particular level of detail, irrespective of the dimensions in view, then we need to use an LOD."
@@ -530,7 +522,7 @@
   author: Ryan Sleeper
   article: sleeper-triple-crown-intro
 
-- text: I don’t argue that you can’t be successful without one of these three components, but I do argue that considering all three will give you the best chance at success with Tableau.
+- text: "…it’s also not enough to be a great data engineer, an expert analyst, a user experience designer, a graphic designer, or etcetera. What ties it all together is strategy."
   author: Ryan Sleeper
   article: sleeper-triple-crown-intro
 
@@ -568,10 +560,6 @@
   author: Ryan Sleeper
   article: sleeper-why-visualize-data
 
-- text: If I ever have a decision to make while I’m creating a data visualization, I ask if the change will accomplish all three of these things. If it fails at any one of them, I simply don’t do it.
-  author: Ryan Sleeper
-  article: sleeper-dataviz-mission-statement
-
 - text: While it can be argued that pie charts are more engaging than a bar chart, they fail relatively dramatically at reducing the time to insight and improving the accuracy of insights.
   author: Ryan Sleeper
   article: sleeper-dataviz-mission-statement
@@ -585,7 +573,7 @@
   author: Ryan Sleeper
   article: sleeper-spreadsheet-not-dataviz
 
-- text: "…the preattentive attribute of color, which reduces the time to insight, increases the accuracy of insights, and improves engagement."
+- text: In the exercise, I take the highlight table a step further by only coloring the highest and lowest number in the view, further reducing the time to insight and increasing the accuracy of insights.
   author: Ryan Sleeper
   article: sleeper-highlight-highest-lowest
   topic: visualization/best-practices
