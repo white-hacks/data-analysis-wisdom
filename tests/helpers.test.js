@@ -81,5 +81,8 @@ test("template filters format dates, numbers and host names", () => {
   assert.equal(readableDate("2019-11"), "Nov 2019");
   assert.equal(readableDate("2019-11-02"), "2 Nov 2019");
   assert.equal(compactNumber(9271), "9.3K");
+  assert.equal(compactNumber(4399555), "4.4M");
+  assert.equal(compactNumber(1000), "1K");
+  assert.equal(compactNumber(514), "514");
   assert.equal(hostname("https://www.vizwiz.com/2026/x.html"), "vizwiz.com");
 });

@@ -35,12 +35,18 @@ function readableDate(value) {
 
 /**
  * Shortens large numbers for viz statistics (9271 → "9.3K", 4399555 → "4.4M").
+ * Written by hand rather than with Intl's compact notation, whose output
+ * ("9.3K" vs "9.3k") varies between Node.js versions.
  *
  * @param {number} value
  * @returns {string}
  */
 function compactNumber(value) {
-  return new Intl.NumberFormat("en-GB", { notation: "compact", maximumFractionDigits: 1 }).format(value || 0);
+  const n = Number(value) || 0;
+  const format = (x, suffix) => `${Number(x.toFixed(1))}${suffix}`;
+  if (Math.abs(n) >= 1e6) return format(n / 1e6, "M");
+  if (Math.abs(n) >= 1e3) return format(n / 1e3, "K");
+  return String(n);
 }
 
 /**
