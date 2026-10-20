@@ -6,9 +6,9 @@ A static website that collects the best free Tableau writing in one place:
 
 | Section | What it holds | Pages |
 |---|---|---|
-| **Articles** | 160 hand-picked articles, organised by the categories and subcategories of the research guide *Tableau Mastery & Data Consultancy Careers*. Articles the guide lists more than once appear on every topic they belong to. | `/articles/` → category → subcategory |
+| **Articles** | 184 hand-picked articles, organised by the categories and subcategories of the research guide *Tableau Mastery & Data Consultancy Careers*, plus later reading lists. Articles the guide lists more than once appear on every topic they belong to. | `/articles/` → category → subcategory |
 | **Visualizations** | Most-favourited Tableau Public vizzes from 10 experts (Andy Kriebel, Ryan Sleeper, Shreya Arya, Eve Thomas, Lorna Brown, Bethany Lyons, Scott Foster, Ken & Kevin Flerlage, Jonathan Drummey), each linked to their Tableau Public profile. | `/visualizations/` → author |
-| **Short quotes** | 101 memorable lines quoted word for word from the articles, arranged by the same categories. | `/quotes/` → category |
+| **Short quotes** | 140 memorable lines quoted word for word from the articles, arranged by the same categories. | `/quotes/` → category |
 
 The site **links** to articles and vizzes. It never copies them: every card points to the original, and quotes are short, attributed excerpts.
 
@@ -137,7 +137,7 @@ One-time setup:
 
 ## Design notes
 
-- **Menu**: hidden behind the *Menu* button. On a desktop, hovering it reveals Home, Articles, Visualizations and Short quotes, and hovering an entry with sub-pages opens a fly-out listing them (Articles → categories → subcategories). On touch screens the button opens a full-screen menu with expandable sections. Keyboard users get the same via Tab and Escape.
+- **Menu**: hidden behind the *Menu* button. On a desktop, hovering it reveals Home, Articles, Visualizations and Short quotes, and hovering an entry with sub-pages opens a fly-out listing them (Articles → categories → subcategories). The pointer can travel diagonally towards an open fly-out without a neighbouring entry taking over ("menu aim" in `menu.js`); without JavaScript the menu still works through CSS hover. On touch screens the button opens a full-screen menu with expandable sections. Keyboard users get the same via Tab, Enter and Escape (focus stays on the Menu button).
 - **Colour**: each category has an accent from a colour-blind-checked palette, validated in light and dark mode. Colours mark things (stripes, bars) and are never the only way to tell categories apart.
 - **Dark mode** follows the visitor's system setting.
 - **No tracking, no client-side framework**: pages are plain HTML and CSS with one small script for the menu.
