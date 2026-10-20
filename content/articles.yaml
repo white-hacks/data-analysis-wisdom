@@ -1867,3 +1867,127 @@
   summary: "Start with the audience and their questions, then apply six principles (the right chart, predictable ordering, sparing and intuitive colour, contextual shapes, size for values, purposeful text) and simple layout rules: key view top-left, three or four views at most."
   placements:
     - topic: visualization/best-practices
+
+# -----------------------------------------------------------------------------
+# Added: third reading list (October 2026), Playfair Data posts, each read in
+# full (past the free-account prompt) and placed on the best-fitting page.
+# -----------------------------------------------------------------------------
+
+- id: sleeper-triple-crown-intro
+  title: Introducing the Triple Crown Framework for Data Visualization
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/introducing-the-triple-crown-framework-for-data-visualization/
+  published: 2017-10-10
+  summary: Opening post of Sleeper's four-part Triple Crown series. Drawing on the Iron Viz championship, he presents data (the steak) and design (the sizzle) as two pillars of a successful Tableau project, and psychology as the third that sets winners apart.
+  placements:
+    - topic: visualization/best-practices
+
+- id: sleeper-triple-crown-psychology
+  title: "Triple Crown Framework for Data Visualization: Psychology"
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/triple-crown-framework-for-data-visualization-psychology/
+  published: 2017-10-17
+  summary: "Second post in the Triple Crown series, moving psychology to the front: tailor dashboards to a CEO, an analyst or the public, map Super Bowl ticket prices onto the stadium so viewers' schemas do the work, and convert spreadsheet users with a crosstab-to-highlight-table exercise."
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: visualization/psychology
+
+- id: sleeper-triple-crown-data
+  title: "Triple Crown Framework for Data Visualization: Data"
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/triple-crown-framework-for-data-visualization-data/
+  published: 2017-10-24
+  summary: "The third Triple Crown post: why crosstab Excel reports must be reshaped before Tableau, when to shape data for Sankey, unit and funnel charts, and speed tips (trim unneeded rows, prepare dimensions upstream but aggregate measures in Tableau, use context filters)."
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: extra/performance-optimization
+    - topic: tableau-basics/data-cleaning
+      note: "Why crosstab Excel reports break in Tableau, and how to reshape them: one column per field, no totals, real dates."
+
+- id: sleeper-triple-crown-design
+  title: "Triple Crown Framework for Data Visualization: Design"
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/triple-crown-framework-for-data-visualization-design/
+  published: 2017-10-31
+  summary: "The final Triple Crown post: ask one business question per view, add simple design polish (fonts, a small desaturated palette, icons) for credibility and shareability, and retell old tables of numbers, such as league standings, as visuals."
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: visualization/best-practices
+
+- id: sleeper-why-visualize-data
+  title: Why do you visualize data?
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/why-do-you-visualize-data/
+  published: 2018-03-27
+  summary: "Sleeper's one-line purpose for visualizing data, finding and communicating actionable insights, and a stakeholder exercise that demonstrates visualization's value: ask for the highest number in a plain crosstab, then in a highlight table, then with only the highest and lowest values coloured."
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: visualization/best-practices
+    - topic: data-career-tips/the-work-itself
+      note: A quick crosstab-versus-highlight-table exercise for winning over stakeholders who still rely on spreadsheet reports.
+
+- id: sleeper-dataviz-mission-statement
+  title: My Data Visualization Mission Statement
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/my-data-visualization-mission-statement/
+  published: 2018-01-03
+  summary: "A three-part test for every design decision: a change must reduce the time to insight, increase the accuracy of insights and improve engagement, or Sleeper drops it. He applies it to highlight tables and to a pie versus a sorted bar chart."
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: visualization/best-practices
+    - topic: visualization/chart-types
+      note: "Pie versus sorted bar chart on a Superstore question: why bars win on speed and accuracy of insight."
+
+- id: sleeper-spreadsheet-not-dataviz
+  title: A Spreadsheet is Not a Data Visualization
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/a-spreadsheet-is-not-a-data-visualization/
+  published: 2016-03-14
+  summary: "Why a text table is the weakest way to show more than one number (keep exact values as bar labels instead), and three legitimate uses for crosstabs in Tableau: Excel exports, oversized callout numbers, and filter or navigation views driven by dashboard actions."
+  caveat: Playfair Data asks for a free account to read past the introduction. Excerpted from Sleeper's book Practical Tableau (O'Reilly, 2018).
+  placements:
+    - topic: visualization/chart-types
+
+- id: sleeper-highlight-highest-lowest
+  title: How to Highlight the Highest and Lowest Points in Tableau
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/how-to-highlight-the-highest-and-lowest-points-in-tableau/
+  published: 2018-04-03
+  summary: How one calculated field using WINDOW_MAX and WINDOW_MIN can colour just the highest and lowest values in a crosstab, why its addressing must span both dimensions instead of Table (Across), and a blank-header trick for square-mark highlight tables.
+  caveat: Playfair Data asks for a free account to read past the introduction. Excerpted from Sleeper's book Innovative Tableau (O'Reilly, 2020).
+  placements:
+    - topic: data-manipulation/table-calculations
+    - topic: visualization/best-practices
+      note: Colour only the extremes so the view answers 'which is highest or lowest?' without the reader scanning every cell.
+
+- id: sleeper-creative-dashboard-actions
+  title: "Practical Tableau: 3 Creative Ways to Use Dashboard Actions"
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/practical-tableau-3-creative-ways-to-use-dashboard-actions/
+  published: 2017-01-17
+  summary: "Explains the actions dialog (source and target sheets, hover, select or menu triggers, clearing options, target filters), then three uses: every sheet as a filter with separately tuned actions, YouTube videos in a Web Page object, and Google image searches from a click."
+  caveat: "Playfair Data asks for a free account to read past the introduction. An excerpt from Sleeper's book Practical Tableau, first posted in 2017: its primer covers only filter, highlight and URL actions, since set and parameter actions came later."
+  placements:
+    - topic: visualization/dashboard-interactivity
+
+- id: simancas-neuroscience-bar-line-pie
+  title: The Neuroscience Behind Bar, Line, & Pie Charts
+  authors: [Rafael Simancas]
+  publisher: Playfair Data
+  url: https://playfairdata.com/neuroscience-bar-line-pie-charts/
+  published: 2026-01-30
+  summary: Draws on Kahneman's System 1 and System 2, attention filtering, preattentive attributes and object recognition to argue for dashboards built for the first glance, then explains why bars and lines read quickly and when a pie chart (few slices, one dominant) still works.
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: visualization/psychology
+    - topic: visualization/chart-types
+      note: Explains through perception why bars and lines beat pies, and the narrow cases where a pie still works.

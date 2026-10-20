@@ -523,3 +523,85 @@
 - text: Limit the number of views in your visualisation to three or four. If you add too many, the big picture gets lost in the details.
   author: Tableau
   article: tableau-6-dataviz-tips
+
+# --- Third reading list: Playfair Data (October 2026) --------------------------
+
+- text: The data is the foundation of everything created (the steak), but I believe that design is also required to engage the user (the sizzle).
+  author: Ryan Sleeper
+  article: sleeper-triple-crown-intro
+
+- text: I don’t argue that you can’t be successful without one of these three components, but I do argue that considering all three will give you the best chance at success with Tableau.
+  author: Ryan Sleeper
+  article: sleeper-triple-crown-intro
+
+- text: Psychological schemas are the countless patterns that we have built up over our lifetimes to make sense of the world.
+  author: Ryan Sleeper
+  article: sleeper-triple-crown-psychology
+
+- text: If you can’t answer the basic business questions of what are the highest / lowest numbers, how can you expect to find more valuable insights?
+  author: Ryan Sleeper
+  article: sleeper-triple-crown-psychology
+
+- text: One easy way to make your workbooks run more efficiently is to reduce the number of records that need to be processed, and one of the easiest ways to reduce the number of records is to only use the data that you need.
+  author: Ryan Sleeper
+  article: sleeper-triple-crown-data
+
+- text: When each column header represents a field, every subsequent row (or record) is a combination of those fields.
+  author: Ryan Sleeper
+  article: sleeper-triple-crown-data
+  topic: tableau-basics/data-cleaning
+
+- text: Some of the most effective corporate dashboards I’ve seen ask one business question, then all information in the visualization ladders up to answering the one business question.
+  author: Ryan Sleeper
+  article: sleeper-triple-crown-design
+
+- text: It’s the same exact story, but without improving the aesthetics, it doesn’t have the same credibility or remarkability.
+  author: Ryan Sleeper
+  article: sleeper-triple-crown-design
+
+- text: It’s one thing to say that data visualization helps add value, but it’s another thing when the stakeholder can see it for themselves.
+  author: Ryan Sleeper
+  article: sleeper-why-visualize-data
+  topic: data-career-tips/the-work-itself
+
+- text: "…we, as data visualization practitioners, have a huge opportunity (and I believe responsibility) to add value by proving the worth of visualization and driving adoption."
+  author: Ryan Sleeper
+  article: sleeper-why-visualize-data
+
+- text: If I ever have a decision to make while I’m creating a data visualization, I ask if the change will accomplish all three of these things. If it fails at any one of them, I simply don’t do it.
+  author: Ryan Sleeper
+  article: sleeper-dataviz-mission-statement
+
+- text: While it can be argued that pie charts are more engaging than a bar chart, they fail relatively dramatically at reducing the time to insight and improving the accuracy of insights.
+  author: Ryan Sleeper
+  article: sleeper-dataviz-mission-statement
+  topic: visualization/chart-types
+
+- text: "…once there is more than just one number in a report, I firmly believe that a text table is the worst possible choice for communicating the data."
+  author: Ryan Sleeper
+  article: sleeper-spreadsheet-not-dataviz
+
+- text: I am not saying that raw numbers provide no value, but I am saying that visualizing raw numbers always provides additional value.
+  author: Ryan Sleeper
+  article: sleeper-spreadsheet-not-dataviz
+
+- text: "…the preattentive attribute of color, which reduces the time to insight, increases the accuracy of insights, and improves engagement."
+  author: Ryan Sleeper
+  article: sleeper-highlight-highest-lowest
+  topic: visualization/best-practices
+
+- text: Dashboard actions, filters, and parameters are three of the best tactics to use in Tableau because they provide a way to transfer control of the analysis from you to your end users.
+  author: Ryan Sleeper
+  article: sleeper-creative-dashboard-actions
+
+- text: "…it would be good practice to allow users to use every sheet in a dashboard as a filter."
+  author: Ryan Sleeper
+  article: sleeper-creative-dashboard-actions
+
+- text: Every chart is a little conversation between your data and someone else’s brain. System 1 always talks first, where System 2 only joins if it’s invited.
+  author: Rafael Simancas
+  article: simancas-neuroscience-bar-line-pie
+
+- text: The more visual noise you introduce, the harder the brain will need to work.
+  author: Rafael Simancas
+  article: simancas-neuroscience-bar-line-pie
