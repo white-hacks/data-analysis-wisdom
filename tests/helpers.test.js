@@ -67,6 +67,15 @@ test("buildCatalog wires quotes, people and categories without subcategories", (
   assert.equal(catalog.stats.vizzes, 1);
 });
 
+test("validateContent checks alternates and duplicate URLs across them", () => {
+  const content = tinyContent();
+  content.articles[0].alternates = [{ publisher: "Orig", url: "https://a2.test" }, { publisher: "", url: "ftp://x" }, { publisher: "P", url: "https://ok.test", published: "May 2020" }];
+  const { errors, warnings } = validateContent(content);
+  assert.ok(errors.some((e) => e.includes("alternate without a publisher")));
+  assert.ok(errors.some((e) => e.includes('alternate whose "published" date')));
+  assert.ok(warnings.some((w) => w.includes("https://a2.test") && w.includes("listed twice")));
+});
+
 test("validateContent reports broken references", () => {
   const content = tinyContent();
   content.articles[0].placements.push({ topic: "basics/nope" });

@@ -243,6 +243,19 @@ test("unknown addresses get the 404 page", async () => {
   await context.close();
 });
 
+test("an article published in two places shows its alternate version", async () => {
+  const { context, page } = await openPage(browser, { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  await page.goto(base + "/articles/visualization/psychology/");
+  const card = page.locator(".article-card", { hasText: "psychological schemas" }).first();
+  const alternate = card.locator(".article-card__alternate a");
+  assert.equal(await alternate.count(), 1);
+  assert.match(await alternate.getAttribute("href"), /^https:\/\/playfairdata\.com\//);
+  assert.match(await alternate.textContent(), /Playfair Data, 18 Oct 2016/);
+  // The ↗ icon stays inline (not styled as a block label).
+  assert.equal(await alternate.locator(".external").evaluate((el) => getComputedStyle(el).display), "inline-block");
+  await context.close();
+});
+
 test("every article link opens the original in a new tab", async () => {
   const { context, page } = await openPage(browser);
   await page.goto(base + "/articles/visualization/best-practices/");

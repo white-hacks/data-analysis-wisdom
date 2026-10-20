@@ -94,6 +94,14 @@ test("featured people link to a Tableau Public profile and have a gallery", () =
   }
 });
 
+test("Playfair originals are listed as alternates instead of duplicate cards", () => {
+  const schemas = catalog.articles.find((a) => a.id === "sleeper-psychological-schemas");
+  assert.equal(schemas.alternates[0].publisher, "Playfair Data");
+  assert.match(schemas.alternates[0].url, /^https:\/\/playfairdata\.com\//);
+  const titles = topicByKey("visualization/psychology").placements.main.map((i) => i.article.title.toLowerCase());
+  assert.equal(titles.filter((t) => t.includes("psychological schemas")).length, 1);
+});
+
 test("articles by featured people link to their Visualizations page", () => {
   const article = catalog.articles.find((a) => a.id === "lyons-top-15-lods");
   assert.deepEqual(article.authorLinks, [{ name: "Bethany Lyons", url: "/visualizations/bethany-lyons/" }]);

@@ -15,6 +15,11 @@
 #   published   Optional publication date: "YYYY", "YYYY-MM" or "YYYY-MM-DD".
 #   summary     One or two sentences describing the article.
 #   caveat      Optional warning shown on the card (e.g. login prompts).
+#   alternates  Optional other places the SAME article is published (e.g. the
+#               author's original post when the card links to a republished
+#               copy). Each entry: publisher, url, optional published, optional
+#               note. Shown on the card as "Also published" links, so one
+#               article never gets two near-identical cards.
 #   placements  Where the article appears. Each entry has:
 #     topic     "<category-slug>/<subcategory-slug>" (or just "miscellaneous")
 #     section   Optional section slug declared in categories.yaml
@@ -321,6 +326,11 @@
   url: https://www.tableau.com/blog/3-ways-psychological-schemas-can-improve-your-data-visualization-64600
   published: 2017-01
   summary: Spatial context, icons, shapes, symbols and colour schemas, and why disrupting audience expectations can lead them in the wrong direction.
+  alternates:
+    - publisher: Playfair Data
+      url: https://playfairdata.com/3-ways-psychological-schemas-can-improve-your-data-visualization/
+      published: 2016-10-18
+      note: Ryan Sleeper's original post, which the Tableau blog later republished. Free account needed to read past the introduction.
   placements:
     - topic: visualization/psychology
 
@@ -331,6 +341,11 @@
   url: https://www.tableau.com/blog/3-storytelling-color-tips-improve-your-data-visualization
   published: 2019-09
   summary: Reduce saturation, cut cognitive load (one bright highlight colour, the rest neutral) and leverage colour associations.
+  alternates:
+    - publisher: Playfair Data
+      url: https://playfairdata.com/3-storytelling-with-color-tips-to-improve-your-data-visualization/
+      published: 2019-03-23
+      note: Ryan Sleeper's original post, which the Tableau blog later republished. Free account needed to read past the introduction.
   placements:
     - topic: visualization/psychology
 

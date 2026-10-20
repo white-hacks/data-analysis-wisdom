@@ -409,7 +409,9 @@ img { max-width: 100%; display: block; }
 .article-card__authors { font-size: 0.9rem; font-weight: 600; color: var(--ink-2); }
 .article-card__summary { font-size: 0.95rem; color: var(--ink-2); }
 .article-card__note { font-size: 0.9rem; color: var(--ink-2); padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface-2); border-left: 3px solid var(--accent); }
-.article-card__note span { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 2px; }
+.article-card__label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 2px; }
+.article-card__alternate { font-size: 0.875rem; color: var(--ink-2); }
+.article-card__alternate a { font-weight: 600; }
 .article-card__caveat { font-size: 0.85rem; color: var(--warning-ink); background: var(--warning-bg); padding: 8px 12px; border-radius: var(--radius-sm); }
 .article-card__caveat::before { content: "Heads-up · "; font-weight: 700; }
 .external { display: inline-block; margin-left: 0.25em; font-size: 0.85em; color: var(--ink-3); }

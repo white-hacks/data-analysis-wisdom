@@ -55,7 +55,10 @@ async function checkUrl(url) {
  * @returns {{label: string, url: string}[]}
  */
 function collectUrls(content) {
-  const urls = content.articles.map((article) => ({ label: `article:${article.id}`, url: article.url }));
+  const urls = content.articles.flatMap((article) => [
+    { label: `article:${article.id}`, url: article.url },
+    ...(article.alternates || []).map((alt) => ({ label: `article:${article.id}:alternate`, url: alt.url })),
+  ]);
   for (const person of content.people) {
     if (person.tableauPublic) urls.push({ label: `person:${person.slug}`, url: person.tableauPublic });
     if (person.website) urls.push({ label: `person:${person.slug}:website`, url: person.website });

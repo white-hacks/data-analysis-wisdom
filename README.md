@@ -88,6 +88,8 @@ Add an entry to `content/articles.yaml`:
 
 Topic names are `category-slug/subcategory-slug` from `categories.yaml` (or just `miscellaneous`). Use `section:` to put an article under one of a subcategory's sections, such as `partitioning-vs-addressing`.
 
+If the same article is published in more than one place (for example an author's original post and a republished copy), keep **one** entry and list the other copies under `alternates:`, each with `publisher`, `url` and optionally `published` and `note`. The card then shows "Also published" links instead of two near-identical cards.
+
 ### Add a quote
 
 ```yaml

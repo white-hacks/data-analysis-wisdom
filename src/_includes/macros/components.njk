@@ -64,7 +64,9 @@
   articleCard(item)
   One article in a topic list. `item` is { article, note } as produced by
   collectPlacements() in lib/catalog.js. The title opens the original
-  article in a new tab; featured authors link to their Visualizations page.
+  article in a new tab; featured authors link to their Visualizations page;
+  other published versions of the same article (article.alternates) are
+  listed under "Also published".
 #}
 {% macro articleCard(item) %}
 {%- set a = item.article -%}
@@ -83,7 +85,14 @@
     {%- endfor -%}
   </p>
   <p class="article-card__summary">{{ a.summary }}</p>
-  {%- if item.note %}<p class="article-card__note"><span>Why it's here</span> {{ item.note }}</p>{% endif %}
+  {%- if item.note %}<p class="article-card__note"><span class="article-card__label">Why it's here</span> {{ item.note }}</p>{% endif %}
+  {%- for alt in a.alternates %}
+  <p class="article-card__alternate">
+    <span class="article-card__label">Also published</span>
+    <a href="{{ alt.url }}" target="_blank" rel="noopener">{{ alt.publisher }}{% if alt.published %}, {{ alt.published | readableDate }}{% endif %}<span class="external" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
+    {%- if alt.note %} {{ alt.note }}{% endif %}
+  </p>
+  {%- endfor %}
   {%- if a.caveat %}<p class="article-card__caveat">{{ a.caveat }}</p>{% endif %}
 </article>
 {% endmacro %}
