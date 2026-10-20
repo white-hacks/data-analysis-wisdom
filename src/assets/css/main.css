@@ -262,18 +262,29 @@ img { max-width: 100%; display: block; }
 .menu__item.is-expanded > .menu__expand::before { transform: rotate(-135deg); }
 .menu__list--level-1 > .menu__item > .menu__link { font-size: 1.1rem; font-weight: 600; }
 
-/* Desktop with a real hover pointer: hidden panel + left-cascading fly-outs. */
+/* Desktop with a real hover pointer: hidden panel + left-cascading fly-outs.
+   Two modes share this block:
+   - CSS only (before/without menu.js): :hover opens things, with hover-intent
+     delays (open after 0.15s, close after 0.5s) so a diagonal move towards
+     a fly-out is forgiven.
+   - "Menu aim" (menu.js adds .menu--aim): the script decides what is open
+     with .is-hovered (panel) and .is-active (fly-outs) and handles all
+     timing, so the CSS just shows or hides them quickly.
+   Keyboard focus (:focus-within) and .is-open work the same in both. */
 @media (hover: hover) and (pointer: fine) and (min-width: 900px) {
   .menu__panel {
     display: block; position: absolute; inset: auto; top: 100%; right: 0;
     padding: 10px 0 0; background: transparent; border: 0; overflow: visible;
     visibility: hidden; opacity: 0; transform: translateY(-6px);
-    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0.25s;
+    transition: opacity 0.16s ease 0.34s, transform 0.16s ease 0.34s, visibility 0s linear 0.5s;
   }
-  .menu:hover .menu__panel,
+  .menu--aim .menu__panel { transition: opacity 0.14s ease, transform 0.14s ease, visibility 0s linear 0.14s; }
+  .menu:not(.menu--aim):hover .menu__panel,
+  .menu--aim.is-hovered .menu__panel,
   .menu:focus-within .menu__panel,
   .menu.is-open .menu__panel {
-    visibility: visible; opacity: 1; transform: none; transition-delay: 0s;
+    visibility: visible; opacity: 1; transform: none;
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0s;
   }
   /* After Escape (menu.js adds .is-dismissed) the menu stays shut even though
      the pointer or keyboard focus is still on the Menu button. */
@@ -286,20 +297,38 @@ img { max-width: 100%; display: block; }
   .menu__list--level-1 > .menu__item > .menu__link { font-size: 1rem; }
   .menu__item { flex-wrap: nowrap; }
   .menu__expand { display: none; }
+  .menu--aim .menu__item:hover > .menu__link { background: transparent; }
+  .menu--aim .menu__item > .menu__link:hover,
+  .menu--aim .menu__item.is-active > .menu__link { background: var(--surface-3); }
+
   /* Fly-outs: positioned to the left of their parent item. */
   .menu__panel .menu__list .menu__list {
-    display: block; position: absolute; top: -7px; right: 100%; width: auto;
+    display: block; position: absolute; z-index: 1; top: -7px; right: 100%; width: auto;
     margin: 0 6px 0 0; padding: 6px; border-left: 1px solid var(--line);
     visibility: hidden; opacity: 0; transform: translateX(6px);
-    transition: opacity 0.14s ease, transform 0.14s ease, visibility 0s linear 0.25s;
+    transition: opacity 0.14s ease 0.36s, transform 0.14s ease 0.36s, visibility 0s linear 0.5s;
+  }
+  .menu--aim .menu__panel .menu__list .menu__list {
+    transition: opacity 0.12s ease, transform 0.12s ease, visibility 0s linear 0.12s;
   }
   /* An invisible bridge across the 6px gap so the pointer never "falls off". */
   .menu__panel .menu__list .menu__list::after {
     content: ""; position: absolute; top: 0; bottom: 0; right: -8px; width: 8px;
   }
-  .menu__item--parent:hover > .menu__list,
+  .menu:not(.menu--aim) .menu__item--parent:hover > .menu__list,
+  .menu--aim .menu__item--parent.is-active > .menu__list,
   .menu__item--parent:focus-within > .menu__list {
-    visibility: visible; opacity: 1; transform: none; transition-delay: 0s;
+    visibility: visible; opacity: 1; transform: none; z-index: 2;
+    transition: opacity 0.14s ease 0.15s, transform 0.14s ease 0.15s, visibility 0s linear 0.15s;
+  }
+  /* No delay when the script or keyboard focus opens a fly-out. */
+  .menu--aim .menu__item--parent.is-active > .menu__list,
+  .menu__item--parent:focus-within > .menu__list { transition-delay: 0s; }
+  /* A long fly-out with no further fly-outs inside (e.g. the list of
+     authors) scrolls instead of running off the bottom of a short window.
+     Lists that contain fly-outs can't scroll: that would clip them. */
+  .menu__list--level-2:not(:has(.menu__item--parent)) {
+    max-height: calc(100vh - var(--header-h) - 32px); overflow-y: auto; overscroll-behavior: contain;
   }
   /* Chevron pointing toward the fly-out. */
   .menu__item--parent > .menu__link { position: relative; padding-left: 28px; }

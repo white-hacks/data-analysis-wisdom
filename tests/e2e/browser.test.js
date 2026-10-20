@@ -175,6 +175,123 @@ test("desktop: the Visualizations and Short quotes entries list their sub-pages"
   await context.close();
 });
 
+/**
+ * Moves the mouse in a straight line from the centre of one element to the
+ * centre of another in `steps` steps of about 16ms, like a real pointer.
+ */
+async function glide(page, fromLocator, toLocator, steps) {
+  const a = await fromLocator.boundingBox();
+  const b = await toLocator.boundingBox();
+  const start = { x: a.x + a.width / 2, y: a.y + a.height / 2 };
+  const end = { x: b.x + b.width / 2, y: b.y + b.height / 2 };
+  for (let i = 1; i <= steps; i++) {
+    await page.mouse.move(start.x + ((end.x - start.x) * i) / steps, start.y + ((end.y - start.y) * i) / steps);
+    await page.waitForTimeout(16);
+  }
+}
+
+test("desktop: moving diagonally to a fly-out never lets a neighbour take over (menu aim)", async () => {
+  const { context, page, errors } = await openPage(browser, { viewport: { width: 1280, height: 800 } });
+  await page.goto(base + "/");
+  const level1 = (name) => page.locator(".menu__list--level-1 > .menu__item", { hasText: name }).first();
+  const cases = [
+    ["Visualizations", "Jonathan Drummey", 8],
+    ["Visualizations", "Jonathan Drummey", 30],
+    ["Articles", "Miscellaneous", 8],
+    ["Articles", "Miscellaneous", 30],
+    ["Short quotes", "Tableau basics", 12],
+  ];
+  for (const [entry, target, steps] of cases) {
+    await page.mouse.move(5, 5);
+    await page.locator("#menu-panel").waitFor({ state: "hidden" });
+    await page.hover(".menu__trigger");
+    const item = level1(entry);
+    await item.locator(":scope > .menu__link").hover();
+    const link = item.locator(":scope > .menu__list").getByRole("link", { name: target });
+    await link.waitFor({ state: "visible" });
+    await glide(page, item.locator(":scope > .menu__link"), link, steps);
+    await page.waitForTimeout(450);
+    assert.ok(await link.isVisible(), `${entry} → ${target} in ${steps} steps: the fly-out closed on the way`);
+  }
+
+  // Three levels: Articles → Data manipulation → its last topic.
+  await page.mouse.move(5, 5);
+  await page.locator("#menu-panel").waitFor({ state: "hidden" });
+  await page.hover(".menu__trigger");
+  const articles = level1("Articles");
+  await articles.locator(":scope > .menu__link").hover();
+  const manipulation = articles.locator(":scope > .menu__list > .menu__item", { hasText: "Data manipulation" }).first();
+  await glide(page, articles.locator(":scope > .menu__link"), manipulation.locator(":scope > .menu__link"), 15);
+  const lastTopic = manipulation.locator(":scope > .menu__list").getByRole("link", { name: "Sets vs. parameters" });
+  await lastTopic.waitFor({ state: "visible" });
+  await glide(page, manipulation.locator(":scope > .menu__link"), lastTopic, 15);
+  await page.waitForTimeout(450);
+  assert.ok(await lastTopic.isVisible(), "third-level fly-out closed on the way");
+  await lastTopic.click();
+  await page.waitForURL("**/articles/data-manipulation/sets-vs-parameters/");
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test("desktop: without JavaScript the menu still opens on hover (CSS fallback)", async () => {
+  const { context, page } = await openPage(browser, { viewport: { width: 1280, height: 800 }, javaScriptEnabled: false });
+  // Playwright's hover() waits for animation frames, which never come with
+  // JavaScript off, so move the mouse to the element's centre directly.
+  const pointAt = async (locator) => {
+    const box = await locator.boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  };
+  await page.goto(base + "/");
+  await pointAt(page.locator(".menu__trigger"));
+  await page.locator("#menu-panel").waitFor({ state: "visible" });
+  const articles = page.locator(".menu__list--level-1 > .menu__item", { hasText: "Articles" }).first();
+  await pointAt(articles.locator(":scope > .menu__link"));
+  await articles.locator(":scope > .menu__list").waitFor({ state: "visible" });
+  await page.mouse.move(5, 700);
+  await page.locator("#menu-panel").waitFor({ state: "hidden" });
+  await context.close();
+});
+
+test("desktop: stopping on a neighbouring entry switches to it promptly", async () => {
+  const { context, page } = await openPage(browser, { viewport: { width: 1280, height: 800 } });
+  await page.goto(base + "/");
+  await page.hover(".menu__trigger");
+  const viz = page.locator(".menu__list--level-1 > .menu__item", { hasText: "Visualizations" }).first();
+  const quotes = page.locator(".menu__list--level-1 > .menu__item", { hasText: "Short quotes" }).first();
+  await viz.locator(":scope > .menu__link").hover();
+  await viz.locator(":scope > .menu__list").waitFor({ state: "visible" });
+  // Straight down onto "Short quotes", then rest there.
+  await glide(page, viz.locator(":scope > .menu__link"), quotes.locator(":scope > .menu__link"), 6);
+  await quotes.locator(":scope > .menu__list").waitFor({ state: "visible", timeout: 1000 });
+  await viz.locator(":scope > .menu__list").waitFor({ state: "hidden", timeout: 1000 });
+  await context.close();
+});
+
+test("desktop: every fly-out fits inside a short laptop window", async () => {
+  const { context, page } = await openPage(browser, { viewport: { width: 1024, height: 600 } });
+  await page.goto(base + "/");
+  await page.hover(".menu__trigger");
+  const parents = page.locator(".menu__list--level-1 > .menu__item--parent");
+  for (let i = 0; i < (await parents.count()); i++) {
+    const item = parents.nth(i);
+    await item.locator(":scope > .menu__link").hover();
+    const list = item.locator(":scope > .menu__list");
+    await list.waitFor({ state: "visible" });
+    const box = await list.boundingBox();
+    assert.ok(box.x >= 0 && box.y + box.height <= 600, `fly-out ${i + 1} leaves the window: ${JSON.stringify(box)}`);
+    const subParents = list.locator(":scope > .menu__item--parent");
+    for (let j = 0; j < (await subParents.count()); j++) {
+      const sub = subParents.nth(j);
+      await sub.locator(":scope > .menu__link").hover();
+      const subList = sub.locator(":scope > .menu__list");
+      await subList.waitFor({ state: "visible" });
+      const subBox = await subList.boundingBox();
+      assert.ok(subBox.x >= 0 && subBox.y + subBox.height <= 600, `fly-out ${i + 1}.${j + 1} leaves the window: ${JSON.stringify(subBox)}`);
+    }
+  }
+  await context.close();
+});
+
 test("keyboard: Enter opens the menu, Tab reaches its links, Escape closes it", async () => {
   const { context, page } = await openPage(browser, { viewport: { width: 1280, height: 900 } });
   await page.goto(base + "/quotes/");
