@@ -100,6 +100,13 @@ test.after(async () => {
   server?.close();
 });
 
+/**
+ * CSS added to every page in a second pass to imitate a wider fallback font
+ * (fonts differ between computers), so layouts that only just fit fail here
+ * rather than on a visitor's phone.
+ */
+const WIDE_TEXT = "* { letter-spacing: 0.1em !important; word-spacing: 0.1em !important; }";
+
 test("every page loads without errors and never scrolls sideways", async () => {
   const pages = allPagePaths();
   assert.ok(pages.length > 40, `expected the full site, found ${pages.length} pages`);
@@ -108,8 +115,11 @@ test("every page loads without errors and never scrolls sideways", async () => {
     for (const urlPath of pages) {
       const response = await page.goto(base + urlPath, { waitUntil: "load" });
       assert.equal(response.status(), 200, `${urlPath} returned ${response.status()}`);
-      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-      assert.ok(overflow <= 0, `${urlPath} overflows by ${overflow}px at ${width}px wide`);
+      for (const pass of ["normal text", "wide text"]) {
+        if (pass === "wide text") await page.addStyleTag({ content: WIDE_TEXT });
+        const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+        assert.ok(overflow <= 0, `${urlPath} overflows by ${overflow}px at ${width}px wide (${pass})`);
+      }
     }
     assert.deepEqual(errors, [], `errors at ${width}px`);
     await context.close();
@@ -175,9 +185,14 @@ test("keyboard: Enter opens the menu, Tab reaches its links, Escape closes it", 
   await page.keyboard.press("Tab");
   assert.equal(await page.evaluate(() => document.activeElement.textContent.trim()), "Home");
   await page.keyboard.press("Escape");
-  await page.mouse.move(10, 800);
   await page.locator("#menu-panel").waitFor({ state: "hidden" });
   assert.equal(await page.getAttribute(".menu__trigger", "aria-expanded"), "false");
+  // Focus returns to the Menu button so keyboard users keep their place.
+  assert.ok(await page.evaluate(() => document.activeElement.classList.contains("menu__trigger")));
+  // Enter on the Menu button opens it again.
+  await page.keyboard.press("Enter");
+  assert.ok(await panelIsVisible(page));
+  assert.equal(await page.getAttribute(".menu__trigger", "aria-expanded"), "true");
   await context.close();
 });
 

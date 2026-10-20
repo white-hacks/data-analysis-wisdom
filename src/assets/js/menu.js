@@ -7,7 +7,8 @@
  * it on :hover (see "Menu" in main.css). This script adds:
  *   - tap/click on the "Menu" button to open or close the panel;
  *   - tap/click on a chevron button to expand a sub-list (accordion);
- *   - Escape to close, and a click outside the menu to close;
+ *   - Escape to close (focus stays on the Menu button), and a click outside
+ *     the menu to close;
  *   - aria-expanded kept in sync for screen readers.
  *
  * Loaded with `defer` from layouts/base.njk; it runs once the HTML is parsed.
@@ -53,6 +54,7 @@
   }
 
   trigger.addEventListener("click", function () {
+    menu.classList.remove("is-dismissed");
     setMenuOpen(!menu.classList.contains("is-open"));
   });
 
@@ -69,10 +71,23 @@
     if (event.key !== "Escape") return;
     if (menu.classList.contains("is-open") || menu.contains(document.activeElement)) {
       setMenuOpen(false);
-      // Move focus out of the menu so :focus-within no longer keeps it open.
+      // Keep keyboard focus on the Menu button, but mark the menu as
+      // dismissed so CSS stops :hover / :focus-within from reopening it.
+      menu.classList.add("is-dismissed");
       trigger.focus();
-      trigger.blur();
     }
+  });
+
+  /**
+   * Clears the "dismissed" state set by Escape, so hover and focus open the
+   * menu again. Called when the pointer leaves the menu or focus moves away.
+   */
+  function clearDismissed() {
+    menu.classList.remove("is-dismissed");
+  }
+  menu.addEventListener("mouseleave", clearDismissed);
+  menu.addEventListener("focusout", function (event) {
+    if (!menu.contains(event.relatedTarget)) clearDismissed();
   });
 
   // Close the sheet if the window grows into the desktop layout.

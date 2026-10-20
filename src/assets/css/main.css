@@ -144,7 +144,7 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing: -0.02em; margin: 0; overflow-wrap: break-word; }
 p { margin: 0; }
 a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
@@ -275,6 +275,9 @@ img { max-width: 100%; display: block; }
   .menu.is-open .menu__panel {
     visibility: visible; opacity: 1; transform: none; transition-delay: 0s;
   }
+  /* After Escape (menu.js adds .is-dismissed) the menu stays shut even though
+     the pointer or keyboard focus is still on the Menu button. */
+  .menu.is-dismissed:not(.is-open) .menu__panel { visibility: hidden; opacity: 0; transition: none; }
   .menu__list {
     min-width: 250px; max-width: 320px;
     background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
@@ -469,6 +472,7 @@ img { max-width: 100%; display: block; }
   display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 8px 16px;
   border-radius: 999px; border: 1px solid var(--line-strong); background: var(--card);
   color: var(--ink); font-weight: 600; font-size: 0.9rem; text-decoration: none;
+  max-width: 100%; overflow-wrap: anywhere;
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 .button:hover { background: var(--surface-3); border-color: var(--ink-3); }
@@ -494,7 +498,7 @@ img { max-width: 100%; display: block; }
 .pager__link--next { text-align: right; grid-column: 2; }
 
 .profile { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
-.profile__text { flex: 1 1 320px; }
+.profile__text { flex: 1 1 320px; min-width: 0; }
 .profile__affiliation { margin-top: 6px; font-weight: 600; color: var(--ink-3); }
 .profile__links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
 .fine-print { margin-top: 14px; font-size: 0.8rem; color: var(--ink-3); }
