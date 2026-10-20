@@ -440,3 +440,86 @@
 - text: Everyone has their own skills, strengths and areas of development - for this reason, you should never compare your Tableau journey to anyone elses!
   author: Shreya Arya
   article: arya-resources-to-learn-tableau
+
+# --- Second reading list (October 2026) ---------------------------------------
+
+- text: FIXED level of detail expressions compute a value using the specified dimensions, without reference to the dimensions in the view.
+  author: Tableau Help
+  article: tableau-fixed-lod-expressions
+
+- text: When you add a level of detail expression to the view, Tableau must reconcile two levels of detail—the one in the view, and the one in your expression.
+  author: Tableau Help
+  article: tableau-lod-reconciling-view
+
+- text: When values are being replicated, changing the aggregation for the relevant field in the view (for example, from AVG to SUM) will not change the result of the aggregation.
+  author: Tableau Help
+  article: tableau-lod-reconciling-view
+
+- text: "…if we want to calculate an aggregation at a particular level of detail, irrespective of the dimensions in view, then we need to use an LOD."
+  author: Clare Fox
+  article: fox-fixed-lod-intro
+
+- text: If we do not specify any dimension, then Tableau fixes the aggregation on the whole dataset.
+  author: Clare Fox
+  article: fox-fixed-lod-intro
+
+- text: Whenever the calculation is performed for more granular data than the view, the values will be aggregated. When the calculation is performed for less granular data, the values will be duplicated…
+  author: Hanna Nykowska
+  article: nykowska-include-exclude-lods
+
+- text: "…the type of LOD (and whether you need an LOD calculation in the first place) will depend on what you have in the view. Another factor is whether you want your calculation to be flexible or not."
+  author: Hanna Nykowska
+  article: nykowska-include-exclude-lods
+
+- text: Creating a histogram is an effective way to visualise data. However Tableau has not got an inbuilt function which labels the bins properly…
+  author: Jevon Da Costa
+  article: dacosta-histogram-bin-labels
+
+- text: "…whenever I get stuck and don’t know what fields to use or how to configure them, I ask myself ‘how would I do this without Tableau?’"
+  author: Robin Kennedy
+  article: kennedy-5-things-i-wish-i-knew
+
+- text: Knowing that a standard filter comes after a top N filter but before a table calculation can help you get out of situations such as you don’t know why your % of total figure is not working
+  author: Robin Kennedy
+  article: kennedy-5-things-i-wish-i-knew
+
+- text: No matter who your audience is, strive for clarity and make sure every element on the chart has a purpose.
+  author: Sarah Shaar
+  article: shaar-dataviz-principles-examples
+
+- text: Use color purposefully, like a spotlight, to highlight key insights without overwhelming the audience, keeping colorblindness in mind.
+  author: Sarah Shaar
+  article: shaar-dataviz-principles-examples
+
+- text: Readers make choices about what they spend time viewing and they won’t spend time reviewing a graphic unless the topic is intriguing to them.
+  author: Nicole Klassen et al.
+  article: klassen-tailoring-visualizations-audience
+
+- text: "…not all users have the inclination or capability to explore a dataset or the baseline knowledge to pose meaningful questions."
+  author: Nicole Klassen et al.
+  article: klassen-tailoring-visualizations-audience
+  topic: visualization/dashboards-vs-stories
+
+- text: Resist the temptation to create visualizations that meet the needs of every single stakeholder who might one day look at it.
+  author: Tom Czaban
+  article: czaban-dataviz-best-practices
+
+- text: To drive an action, the viewer needs to understand how the performance compares to something tangible, like a goal or a benchmark from a previous period.
+  author: Tom Czaban
+  article: czaban-dataviz-best-practices
+
+- text: All data tells a story — whether you want it to or not — so it is easy to unintentionally create a data story by default.
+  author: Tom Czaban
+  article: czaban-data-storytelling-tips
+
+- text: Newspapers figured out a long time ago that you should always position the important high-level information in the first place a reader will look.
+  author: Tom Czaban
+  article: czaban-data-storytelling-tips
+
+- text: Too many colours will create a cacophony, while using a single colour or too many shades of one colour can cause the data to blend together…
+  author: Tableau
+  article: tableau-6-dataviz-tips
+
+- text: Limit the number of views in your visualisation to three or four. If you add too many, the big picture gets lost in the details.
+  author: Tableau
+  article: tableau-6-dataviz-tips

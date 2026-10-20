@@ -1702,3 +1702,153 @@
   summary: "Four blockers that kill analytics adoption: leadership that doesn't walk the talk, no time to work differently, training without purpose, and no data community. Plus how to address each."
   placements:
     - topic: data-career-tips/the-work-itself
+
+# -----------------------------------------------------------------------------
+# Added: second reading list (October 2026), each article read in full and
+# placed on the subcategory it fits best.
+# -----------------------------------------------------------------------------
+
+- id: tableau-customize-map-interaction
+  title: Customize How People Interact with your Map
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/maps_customize_interaction.htm
+  summary: "How the Map Options dialog sets what viewers can do with a map: adding a scale in metric or US units, hiding map search or the view toolbar, and switching off pan and zoom, with the knock-on effects of each."
+  placements:
+    - topic: data-manipulation/maps
+
+- id: tableau-fixed-lod-expressions
+  title: FIXED Level of Detail Expressions
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/calculations_calculatedfields_lod_fixed.htm
+  summary: "How FIXED LODs compute at the dimensions you name while ignoring those in the view, shown in two Superstore builds: a customer-acquisition cohort chart based on first purchase dates, and regional totals that repeat on every state row unless you switch to INCLUDE."
+  placements:
+    - topic: data-manipulation/lod-expressions
+
+- id: tableau-lod-reconciling-view
+  title: Reconciling Level of Detail Expressions with the View Level of Detail
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/calculations_calculatedfields_lod_replication.htm
+  summary: "How Tableau reconciles an LOD with the view: coarser expressions repeat values across marks, finer ones are aggregated up. Covers why INCLUDE never replicates, EXCLUDE always does and FIXED can do either, and the SUM, AVG or ATTR Tableau wraps around LODs on shelves."
+  placements:
+    - topic: data-manipulation/lod-expressions
+
+- id: fox-fixed-lod-intro
+  title: What on earth is a fixed LOD?
+  authors: [Clare Fox]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/a/clare-fox/an-introduction-to-fixed-lods-in-tableau/
+  summary: "A beginner's introduction to FIXED LODs on Superstore: why the dimensions in the view set the level of aggregation, how to read the syntax as a plain-English sentence, and how a per-customer sales total holds steady when Order ID is added."
+  placements:
+    - topic: data-manipulation/lod-expressions
+
+- id: nykowska-include-exclude-lods
+  title: "Tableau LODs: include and exclude"
+  authors: [Hanna Nykowska]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/a/hanna-nykowska/tableau-lods-include-and-exclude/
+  summary: Puts INCLUDE and EXCLUDE into plain-English sentences, then uses Superstore examples (average product sales per sub-category, sub-category vs. category averages) to show why they adapt to the view where FIXED does not, and when results are aggregated or duplicated.
+  placements:
+    - topic: data-manipulation/lod-expressions
+
+- id: dacosta-histogram-bin-labels
+  title: The proper way to label bin ranges on a histogram - Tableau
+  authors: [Jevon Da Costa]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/a/jevon-dacosta/the-proper-way-to-label-bin-ranges-on-a-histogram-tableau/
+  summary: Using a Titanic survival-by-age histogram, shows why Tableau's default bin labels (0, 5, 10…) confuse readers, and how a calculated field driven by a bin-size parameter labels each bar as a range that updates with the bin size.
+  placements:
+    - topic: tableau-basics/basic-charting
+
+- id: kriebel-visual-vocabulary-viz
+  title: Visual Vocabulary
+  authors: [Andy Kriebel]
+  publisher: Tableau Public
+  url: https://public.tableau.com/app/profile/andy.kriebel/viz/VisualVocabulary/VisualVocabulary
+  published: 2018-07-17
+  summary: "An interactive Tableau rebuild of the Financial Times Visual Vocabulary: pick the data relationship your story depends on (deviation, correlation, ranking, distribution, change over time, part-to-whole, magnitude, spatial or flow), then browse the charts that suit it."
+  caveat: "An interactive Tableau Public viz rather than an article: click a category or use the tabs to see its charts. Best explored on a large screen."
+  placements:
+    - topic: visualization/chart-types
+
+- id: flerlage-chart-catalog-viz
+  title: The Tableau Chart Catalog
+  authors: [Kevin Flerlage]
+  publisher: Tableau Public
+  url: https://public.tableau.com/app/profile/kevin.flerlage/viz/TheTableauChartCatalog/TableauChartExamples
+  published: 2019-08-05
+  summary: A single-page gallery of 100 chart types and variations built in Tableau by 74 community authors, from arc diagrams to word clouds. Each thumbnail opens the author's Tableau Public workbook, so you can study the chart in a real use case and download it.
+  caveat: An interactive Tableau Public viz rather than an article. It shows examples, not build steps, and its own note warns that inclusion does not mean a chart is the best choice for its data.
+  placements:
+    - topic: visualization/chart-types
+
+- id: kennedy-5-things-i-wish-i-knew
+  title: "5 things I wish I knew about Tableau when I started"
+  authors: [Robin Kennedy]
+  publisher: The Information Lab
+  url: https://www.theinformationlab.co.uk/community/blog/5-things-i-wish-i-knew-about-tableau-when-i-started/
+  published: 2013-01-28
+  summary: "Five concepts worth learning early: what blue (discrete) and green (continuous) pills change, reading partitioning and addressing as a plain-English sentence, the SQL Tableau writes as you drag and drop, the order of operations, and INDEX, FIRST and LAST."
+  caveat: "Written in 2013, before LOD expressions existed: its order-of-operations list is simplified, so compare it with Tableau's current Order of Operations page."
+  placements:
+    - topic: data-manipulation/table-calculations
+    - topic: data-manipulation/table-calculations
+      section: partitioning-vs-addressing
+      note: "Partitioning is the 'for each', addressing the 'for every': read the table calc as one plain-English sentence."
+
+- id: shaar-dataviz-principles-examples
+  title: "Data visualization guide: principles and examples"
+  authors: [Sarah Shaar]
+  publisher: Justinmind
+  url: https://www.justinmind.com/blog/data-visualization-examples-principles/
+  published: 2025-03-19
+  summary: A primer for newcomers covering data preparation, matching chart families to the message and audience, clarity, honest scales, purposeful colour, accessibility and five common pitfalls, followed by 30 dashboard and infographic examples and a survey of free and paid tools.
+  caveat: A vendor blog that promotes Justinmind's prototyping tool. The first ten examples are its own templates, and the advice is not specific to Tableau.
+  placements:
+    - topic: visualization/best-practices
+
+- id: klassen-tailoring-visualizations-audience
+  title: Tailoring Visualizations to Suit Your Audience
+  authors: [Nicole Klassen, Shabnam Mehra, Liz Sanders, Jeffrey Simmons]
+  publisher: Association for Institutional Research (AIR)
+  url: https://www.airweb.org/article/2021/08/19/tailoring-visualizations-to-suit-your-audience
+  published: 2021-08-19
+  summary: "Four institutional researchers present one graduation-rate dataset to four audiences: an interactive Tableau Public jitter plot, PowerPoint for committees, an annotated Excel chart for the public and Power BI for senior leaders. Together they show how the audience should set complexity and format."
+  caveat: Written for institutional researchers in higher education. Only one of the four examples is built in Tableau.
+  placements:
+    - topic: visualization/best-practices
+    - topic: visualization/dashboards-vs-stories
+      note: When an interactive dashboard helps, and when a static, annotated graphic serves readers better.
+
+- id: czaban-dataviz-best-practices
+  title: Top 10 Proven Data Visualization Best Practices
+  authors: [Tom Czaban]
+  publisher: GoodData
+  url: https://www.gooddata.ai/blog/5-data-visualization-best-practices/
+  published: 2023-11-02
+  summary: "Ten tool-agnostic rules: design for one audience and the decision it must make, keep views simple, match chart type to the question, rethink crowded pie charts, add benchmarks for context, use high-contrast colour without red–green pairs, then test and iterate."
+  caveat: Vendor blog from GoodData, a BI platform rather than Tableau; the advice is tool-agnostic, but demo prompts and AI-feature plugs sit between the tips.
+  placements:
+    - topic: visualization/best-practices
+
+- id: czaban-data-storytelling-tips
+  title: "Data Storytelling: 6 Tips To Help You Tell Effective Data Stories"
+  authors: [Tom Czaban]
+  publisher: GoodData
+  url: https://www.gooddata.ai/blog/data-storytelling-tips-to-help-you-tell-effective-data-stories/
+  published: 2024-05-02
+  summary: "Six tips for telling stories with dashboards: design around who decides and how often (strategic, operational or tactical), set numbers against benchmarks, lead with headline KPIs and let users drill or filter for detail, and match formats to the reader's locale."
+  caveat: Vendor blog from GoodData, a BI platform rather than Tableau; screenshots and the embedding and sharing tips refer to its own product.
+  placements:
+    - topic: visualization/dashboards-vs-stories
+
+- id: tableau-6-dataviz-tips
+  title: "6 great data visualisation tips for more effective and engaging design"
+  authors: [Tableau]
+  publisher: Tableau
+  url: https://www.tableau.com/en-gb/learn/articles/data-visualization-tips
+  summary: "Start with the audience and their questions, then apply six principles (the right chart, predictable ordering, sparing and intuitive colour, contextual shapes, size for values, purposeful text) and simple layout rules: key view top-left, three or four views at most."
+  placements:
+    - topic: visualization/best-practices

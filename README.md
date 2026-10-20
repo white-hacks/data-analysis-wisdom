@@ -22,7 +22,9 @@ Requires [Node.js](https://nodejs.org) 20 or newer.
 npm install        # once
 npm start          # preview at http://localhost:8080 (reloads as you edit)
 npm run build      # build the finished site into _site/
-npm test           # run the automated checks
+npm test           # unit tests (content, data logic, helpers)
+npm run check:site # check the built pages: links, anchors, headings, alt text
+npm run test:e2e   # browser tests in Chromium: menu, layouts, 404 (after a build)
 ```
 
 ## How the project is organised
@@ -54,7 +56,8 @@ src/                  ← the website templates (Eleventy + Nunjucks)
   quotes/               quotes index and category pages
   visualizations/       authors index and author pages
   assets/               CSS, JavaScript (menu.js) and the favicon
-tests/                ← automated checks (`npm test`)
+tests/                ← automated checks: unit tests (`npm test`)
+  e2e/                  browser tests (`npm run test:e2e`)
 eleventy.config.js    ← build settings and template filters
 .github/workflows/    ← build, test and deploy to GitHub Pages
 ```
@@ -110,7 +113,9 @@ Add it to `content/categories.yaml`. Pages, menu entries and breadcrumbs are gen
 | Command | What it does | When |
 |---|---|---|
 | `npm run validate` | Checks content files for mistakes (offline). | After every edit |
-| `npm test` | Runs the automated tests. | Before committing |
+| `npm test` | Runs the unit tests. | Before committing |
+| `npm run check:site` | Checks every built page for broken internal links and anchors, missing titles/descriptions/alt text, duplicate ids and template leftovers. | After `npm run build` |
+| `npm run test:e2e` | Opens the built site in Chromium: hover, keyboard and touch menus; no sideways scrolling at 320–1440px; no JavaScript errors; 404 page. | After `npm run build` |
 | `npm run check:links` | Checks every article and profile URL still works. | Every few months |
 | `npm run verify:quotes` | Re-checks every quote against its live article. | After adding quotes; every few months |
 | `npm run fetch:vizzes` | Refreshes viz galleries from Tableau Public. | After adding a person; every few months |

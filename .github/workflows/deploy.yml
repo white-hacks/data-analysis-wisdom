@@ -1,7 +1,8 @@
 # =============================================================================
 # Build, test and publish The Tableau Repo to GitHub Pages
 # =============================================================================
-# - Every push and pull request: run the tests, validate content, build.
+# - Every push and pull request: unit tests, content validation, build,
+#   checks on the built pages, and browser tests in Chromium.
 # - Pushes to `main`: also publish _site to GitHub Pages, served at the
 #   custom domain in src/CNAME (thetableaurepo.com). Other branches only
 #   build and test, so work in progress never goes live.
@@ -45,6 +46,15 @@ jobs:
 
       - name: Build site
         run: npm run build
+
+      - name: Check built pages (links, anchors, headings, alt text)
+        run: npm run check:site
+
+      - name: Install Chromium for browser tests
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser tests (menu, layout at 5 widths, 404)
+        run: npm run test:e2e
 
       - name: Upload site for GitHub Pages
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
