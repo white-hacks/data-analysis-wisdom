@@ -6,9 +6,9 @@ A static website that collects the best free Tableau writing in one place:
 
 | Section | What it holds | Pages |
 |---|---|---|
-| **Articles** | 184 hand-picked articles, organised by the categories and subcategories of the research guide *Tableau Mastery & Data Consultancy Careers*, plus later reading lists. Articles the guide lists more than once appear on every topic they belong to. | `/articles/` → category → subcategory |
+| **Articles** | 183 hand-picked articles, organised by the categories and subcategories of the research guide *Tableau Mastery & Data Consultancy Careers*, plus later reading lists. Articles the guide lists more than once appear on every topic they belong to. | `/articles/` → category → subcategory |
 | **Visualizations** | Most-favourited Tableau Public vizzes from 10 experts (Andy Kriebel, Ryan Sleeper, Shreya Arya, Eve Thomas, Lorna Brown, Bethany Lyons, Scott Foster, Ken & Kevin Flerlage, Jonathan Drummey), each linked to their Tableau Public profile. | `/visualizations/` → author |
-| **Short quotes** | 140 memorable lines quoted word for word from the articles, arranged by the same categories. | `/quotes/` → category |
+| **Short quotes** | 137 memorable lines quoted word for word from the articles, arranged by the same categories. | `/quotes/` → category |
 
 The site **links** to articles and vizzes. It never copies them: every card points to the original, and quotes are short, attributed excerpts.
 
@@ -16,10 +16,11 @@ The site **links** to articles and vizzes. It never copies them: every card poin
 
 ## Quick start
 
-Requires [Node.js](https://nodejs.org) 20 or newer.
+Requires [Node.js](https://nodejs.org) 22 or newer.
 
 ```bash
 npm install        # once
+npx playwright install chromium   # once, for the browser tests
 npm start          # preview at http://localhost:8080 (reloads as you edit)
 npm run build      # build the finished site into _site/
 npm test           # unit tests (content, data logic, helpers)
@@ -104,7 +105,7 @@ Then run `npm run verify:quotes` to confirm the words appear verbatim in the sou
 ### Add an expert to Visualizations
 
 1. Add them to `content/people.yaml` (slug, name, Tableau Public profile URL, short bio).
-2. Run `npm run fetch:vizzes -- --only their-slug` to download their most-favourited vizzes.
+2. Run `npm run fetch:vizzes -- --only their-slug` to download their most-favourited vizzes (it scans all their public workbooks). Thumbnails are Tableau Public's small previews; when Tableau Public has none for a viz, the card shows a plain "No preview" tile.
 
 ### Add a category or subcategory
 
@@ -117,9 +118,9 @@ Add it to `content/categories.yaml`. Pages, menu entries and breadcrumbs are gen
 | `npm run validate` | Checks content files for mistakes (offline). | After every edit |
 | `npm test` | Runs the unit tests. | Before committing |
 | `npm run check:site` | Checks every built page for broken internal links and anchors, missing titles/descriptions/alt text, duplicate ids and template leftovers. | After `npm run build` |
-| `npm run test:e2e` | Opens the built site in Chromium: hover, keyboard and touch menus; no sideways scrolling at 320–1440px; no JavaScript errors; 404 page. | After `npm run build` |
-| `npm run check:links` | Checks every article and profile URL still works. | Every few months |
-| `npm run verify:quotes` | Re-checks every quote against its live article. | After adding quotes; every few months |
+| `npm run test:e2e` | Opens the built site in Chromium: hover, keyboard and touch menus; no sideways scrolling at 320–1440px; printing; no JavaScript errors; 404 page. | After `npm run build` |
+| `npm run check:links` | Checks every article and profile URL still works (GET requests; Tableau Public profiles through their JSON endpoint). | Every few months |
+| `npm run verify:quotes` | Re-checks every quote against its live article (or the article's alternates). Fails when a quote is missing or its source is gone. | After adding quotes; every few months |
 | `npm run fetch:vizzes` | Refreshes viz galleries from Tableau Public. | After adding a person; every few months |
 
 The last three use the internet. Behind a corporate proxy, prefix them with `NODE_USE_ENV_PROXY=1`. Some sources are PDFs or pages drawn by JavaScript, which the quote checker can't read; it lists those as "not checked" so you can check them by hand.
@@ -130,14 +131,16 @@ The workflow in `.github/workflows/deploy.yml` tests and builds every push, and 
 
 One-time setup:
 
-1. **GitHub**: merge the site into a `main` branch (and make it the default branch under *Settings → General*), then go to *Settings → Pages → Build and deployment → Source: GitHub Actions*. The custom domain comes from `src/CNAME`. Tick **Enforce HTTPS** once the certificate is issued.
-2. **DNS** at your domain registrar:
+1. **GitHub**: merge the site into a `main` branch (and make it the default branch under *Settings → General*), then go to *Settings → Pages → Build and deployment → Source: GitHub Actions*.
+2. **Custom domain**: on the same page, enter `thetableaurepo.com` under *Custom domain* and save. Deployments from GitHub Actions ignore the `CNAME` file (`src/CNAME` is kept only for other hosts), so this step is required. Tick **Enforce HTTPS** once the certificate is issued. Until the domain is set, the site at `<user>.github.io/data-analysis-wisdom/` loads without its styles, because every link is written for the domain root.
+3. **DNS** at your domain registrar:
    - `A` records for `thetableaurepo.com` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
    - `CNAME` record for `www` → `<your-github-user>.github.io`
 
 ## Design notes
 
-- **Menu**: hidden behind the *Menu* button. On a desktop, hovering it reveals Home, Articles, Visualizations and Short quotes, and hovering an entry with sub-pages opens a fly-out listing them (Articles → categories → subcategories). The pointer can travel diagonally towards an open fly-out without a neighbouring entry taking over ("menu aim" in `menu.js`); without JavaScript the menu still works through CSS hover. On touch screens the button opens a full-screen menu with expandable sections. Keyboard users get the same via Tab, Enter and Escape (focus stays on the Menu button).
+- **Menu**: hidden behind the *Menu* button. On a desktop, hovering it reveals Home, Articles, Visualizations and Short quotes, and hovering an entry with sub-pages opens a fly-out listing them (Articles → categories → subcategories). The pointer can travel diagonally towards an open fly-out without a neighbouring entry taking over ("menu aim" in `menu.js`); without JavaScript the menu still works through CSS hover. On touch screens the button opens a full-screen menu with expandable sections. Keyboard users press Enter on *Menu*, Tab through the four entries, and press Enter on the chevron button next to an entry to open its sub-pages; Escape, or tabbing out of the menu, closes it.
+- **Printing** a page gives a clean reading list: no header or menu, dark text on white, and each article's address printed after its title.
 - **Colour**: each category has an accent from a colour-blind-checked palette, validated in light and dark mode. Colours mark things (stripes, bars) and are never the only way to tell categories apart.
 - **Dark mode** follows the visitor's system setting.
 - **No tracking, no client-side framework**: pages are plain HTML and CSS with one small script for the menu.

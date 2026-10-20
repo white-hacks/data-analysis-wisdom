@@ -12,8 +12,8 @@ accent: aqua
   <div class="card-grid">
     {%- for category in catalog.categories %}
       {%- set q = category.featuredQuote -%}
-      {%- set preview = ["“" ~ q.text ~ "” (" ~ q.author ~ ")"] if q else [] -%}
-      {{ linkCard(category.title, category.quotesUrl, null, category.quoteCount ~ " quotes", category.color, preview) }}
+      {#- The quote goes in the description, which is never cut short, so its author always shows. #}
+      {{ linkCard(category.title, category.quotesUrl, ("“" ~ (q.text | smartQuotes) ~ "” (" ~ q.author ~ ")") if q else null, category.quoteCount ~ " quotes", category.color) }}
     {%- endfor %}
   </div>
 </section>

@@ -17,8 +17,8 @@
  *   --only <slug,...>  Only refresh these people (others are kept as they are).
  *   --limit <n>        Vizzes kept per person (default 12).
  *   --scan <n>         Workbooks scanned per person before picking the most
- *                      favourited (default 300; Tableau Public serves 50 per
- *                      request).
+ *                      favourited (default: all of them; Tableau Public
+ *                      serves 50 per request).
  *
  * It uses the public JSON endpoints behind tableau.com profile pages. They are
  * not an official API, so if Tableau changes them this script is the one
@@ -35,15 +35,42 @@ const { request } = require("../lib/http");
 const PAGE_SIZE = 50; // Maximum page size Tableau Public accepts.
 
 /**
- * Reads command-line options.
+ * Thumbnails smaller than this are Tableau Public's grey "no preview"
+ * placeholder (about 1.2 KB), not a picture of the viz.
+ */
+const PLACEHOLDER_MAX_BYTES = 2000;
+
+/**
+ * Reads command-line options. Stops with a message on a missing or invalid
+ * value, so a typo can never wipe a gallery.
+ *
+ * @param {string[]} argv  process.argv without the first two entries.
+ * @param {string[]} slugs  Valid person slugs (from people.yaml).
  * @returns {{only: Set<string>|null, limit: number, scan: number}}
  */
-function parseArgs(argv) {
-  const options = { only: null, limit: 12, scan: 300 };
+function parseArgs(argv, slugs) {
+  const options = { only: null, limit: 12, scan: Infinity };
+  const fail = (message) => {
+    console.error(`fetch-vizzes: ${message}`);
+    process.exit(2);
+  };
+  /** Reads the value after option `name`, which must be a whole number ≥ 1. */
+  const positiveInteger = (name, value) => {
+    const number = Number(value);
+    if (!Number.isInteger(number) || number < 1) fail(`${name} needs a whole number of at least 1 (got "${value ?? ""}")`);
+    return number;
+  };
   for (let i = 0; i < argv.length; i++) {
-    if (argv[i] === "--only") options.only = new Set(argv[++i].split(","));
-    else if (argv[i] === "--limit") options.limit = Number(argv[++i]);
-    else if (argv[i] === "--scan") options.scan = Number(argv[++i]);
+    const name = argv[i];
+    if (name === "--only") {
+      const value = argv[++i];
+      if (!value || value.startsWith("--")) fail("--only needs a comma-separated list of person slugs");
+      const unknown = value.split(",").filter((slug) => !slugs.includes(slug));
+      if (unknown.length) fail(`unknown person slug(s): ${unknown.join(", ")} (see content/people.yaml)`);
+      options.only = new Set(value.split(","));
+    } else if (name === "--limit") options.limit = positiveInteger(name, argv[++i]);
+    else if (name === "--scan") options.scan = positiveInteger(name, argv[++i]);
+    else fail(`unknown option ${name}`);
   }
   return options;
 }
@@ -51,6 +78,7 @@ function parseArgs(argv) {
 /**
  * Extracts the profile name from a Tableau Public profile URL
  * ("https://public.tableau.com/app/profile/andy.kriebel" → "andy.kriebel").
+ * Called by fetchPerson() before any request.
  *
  * @param {string} url
  * @returns {string}
@@ -63,6 +91,7 @@ function profileNameFromUrl(url) {
 
 /**
  * GETs a Tableau Public JSON endpoint.
+ * Called by fetchPerson() for the profile and each page of workbooks.
  * @param {string} url
  * @returns {Promise<any>}
  */
@@ -76,9 +105,13 @@ async function getJson(url) {
  * Converts one workbook record from Tableau Public into the shape the site
  * uses: title, viz page URL, thumbnail URL and popularity counts.
  *
+ * The thumbnail is the 736×454 preview Tableau Public's own galleries use
+ * (".../4_3.png"); the full-size render (".../1.png") can be several MB.
+ * Called by fetchPerson() for every workbook.
+ *
  * @param {string} profileName
  * @param {object} workbook  Record from the workbooks endpoint.
- * @returns {{title: string, url: string, thumbnail: string, views: number, favorites: number}}
+ * @returns {{title: string, url: string, thumbnail: string|null, views: number, favorites: number}}
  */
 function toViz(profileName, workbook) {
   // defaultViewRepoUrl looks like "Workbook/sheets/Sheet".
@@ -86,15 +119,35 @@ function toViz(profileName, workbook) {
   return {
     title: workbook.title,
     url: `https://public.tableau.com/app/profile/${profileName}/viz/${repo}/${sheet}`,
-    thumbnail: `https://public.tableau.com/static/images/${repo.slice(0, 2)}/${repo}/${sheet}/1.png`,
+    thumbnail: `https://public.tableau.com/static/images/${repo.slice(0, 2)}/${repo}/${sheet}/4_3.png`,
     views: workbook.viewCount || 0,
     favorites: workbook.numberOfFavorites || 0,
   };
 }
 
 /**
+ * Checks that a viz's thumbnail is a real picture. Tableau Public answers
+ * 200 with a tiny grey placeholder when it has no preview for a viz; the
+ * site then shows a titled tile instead (vizCard in macros/components.njk).
+ * Called for each viz kept in a gallery.
+ *
+ * @param {{thumbnail: string|null}} viz  Updated in place.
+ */
+async function checkThumbnail(viz) {
+  if (!viz.thumbnail) return;
+  try {
+    const response = await request(viz.thumbnail);
+    const bytes = (await response.arrayBuffer()).byteLength;
+    if (!response.ok || bytes < PLACEHOLDER_MAX_BYTES) viz.thumbnail = null;
+  } catch {
+    // Network trouble: keep the URL; the next refresh checks it again.
+  }
+}
+
+/**
  * Downloads one person's profile and picks their most favourited vizzes
  * (ties broken by view count).
+ * Called by main() for each person being refreshed.
  *
  * @param {object} person  Entry from people.yaml.
  * @param {{limit: number, scan: number}} options
@@ -119,6 +172,7 @@ async function fetchPerson(person, { limit, scan }) {
     .map((wb) => toViz(profileName, wb))
     .sort((a, b) => b.favorites - a.favorites || b.views - a.views)
     .slice(0, limit);
+  for (const viz of vizzes) await checkThumbnail(viz);
 
   return {
     profileName,
@@ -133,8 +187,8 @@ async function fetchPerson(person, { limit, scan }) {
 
 /** Entry point: refreshes vizzes.json. */
 async function main() {
-  const options = parseArgs(process.argv.slice(2));
   const { people, vizzes: existing } = loadContent();
+  const options = parseArgs(process.argv.slice(2), people.map((p) => p.slug));
   const output = { ...existing };
 
   for (const person of people) {

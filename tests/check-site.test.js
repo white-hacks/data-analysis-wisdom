@@ -50,3 +50,17 @@ test("broken links, missing anchors and markup mistakes are reported", () => {
     assert.ok(problems.some((p) => p.includes(fragment)), `expected a problem mentioning ${fragment}\n${problems.join("\n")}`);
   }
 });
+
+test("odd links are reported one by one instead of stopping the check", () => {
+  const dir = makeSite({
+    "index.html": page(
+      `<a href="/a%zz/">bad escape</a> <a href='/missing/'>single quotes</a> <a href="//fonts.example/css">protocol-relative</a>` +
+        '<img src="a.png" alt="undefined"><meta property="og:title" content="NaN">',
+    ),
+  });
+  const { problems } = checkSite(dir);
+  assert.ok(problems.some((p) => p.includes("malformed URL /a%zz/")), problems.join("\n"));
+  assert.ok(problems.some((p) => p.includes("broken internal link /missing/")), problems.join("\n"));
+  assert.ok(!problems.some((p) => p.includes("//fonts.example")), problems.join("\n"));
+  assert.ok(problems.some((p) => p.includes('"undefined"')) && problems.some((p) => p.includes('"NaN"')), problems.join("\n"));
+});

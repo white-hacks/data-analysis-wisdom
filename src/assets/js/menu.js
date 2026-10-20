@@ -9,11 +9,12 @@
  *   - desktop "menu aim": the pointer can travel diagonally towards an open
  *     fly-out without a neighbouring entry it crosses taking over, and the
  *     menu stays open for a moment when the pointer briefly leaves it;
- *   - tap/click on the "Menu" button to open or close the panel;
- *   - tap/click on a chevron button to expand a sub-list (touch accordion);
- *   - Escape to close (focus stays on the Menu button), and a click outside
- *     the menu to close;
- *   - aria-expanded kept in sync for screen readers.
+ *   - click/tap or Enter on the "Menu" button to open or close the panel;
+ *   - the chevron buttons, which open a sub-list: an accordion on touch
+ *     screens, a fly-out on desktop (so keyboard users Tab through the four
+ *     main entries instead of every link in every fly-out);
+ *   - Escape, a click outside the menu, or focus leaving it to close it;
+ *   - aria-expanded kept in sync with what is shown, for screen readers.
  *
  * Loaded with `defer` from layouts/base.njk; it runs once the HTML is parsed.
  */
@@ -34,7 +35,8 @@
 
   /**
    * True when the menu is shown as a full-screen sheet (touch screens or
-   * narrow windows) rather than as a hover dropdown.
+   * narrow windows) rather than as a hover dropdown. Called whenever
+   * behaviour differs between the two layouts.
    * @returns {boolean}
    */
   function isSheetLayout() {
@@ -42,31 +44,73 @@
   }
 
   /**
-   * Opens or closes the whole menu panel (button, Escape, outside clicks).
+   * Stops the page behind the full-screen sheet from scrolling while the
+   * sheet is open, and releases it otherwise. Called whenever the open state
+   * or the layout changes.
+   */
+  function updateScrollLock() {
+    var lock = menu.classList.contains("is-open") && isSheetLayout();
+    document.documentElement.style.overflow = lock ? "hidden" : "";
+  }
+
+  /**
+   * Opens or closes the whole menu panel (Menu button, Escape, clicks or
+   * focus outside the menu).
    * @param {boolean} open
    */
   function setMenuOpen(open) {
     menu.classList.toggle("is-open", open);
     trigger.setAttribute("aria-expanded", String(open));
-    // Stop the page behind the full-screen mobile sheet from scrolling.
-    document.documentElement.style.overflow = open && isSheetLayout() ? "hidden" : "";
+    updateScrollLock();
   }
 
   /**
-   * Expands or collapses one sub-list (accordion behaviour on touch screens).
-   * Called when a chevron button inside the menu is pressed.
+   * The class that marks an open sub-list: "is-active" for desktop
+   * fly-outs (shared with the hover logic below), "is-expanded" for the
+   * accordion in the sheet.
+   * @returns {string}
+   */
+  function openClass() {
+    return isSheetLayout() ? "is-expanded" : "is-active";
+  }
+
+  /**
+   * Copies an item's open/closed state to its chevron button's
+   * aria-expanded. Called after any change to an item's open class.
+   * @param {Element} item  An li.menu__item
+   */
+  function syncExpandButton(item) {
+    var button = item.querySelector(":scope > .menu__expand");
+    if (button) button.setAttribute("aria-expanded", String(item.classList.contains(openClass())));
+  }
+
+  /** Re-syncs every chevron button, e.g. after the layout changes. */
+  function syncAllExpandButtons() {
+    menu.querySelectorAll(".menu__item--parent").forEach(syncExpandButton);
+  }
+
+  /**
+   * Expands or collapses one sub-list. Called when a chevron button inside
+   * the menu is pressed. On desktop it opens the fly-out (closing its
+   * siblings, like hovering does); in the sheet it toggles the accordion.
    * @param {HTMLButtonElement} button
    */
   function toggleSubmenu(button) {
     var item = button.closest(".menu__item");
-    var expanded = item.classList.toggle("is-expanded");
-    button.setAttribute("aria-expanded", String(expanded));
+    if (isSheetLayout()) {
+      item.classList.toggle("is-expanded");
+      syncExpandButton(item);
+    } else if (item.classList.contains("is-active")) {
+      deactivate(item);
+    } else {
+      activate(item);
+    }
   }
 
   /* --- Desktop hover with "menu aim" ------------------------------------------
      In this mode (class .menu--aim) CSS shows the panel when the menu has
-     .is-hovered and a fly-out when its item has .is-active; this script sets
-     those classes. */
+     .is-hovered or .is-open, and a fly-out when its item has .is-active;
+     this script sets those classes. */
 
   /** Recent pointer positions {x, y, t}, oldest first (about 300ms worth). */
   var trail = [];
@@ -94,9 +138,11 @@
 
   /**
    * True when point p lies inside the triangle a-b-c (edges included).
+   * Called by headingTowards().
    * @returns {boolean}
    */
   function insideTriangle(p, a, b, c) {
+    /** Which side of the line p2→p3 the point p1 is on (sign of a cross product). */
     function side(p1, p2, p3) {
       return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
     }
@@ -112,7 +158,8 @@
    * True when the pointer's latest movement heads towards `flyout`, i.e. the
    * current position is inside the triangle formed by an earlier position
    * and the fly-out's near edge. Fly-outs open to the left of their item, so
-   * the near edge is the fly-out's right side.
+   * the near edge is the fly-out's right side. Called by onItemEnter() and
+   * onPointerMove().
    * @param {Element} flyout
    * @param {{x: number, y: number}} [current]  Pointer position to test; by
    *   default the latest recorded one. Pass it from mouseenter handlers:
@@ -135,25 +182,48 @@
     if (!from) return false;
     if (from.x === now.x && from.y === now.y) return false;
     var box = flyout.getBoundingClientRect();
+    // The triangle's base is the fly-out's near edge, stretched a little
+    // vertically so aiming at its first or last entry still counts. It must
+    // not move sideways: fly-outs touch their parent list, so any outward
+    // shift would leave a strip of the parent list where aiming never counts.
     var slack = 24;
-    var top = { x: box.right + slack, y: box.top - slack };
-    var bottom = { x: box.right + slack, y: box.bottom + slack };
+    var top = { x: box.right, y: box.top - slack };
+    var bottom = { x: box.right, y: box.bottom + slack };
     return insideTriangle(now, from, top, bottom);
   }
 
   /**
-   * Closes `item` and every fly-out nested inside it.
+   * Keeps a long fly-out with no fly-outs of its own (e.g. the list of
+   * authors) inside the window: it gets a max-height measured from where it
+   * actually starts, and scrolls (see main.css). Called when a fly-out opens.
+   * @param {Element} item  The li.menu__item whose fly-out just opened.
+   */
+  function fitFlyout(item) {
+    var list = item.querySelector(":scope > .menu__list");
+    if (!list || list.querySelector(".menu__item--parent")) return;
+    var room = window.innerHeight - list.getBoundingClientRect().top - 16;
+    list.style.maxHeight = Math.max(160, Math.floor(room)) + "px";
+  }
+
+  /**
+   * Closes `item` and every fly-out nested inside it. Called by activate()
+   * for the siblings of the entry being opened, by closeHover(), and by a
+   * chevron button that closes its fly-out.
    * @param {Element} item  An li.menu__item
    */
   function deactivate(item) {
     item.classList.remove("is-active");
+    syncExpandButton(item);
     item.querySelectorAll(".is-active").forEach(function (el) {
       el.classList.remove("is-active");
+      syncExpandButton(el);
     });
   }
 
   /**
-   * Makes `item` the open entry of its list, closing its siblings.
+   * Makes `item` the open entry of its list, closing its siblings. Called
+   * when the pointer rests on an entry (onItemEnter) and when a chevron
+   * button opens a fly-out on desktop.
    * @param {Element} item  An li.menu__item
    */
   function activate(item) {
@@ -161,7 +231,11 @@
     for (var i = 0; i < siblings.length; i++) {
       if (siblings[i] !== item) deactivate(siblings[i]);
     }
-    if (item.classList.contains("menu__item--parent")) item.classList.add("is-active");
+    if (item.classList.contains("menu__item--parent") && !item.classList.contains("is-active")) {
+      item.classList.add("is-active");
+      syncExpandButton(item);
+      fitFlyout(item);
+    }
   }
 
   /**
@@ -186,7 +260,7 @@
     }
   }
 
-  /** Shows the panel (desktop) and cancels any pending close. */
+  /** Shows the panel (desktop) and cancels any pending close. Called on mouseenter of the menu. */
   function onMenuEnter() {
     if (!menu.classList.contains("menu--aim")) return;
     clearTimeout(closeTimer);
@@ -194,21 +268,38 @@
     if (!menu.classList.contains("is-dismissed")) menu.classList.add("is-hovered");
   }
 
-  /** Starts (or restarts) the countdown to closing the hover menu. */
+  /**
+   * Starts (or restarts) the countdown to closing the hover menu. Called
+   * when the pointer leaves the menu, and again while it keeps heading
+   * for an open fly-out.
+   */
   function scheduleClose() {
     clearTimeout(closeTimer);
     closing = true;
     closeTimer = setTimeout(closeHover, CLOSE_DELAY);
   }
 
-  /** Closes the panel and fly-outs a moment after the pointer leaves the menu. */
+  /**
+   * Closes the panel and fly-outs a moment after the pointer leaves the
+   * menu. A menu opened with the Menu button stays open until it is closed
+   * with the button, Escape, or a click or focus outside it. Called on
+   * mouseleave of the menu.
+   */
   function onMenuLeave() {
     if (!menu.classList.contains("menu--aim")) return;
     clearTimeout(aimTimer);
+    if (menu.classList.contains("is-open")) {
+      menu.classList.remove("is-hovered");
+      return;
+    }
     scheduleClose();
   }
 
-  /** Closes the desktop hover state immediately. */
+  /**
+   * Closes the desktop hover state and every fly-out immediately. Called
+   * when the close countdown ends, on dismiss(), and when the layout
+   * switches to the sheet.
+   */
   function closeHover() {
     clearTimeout(closeTimer);
     closing = false;
@@ -222,7 +313,15 @@
    */
   function updateMode() {
     menu.classList.toggle("menu--aim", hoverLayout.matches);
-    if (!hoverLayout.matches) closeHover();
+    if (!hoverLayout.matches) {
+      closeHover();
+      // Heights set by fitFlyout() are for desktop fly-outs only.
+      menu.querySelectorAll(".menu__list").forEach(function (list) {
+        list.style.maxHeight = "";
+      });
+    }
+    syncAllExpandButtons();
+    updateScrollLock();
   }
 
   document.addEventListener("mousemove", onPointerMove, { passive: true });
@@ -236,48 +335,74 @@
   if (hoverLayout.addEventListener) hoverLayout.addEventListener("change", updateMode);
   updateMode();
 
-  /* --- Buttons, Escape, outside clicks ---------------------------------------- */
+  /* --- Buttons, Escape, outside clicks and focus ----------------------------- */
 
+  /**
+   * Closes the menu and keeps it shut while the pointer or focus is still
+   * on it (CSS hides the panel while .is-dismissed is set, even on hover).
+   * Called by Escape and by the Menu button when it closes the menu.
+   */
+  function dismiss() {
+    setMenuOpen(false);
+    closeHover();
+    menu.classList.add("is-dismissed");
+  }
+
+  // Menu button (click, tap, Enter or Space): open, or close if open.
   trigger.addEventListener("click", function () {
-    menu.classList.remove("is-dismissed");
-    setMenuOpen(!menu.classList.contains("is-open"));
+    if (menu.classList.contains("is-open")) {
+      dismiss();
+    } else {
+      menu.classList.remove("is-dismissed");
+      setMenuOpen(true);
+    }
   });
 
+  // Chevron buttons inside the menu open or close their sub-list.
   menu.addEventListener("click", function (event) {
     var button = event.target.closest(".menu__expand");
     if (button) toggleSubmenu(button);
   });
 
+  // A click anywhere outside the menu closes it.
   document.addEventListener("click", function (event) {
     if (menu.classList.contains("is-open") && !menu.contains(event.target)) setMenuOpen(false);
   });
 
+  // Escape closes the menu from anywhere on the page.
   document.addEventListener("keydown", function (event) {
     if (event.key !== "Escape") return;
     if (menu.classList.contains("is-open") || menu.classList.contains("is-hovered") || menu.contains(document.activeElement)) {
-      setMenuOpen(false);
-      closeHover();
-      // Keep keyboard focus on the Menu button, but mark the menu as
-      // dismissed so CSS stops :hover / :focus-within from reopening it.
-      menu.classList.add("is-dismissed");
+      dismiss();
+      // Keep keyboard focus on the Menu button rather than losing it.
       trigger.focus();
     }
   });
 
   /**
-   * Clears the "dismissed" state set by Escape, so hover and focus open the
-   * menu again. Called when the pointer leaves the menu or focus moves away.
+   * Clears the "dismissed" state set by Escape or the Menu button, so hover
+   * and focus open the menu again. Called when the pointer leaves the menu
+   * or focus moves away from it.
    */
   function clearDismissed() {
     menu.classList.remove("is-dismissed");
   }
   menu.addEventListener("mouseleave", clearDismissed);
+
+  // When keyboard focus moves out of the menu (e.g. Tab past its last
+  // entry), close it so focus never ends up behind the sheet or under an
+  // open dropdown.
   menu.addEventListener("focusout", function (event) {
-    if (!menu.contains(event.relatedTarget)) clearDismissed();
+    var next = event.relatedTarget;
+    if (next && menu.contains(next)) return;
+    clearDismissed();
+    if (next && menu.classList.contains("is-open")) {
+      setMenuOpen(false);
+      closeHover();
+    }
   });
 
-  // Release the scroll lock if the window grows into the desktop layout.
-  window.addEventListener("resize", function () {
-    if (!isSheetLayout()) document.documentElement.style.overflow = "";
-  });
+  // Re-apply or release the scroll lock if the window crosses into or out
+  // of the sheet layout while the menu is open.
+  window.addEventListener("resize", updateScrollLock);
 })();

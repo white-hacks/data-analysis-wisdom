@@ -142,7 +142,9 @@ body {
   line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip, not hidden: hidden would turn body into a scroll container while
+     menu.js locks <html> scrolling, and the sticky header would scroll away. */
+  overflow-x: clip;
 }
 h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing: -0.02em; margin: 0; overflow-wrap: break-word; }
 p { margin: 0; }
@@ -161,7 +163,7 @@ img { max-width: 100%; display: block; }
 /* 3. Layout helpers ---------------------------------------------------------- */
 .container { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
 .section { padding-block: 28px; }
-.section--tight { padding-block: 8px 0; }
+.section.section--tight { padding-block: 20px 0; }
 .section__heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 18px; }
 .section__heading .section__title { margin-bottom: 0; }
 .section__title { font-size: 1.35rem; margin-bottom: 18px; }
@@ -201,11 +203,11 @@ img { max-width: 100%; display: block; }
      nav.menu > button.menu__trigger + div.menu__panel > ul.menu__list--level-1
        > li.menu__item(--parent) > a.menu__link + button.menu__expand + ul (next level)
 
-   Desktop with a mouse: the panel and every fly-out open on :hover (and on
-   :focus-within for keyboard users). The panel hangs below the button,
-   right-aligned, so fly-outs cascade to the LEFT to stay on screen.
-   A short delay before hiding (transition on visibility) forgives diagonal
-   mouse movements.
+   Desktop with a mouse: the panel and every fly-out open on hover (menu.js
+   adds "menu aim"; CSS :hover is the fallback without JavaScript). The
+   panel hangs below the button, right-aligned, so fly-outs cascade to the
+   LEFT to stay on screen. Keyboard users open the panel with the button
+   and each fly-out with its chevron button.
 
    Touch screens and narrow windows: the panel opens when the button is
    tapped (.is-open, set by menu.js) and nested lists expand like an
@@ -221,7 +223,8 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--shadow-sm);
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
-.menu__trigger:hover, .menu.is-open .menu__trigger { background: var(--surface-3); border-color: var(--ink-3); }
+.menu.is-open .menu__trigger { background: var(--surface-3); border-color: var(--ink-3); }
+@media (hover: hover) { .menu__trigger:hover { background: var(--surface-3); border-color: var(--ink-3); } }
 .menu__icon { display: grid; gap: 3px; width: 16px; }
 .menu__icon span { display: block; height: 2px; border-radius: 2px; background: currentColor; transition: transform 0.2s ease, opacity 0.2s ease; }
 .menu.is-open .menu__icon span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
@@ -234,7 +237,6 @@ img { max-width: 100%; display: block; }
   flex: 1; display: block; padding: 9px 12px; border-radius: var(--radius-sm);
   color: var(--ink); text-decoration: none; font-weight: 500; line-height: 1.3;
 }
-.menu__link:hover, .menu__item:hover > .menu__link { background: var(--surface-3); }
 .menu__link.is-active { font-weight: 700; }
 .menu__link[aria-current="page"] { box-shadow: inset 3px 0 0 var(--c-blue); }
 .menu__expand {
@@ -246,7 +248,11 @@ img { max-width: 100%; display: block; }
   border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
   transform: rotate(45deg); transition: transform 0.2s ease;
 }
-.menu__expand:hover { background: var(--surface-3); }
+/* Hover fills only where hover is real: touch browsers keep :hover on the
+   last tapped row, which would look like the current section. */
+@media (hover: hover) {
+  .menu__link:hover, .menu__item:hover > .menu__link, .menu__expand:hover { background: var(--surface-3); }
+}
 
 /* Narrow / touch layout (default): full-width sheet + accordion. */
 .menu__panel {
@@ -261,16 +267,19 @@ img { max-width: 100%; display: block; }
 .menu__item.is-expanded > .menu__list { display: block; }
 .menu__item.is-expanded > .menu__expand::before { transform: rotate(-135deg); }
 .menu__list--level-1 > .menu__item > .menu__link { font-size: 1.1rem; font-weight: 600; }
+/* The section the visitor is in (Articles, Visualizations, Short quotes). */
+.menu__list--level-1 > .menu__item > .menu__link.is-active { font-weight: 800; color: var(--link); }
 
 /* Desktop with a real hover pointer: hidden panel + left-cascading fly-outs.
    Two modes share this block:
    - CSS only (before/without menu.js): :hover opens things, with hover-intent
      delays (open after 0.15s, close after 0.5s) so a diagonal move towards
-     a fly-out is forgiven.
+     a fly-out is forgiven; :focus-within opens them for keyboard users.
    - "Menu aim" (menu.js adds .menu--aim): the script decides what is open
-     with .is-hovered (panel) and .is-active (fly-outs) and handles all
-     timing, so the CSS just shows or hides them quickly.
-   Keyboard focus (:focus-within) and .is-open work the same in both. */
+     with .is-hovered / .is-open (panel) and .is-active (fly-outs) and
+     handles all timing, so the CSS just shows or hides them quickly.
+     Keyboard users open the panel with the Menu button and each fly-out
+     with the chevron button next to its entry (shown when focused). */
 @media (hover: hover) and (pointer: fine) and (min-width: 900px) {
   .menu__panel {
     display: block; position: absolute; inset: auto; top: 100%; right: 0;
@@ -280,15 +289,18 @@ img { max-width: 100%; display: block; }
   }
   .menu--aim .menu__panel { transition: opacity 0.14s ease, transform 0.14s ease, visibility 0s linear 0.14s; }
   .menu:not(.menu--aim):hover .menu__panel,
+  .menu:not(.menu--aim):focus-within .menu__panel,
   .menu--aim.is-hovered .menu__panel,
-  .menu:focus-within .menu__panel,
   .menu.is-open .menu__panel {
     visibility: visible; opacity: 1; transform: none;
     transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0s;
   }
-  /* After Escape (menu.js adds .is-dismissed) the menu stays shut even though
-     the pointer or keyboard focus is still on the Menu button. */
-  .menu.is-dismissed:not(.is-open) .menu__panel { visibility: hidden; opacity: 0; transition: none; }
+  /* After Escape or a click that closes the menu (menu.js adds
+     .is-dismissed) it stays shut even though the pointer or keyboard focus
+     is still on the Menu button. Every list is hidden at once, so no
+     fly-out link stays focusable while it fades. */
+  .menu.is-dismissed:not(.is-open) .menu__panel,
+  .menu.is-dismissed:not(.is-open) .menu__panel .menu__list { visibility: hidden; opacity: 0; transition: none; }
   .menu__list {
     min-width: 250px; max-width: 320px;
     background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
@@ -297,6 +309,14 @@ img { max-width: 100%; display: block; }
   .menu__list--level-1 > .menu__item > .menu__link { font-size: 1rem; }
   .menu__item { flex-wrap: nowrap; }
   .menu__expand { display: none; }
+  /* With menu.js, the chevron button sits over the chevron drawn on the
+     entry: invisible to the mouse (clicks reach the link underneath), but
+     reachable with Tab and shown when focused. */
+  .menu--aim .menu__expand {
+    display: block; position: absolute; left: 0; top: 0; width: 28px; height: 100%;
+    background: transparent; pointer-events: none;
+  }
+  .menu--aim .menu__expand::before { display: none; }
   .menu--aim .menu__item:hover > .menu__link { background: transparent; }
   .menu--aim .menu__item > .menu__link:hover,
   .menu--aim .menu__item.is-active > .menu__link { background: var(--surface-3); }
@@ -316,19 +336,23 @@ img { max-width: 100%; display: block; }
     content: ""; position: absolute; top: 0; bottom: 0; right: -8px; width: 8px;
   }
   .menu:not(.menu--aim) .menu__item--parent:hover > .menu__list,
-  .menu--aim .menu__item--parent.is-active > .menu__list,
-  .menu__item--parent:focus-within > .menu__list {
+  .menu:not(.menu--aim) .menu__item--parent:focus-within > .menu__list {
     visibility: visible; opacity: 1; transform: none; z-index: 2;
     transition: opacity 0.14s ease 0.15s, transform 0.14s ease 0.15s, visibility 0s linear 0.15s;
   }
-  /* No delay when the script or keyboard focus opens a fly-out. */
-  .menu--aim .menu__item--parent.is-active > .menu__list,
-  .menu__item--parent:focus-within > .menu__list { transition-delay: 0s; }
+  /* No delay when keyboard focus or the script opens a fly-out. */
+  .menu:not(.menu--aim) .menu__item--parent:focus-within > .menu__list { transition-delay: 0s; }
+  .menu--aim .menu__panel .menu__item--parent.is-active > .menu__list {
+    visibility: visible; opacity: 1; transform: none; z-index: 2;
+    transition: opacity 0.12s ease, transform 0.12s ease, visibility 0s linear 0s;
+  }
   /* A long fly-out with no further fly-outs inside (e.g. the list of
      authors) scrolls instead of running off the bottom of a short window.
-     Lists that contain fly-outs can't scroll: that would clip them. */
+     menu.js sets its exact max-height from where it opens; this is the
+     fallback without the script. Lists that contain fly-outs can't scroll:
+     that would clip them. */
   .menu__list--level-2:not(:has(.menu__item--parent)) {
-    max-height: calc(100vh - var(--header-h) - 32px); overflow-y: auto; overscroll-behavior: contain;
+    max-height: calc(100vh - var(--header-h) - 96px); overflow-y: auto; overscroll-behavior: contain;
   }
   /* Chevron pointing toward the fly-out. */
   .menu__item--parent > .menu__link { position: relative; padding-left: 28px; }
@@ -416,6 +440,13 @@ img { max-width: 100%; display: block; }
 .link-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--line-strong); }
 .link-card__stripe { position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--accent); }
 .link-card__title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; }
+/* "Stretched link": the title is the only link in a card or tile, and its
+   ::after covers the whole card, so the card is clickable while screen
+   readers announce just the title. The focus ring is drawn on the card. */
+.link-card__title, .section-tile__title { color: inherit; text-decoration: none; }
+.link-card__title::after, .section-tile__title::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: var(--radius); }
+.link-card__title:focus-visible, .section-tile__title:focus-visible { outline: none; }
+.link-card__title:focus-visible::after, .section-tile__title:focus-visible::after { outline: 3px solid var(--focus); outline-offset: -3px; }
 .link-card__description { color: var(--ink-2); font-size: 0.95rem; }
 .link-card__preview { display: grid; gap: 4px; margin-top: 2px; padding-top: 10px; border-top: 1px dashed var(--line); font-size: 0.875rem; color: var(--ink-2); }
 .link-card__preview span { display: block; padding-left: 14px; position: relative; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
@@ -443,7 +474,9 @@ img { max-width: 100%; display: block; }
 .article-card__alternate a { font-weight: 600; }
 .article-card__caveat { font-size: 0.85rem; color: var(--warning-ink); background: var(--warning-bg); padding: 8px 12px; border-radius: var(--radius-sm); }
 .article-card__caveat::before { content: "Heads-up · "; font-weight: 700; }
-.external { display: inline-block; margin-left: 0.25em; font-size: 0.85em; color: var(--ink-3); }
+/* The ↗ after external links. The templates start it with a word joiner
+   (&#8288;) so it can never wrap onto a line of its own. */
+.external { padding-left: 0.25em; font-size: 0.85em; color: var(--ink-3); }
 
 /* Quote card. Balanced columns on wide screens. */
 .quote-grid { columns: 3 300px; column-gap: 16px; }
@@ -472,7 +505,14 @@ img { max-width: 100%; display: block; }
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 .viz-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-.viz-card__frame { display: block; aspect-ratio: 4 / 3; background: var(--surface-3); overflow: hidden; border-bottom: 1px solid var(--line); }
+/* Tableau Public previews are 736×454; the frame matches so nothing is cropped. */
+.viz-card__frame { display: block; aspect-ratio: 736 / 454; background: var(--surface-3); overflow: hidden; border-bottom: 1px solid var(--line); }
+/* Shown when Tableau Public has no preview image for a viz. */
+.viz-card__no-preview {
+  display: grid; place-items: center; height: 100%; padding: 16px; text-align: center;
+  font-size: 0.85rem; font-weight: 600; color: var(--ink-3);
+  background: repeating-linear-gradient(135deg, var(--surface-2) 0 10px, var(--surface-3) 10px 20px);
+}
 .viz-card__frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.4s ease; }
 .viz-card:hover .viz-card__frame img { transform: scale(1.03); }
 .viz-card__body { display: grid; gap: 4px; padding: 12px 14px 14px; }
@@ -491,7 +531,7 @@ img { max-width: 100%; display: block; }
 .person-card__affiliation { font-size: 0.875rem; color: var(--ink-3); font-weight: 500; }
 .person-card__bio { font-size: 0.95rem; color: var(--ink-2); }
 .person-card__strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
-.person-card__strip img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid var(--line); background: var(--surface-3); }
+.person-card__strip img { width: 100%; aspect-ratio: 736 / 454; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid var(--line); background: var(--surface-3); }
 .person-card__links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
 
 .avatar { width: 64px; height: 64px; flex: none; border-radius: 50%; object-fit: cover; background: var(--surface-3); border: 2px solid var(--card); box-shadow: 0 0 0 1px var(--line); }
@@ -526,6 +566,7 @@ img { max-width: 100%; display: block; }
 .pager__link { display: grid; gap: 2px; padding: 16px 18px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--card); color: var(--ink); text-decoration: none; font-weight: 700; }
 .pager__link span { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
 .pager__link:hover { border-color: var(--line-strong); background: var(--surface-3); }
+.pager__link:hover span { color: var(--ink-2); }
 .pager__link--next { text-align: right; grid-column: 2; }
 
 .profile { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
@@ -552,7 +593,8 @@ img { max-width: 100%; display: block; }
   .section { padding-block: 22px; }
   .page-header { padding: 26px 0 22px; }
   .brand__name { font-size: 1.05rem; }
-  .menu__label { display: none; }
+  /* Hidden visually, but still the button's accessible name. */
+  .menu__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .menu__trigger { padding: 0 12px; }
   .pager { grid-template-columns: minmax(0, 1fr); }
   .pager__link--next { grid-column: 1; }
@@ -566,4 +608,24 @@ img { max-width: 100%; display: block; }
 
 @media (forced-colors: active) {
   .mini-chart__bar, .link-card__stripe, .section-tile::before { background: CanvasText; }
+  .menu__icon span { background: ButtonText; }
+}
+
+/* Printing a reading list: no sticky header or menu, light colours even in
+   dark mode, cards kept whole, and article links printed as URLs. The
+   selector matches every page and comes after the dark-mode tokens, so it
+   wins over them. */
+@media print {
+  :root:not([data-theme="print"]) {
+    color-scheme: light;
+    --surface: #fff; --surface-2: #fff; --surface-3: #fff; --card: #fff;
+    --line: #ccc; --line-strong: #999;
+    --ink: #000; --ink-2: #333; --ink-3: #555; --link: #000;
+    --shadow-sm: none; --shadow: none;
+  }
+  .site-header, .skip-link, .pager, .section__more, .site-footer__links { display: none; }
+  .page-header, .hero { background: none; }
+  .article-card, .quote-card, .link-card, .viz-card, .person-card, .callout { break-inside: avoid; }
+  .article-card__title a::after { content: " (" attr(href) ")"; font-size: 0.8em; font-weight: 400; overflow-wrap: anywhere; }
+  .link-card:hover, .section-tile:hover { transform: none; }
 }

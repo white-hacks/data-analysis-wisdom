@@ -16,7 +16,7 @@
     "fetch:vizzes": "node scripts/fetch-vizzes.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "license": "MIT",
   "devDependencies": {

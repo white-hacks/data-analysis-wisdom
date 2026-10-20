@@ -4,6 +4,7 @@ layout: layouts/base.njk
 title: Page not found
 permalink: /404.html
 eleventyExcludeFromCollections: true
+noindex: true
 ---
 {% from "macros/components.njk" import pageHeader with context %}
 {{ pageHeader("Page not found", "That page isn't in the repo. Try the menu, or start from one of the sections below.") }}

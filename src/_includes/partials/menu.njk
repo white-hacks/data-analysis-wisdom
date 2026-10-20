@@ -7,11 +7,13 @@
   sub-pages (Articles → categories → subcategories).
 
   Data: catalog.navigation, built by buildNavigation() in lib/catalog.js.
-  Behaviour:
-    - Desktop (mouse): opened purely by CSS :hover / :focus-within
-      (see "Menu" in src/assets/css/main.css).
-    - Touch screens and keyboard: src/assets/js/menu.js toggles the
-      `is-open` / `is-expanded` classes when buttons are tapped.
+  Behaviour (src/assets/js/menu.js, styles under "Menu" in main.css):
+    - Desktop (mouse): hovering opens the panel and fly-outs; without
+      JavaScript, CSS :hover / :focus-within do the same.
+    - Keyboard: Enter on the Menu button opens the panel; each chevron
+      button (.menu__expand) opens its entry's fly-out.
+    - Touch screens and narrow windows: the Menu button opens a full-screen
+      sheet and the chevron buttons expand sub-lists like an accordion.
 
   The tree is at most three levels deep, so it is written as three nested
   loops rather than a recursive macro to keep it easy to read.

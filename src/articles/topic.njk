@@ -9,14 +9,14 @@ pagination:
   size: 1
   alias: topic
   addAllPagesToCollections: true
-permalink: "/articles/{{ topic.categorySlug }}/{{ topic.slug }}/"
+permalink: "{{ topic.url }}"
 eleventyComputed:
-  title: "{{ topic.title }}"
-  description: "{{ topic.description }}"
+  title: "{{ topic.title | safe }}"
+  description: "{{ topic.title | safe }}: {{ topic.placements.count | plural('free Tableau article') }} by experts, each linked to the original. {{ topic.description | safe }}"
   accent: "{{ topic.color }}"
 ---
 {% from "macros/components.njk" import pageHeader, articleList, quoteGrid, callout with context %}
-{{ pageHeader(topic.title, topic.description, [{ title: "Articles", url: "/articles/" }, { title: topic.categoryTitle, url: topic.categoryUrl }], topic.placements.count ~ " articles") }}
+{{ pageHeader(topic.title, topic.description, [{ title: "Articles", url: "/articles/" }, { title: topic.categoryTitle, url: topic.categoryUrl }], topic.placements.count | plural("article")) }}
 
 {%- if topic.takeaway %}
 <div class="container section section--tight">
@@ -26,6 +26,7 @@ eleventyComputed:
 
 {%- if topic.placements.main.length %}
 <section class="container section">
+  <h2 class="visually-hidden">Articles</h2>
   {{ articleList(topic.placements.main) }}
 </section>
 {%- endif %}
@@ -42,8 +43,8 @@ eleventyComputed:
 {%- if topic.quotes.length %}
 <section class="container section">
   <div class="section__heading">
-    <h2 class="section__title">Quotes on {{ topic.title | lower }}</h2>
-    <a class="section__more" href="{{ topic.quotesUrl }}#{{ topic.slug }}">All {{ topic.categoryTitle | lower }} quotes →</a>
+    <h2 class="section__title">Short quotes from these articles</h2>
+    <a class="section__more" href="{{ topic.quotesUrl }}#{{ topic.slug }}">All quotes in {{ topic.categoryTitle }}<span aria-hidden="true"> →</span></a>
   </div>
   {{ quoteGrid(topic.quotes.slice(0, 3), topic.color) }}
 </section>

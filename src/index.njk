@@ -40,20 +40,20 @@ layout: layouts/base.njk
 
 <section class="container section" aria-label="Sections">
   <div class="card-grid card-grid--sections">
-    <a class="section-tile" href="/articles/" data-color="blue">
+    <div class="section-tile" data-color="blue">
       <span class="section-tile__count">{{ stats.articles }}</span>
-      <span class="section-tile__title">Articles</span>
+      <a class="section-tile__title" href="/articles/">Articles</a>
       <span class="section-tile__text">Hand-picked reading in {{ catalog.categories | length }} categories and {{ stats.topics }} topics, from data cleaning to landing a consultancy job.</span>
-    </a>
-    <a class="section-tile" href="/visualizations/" data-color="orange">
+    </div>
+    <div class="section-tile" data-color="orange">
       <span class="section-tile__count">{{ stats.vizzes }}</span>
-      <span class="section-tile__title">Visualizations</span>
+      <a class="section-tile__title" href="/visualizations/">Visualizations</a>
       <span class="section-tile__text">Standout Tableau Public work from {{ stats.people }} experts, with a link to each author's full profile.</span>
-    </a>
-    <a class="section-tile" href="/quotes/" data-color="aqua">
+    </div>
+    <div class="section-tile" data-color="aqua">
       <span class="section-tile__count">{{ stats.quotes }}</span>
-      <span class="section-tile__title">Short quotes</span>
+      <a class="section-tile__title" href="/quotes/">Short quotes</a>
       <span class="section-tile__text">Memorable lines from the articles, word for word, arranged by the same categories.</span>
-    </a>
+    </div>
   </div>
 </section>

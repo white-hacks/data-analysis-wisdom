@@ -8,10 +8,10 @@ pagination:
   size: 1
   alias: person
   addAllPagesToCollections: true
-permalink: "/visualizations/{{ person.slug }}/"
+permalink: "{{ person.url }}"
 eleventyComputed:
-  title: "{{ person.name }}"
-  description: "Tableau Public visualizations by {{ person.name }}, plus their articles and quotes on The Tableau Repo."
+  title: "{{ person.name | safe }}"
+  description: "Tableau Public visualizations by {{ person.name | safe }}, plus their articles and quotes on The Tableau Repo."
   accent: orange
 ---
 {% from "macros/components.njk" import vizCard, articleList, quoteGrid with context %}
@@ -34,13 +34,13 @@ eleventyComputed:
         <p class="profile__affiliation">{{ person.affiliation }}</p>
         <p class="page-header__intro">{{ person.bio }}</p>
         <p class="profile__links">
-          <a class="button button--primary" href="{{ person.tableauPublic }}" target="_blank" rel="noopener">Tableau Public profile<span class="external" aria-hidden="true">↗</span></a>
+          <a class="button button--primary" href="{{ person.tableauPublic }}" target="_blank" rel="noopener">Tableau Public profile<span class="external" aria-hidden="true">&#8288;↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
           {%- if person.website %}
-          <a class="button" href="{{ person.website }}" target="_blank" rel="noopener">{{ person.website | hostname }}<span class="external" aria-hidden="true">↗</span></a>
+          <a class="button" href="{{ person.website }}" target="_blank" rel="noopener">{{ person.website | hostname }}<span class="external" aria-hidden="true">&#8288;↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
           {%- endif %}
         </p>
         {%- if gallery.workbookCount %}
-        <p class="page-header__meta">{{ gallery.workbookCount | compactNumber }} public workbooks · {{ gallery.followers | compactNumber }} followers on Tableau Public</p>
+        <p class="page-header__meta">{{ gallery.workbookCount | compactNumber }} public workbooks{% if gallery.followers %} · {{ gallery.followers | compactNumber }} followers{% endif %} on Tableau Public</p>
         {%- endif %}
       </div>
     </div>
@@ -49,8 +49,9 @@ eleventyComputed:
 
 <section class="container section">
   <div class="section__heading">
-    <h2 class="section__title">Most-favourited vizzes</h2>
-    <a class="section__more" href="{{ person.tableauPublic }}" target="_blank" rel="noopener">All vizzes on Tableau Public ↗</a>
+    {#- Ranked by favourites, then views (scripts/fetch-vizzes.js). #}
+    <h2 class="section__title">{{ "Most-favourited vizzes" if (gallery.vizzes | sum("favorites")) else "Most-viewed vizzes" }}</h2>
+    <a class="section__more" href="{{ person.tableauPublic }}" target="_blank" rel="noopener">All vizzes on Tableau Public<span class="external" aria-hidden="true">&#8288;↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
   </div>
   {%- if gallery.vizzes.length %}
   <div class="card-grid card-grid--vizzes">
@@ -58,7 +59,7 @@ eleventyComputed:
   </div>
   <p class="fine-print">Thumbnails load from Tableau Public. Gallery updated {{ gallery.fetchedAt }}.</p>
   {%- else %}
-  <p>Visit <a href="{{ person.tableauPublic }}">{{ person.name }}'s Tableau Public profile</a> to explore their work.</p>
+  <p>Visit <a href="{{ person.tableauPublic }}" target="_blank" rel="noopener">{{ person.name }}'s Tableau Public profile<span class="visually-hidden"> (opens in a new tab)</span></a> to explore their work.</p>
   {%- endif %}
 </section>
 

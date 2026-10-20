@@ -8,10 +8,10 @@ pagination:
   size: 1
   alias: category
   addAllPagesToCollections: true
-permalink: "/articles/{{ category.slug }}/"
+permalink: "{{ category.url }}"
 eleventyComputed:
-  title: "{{ category.title }}"
-  description: "{{ category.description }}"
+  title: "{{ category.title | safe }}"
+  description: "{{ category.title | safe }}: {{ category.articleCount | plural('free Tableau article') }} by experts, each linked to the original. {{ category.description | safe }}"
   accent: "{{ category.color }}"
 ---
 {% from "macros/components.njk" import pageHeader, linkCard, articleList, quoteGrid with context %}
@@ -21,10 +21,11 @@ eleventyComputed:
   {%- if category.topics.length %}
   <div class="card-grid">
     {%- for topic in category.topics %}
-      {{ linkCard(topic.title, topic.url, topic.description, topic.placements.count ~ " articles", category.color, topic.previewTitles) }}
+      {{ linkCard(topic.title, topic.url, topic.description, topic.placements.count | plural("article"), category.color, topic.previewTitles) }}
     {%- endfor %}
   </div>
   {%- else %}
+  <h2 class="visually-hidden">Articles</h2>
   {{ articleList(category.placements.main) }}
   {%- endif %}
 </section>

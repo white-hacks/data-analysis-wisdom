@@ -313,6 +313,154 @@ test("keyboard: Enter opens the menu, Tab reaches its links, Escape closes it", 
   await context.close();
 });
 
+test("keyboard: Tab moves between the main entries; a chevron button opens each fly-out", async () => {
+  const { context, page, errors } = await openPage(browser, { viewport: { width: 1280, height: 900 } });
+  await page.goto(base + "/");
+  /** Describes the focused element: its text, or its aria-label for chevron buttons. */
+  const focused = () => page.evaluate(() => document.activeElement.getAttribute("aria-label") || document.activeElement.textContent.trim());
+
+  // Focusing the button alone does not open the menu; Enter does.
+  await page.focus(".menu__trigger");
+  assert.equal(await panelIsVisible(page), false);
+  await page.keyboard.press("Enter");
+  const order = [];
+  for (let i = 0; i < 7; i++) {
+    await page.keyboard.press("Tab");
+    order.push(await focused());
+  }
+  assert.deepEqual(order, ["Home", "Articles", "Show the Articles pages", "Visualizations", "Show the Visualizations pages", "Short quotes", "Show the Short quotes pages"]);
+
+  // Open Articles with its chevron button: the next Tab enters the fly-out
+  // at once (no animation delay to wait for).
+  for (let i = 0; i < 4; i++) await page.keyboard.press("Shift+Tab");
+  assert.equal(await focused(), "Show the Articles pages");
+  await page.keyboard.press("Enter");
+  assert.equal(await page.getAttribute('[aria-label="Show the Articles pages"]', "aria-expanded"), "true");
+  await page.keyboard.press("Tab");
+  assert.equal(await focused(), "Tableau basics");
+  assert.ok(await page.locator(":focus").isVisible());
+
+  // Escape, then an immediate Tab: focus leaves the menu instead of landing
+  // on a hidden fly-out link.
+  await page.keyboard.press("Escape");
+  await page.keyboard.press("Tab");
+  assert.equal(await page.evaluate(() => document.activeElement.closest("[data-menu]")), null);
+  await page.locator("#menu-panel").waitFor({ state: "hidden" });
+  assert.deepEqual(errors, []);
+  await context.close();
+});
+
+test("keyboard: tabbing past the last entry closes the menu", async () => {
+  for (const viewport of [{ width: 1280, height: 900 }, { width: 640, height: 600 }]) {
+    const { context, page } = await openPage(browser, { viewport });
+    await page.goto(base + "/visualizations/");
+    await page.focus(".menu__trigger");
+    await page.keyboard.press("Enter");
+    await page.locator("#menu-panel").waitFor({ state: "visible" });
+    // Tab until focus leaves the menu.
+    for (let i = 0; i < 80 && (await page.evaluate(() => !!document.activeElement.closest("[data-menu]"))); i++) await page.keyboard.press("Tab");
+    await page.locator("#menu-panel").waitFor({ state: "hidden" });
+    assert.equal(await page.getAttribute(".menu__trigger", "aria-expanded"), "false");
+    assert.equal(await page.evaluate(() => document.documentElement.style.overflow), "");
+    await context.close();
+  }
+});
+
+test("desktop: clicking the Menu button again closes the menu, even under the pointer", async () => {
+  const { context, page } = await openPage(browser, { viewport: { width: 1280, height: 900 } });
+  await page.goto(base + "/articles/");
+  await page.click(".menu__trigger");
+  assert.ok(await panelIsVisible(page));
+  assert.equal(await page.getAttribute(".menu__trigger", "aria-expanded"), "true");
+  await page.click(".menu__trigger");
+  await page.locator("#menu-panel").waitFor({ state: "hidden" });
+  assert.equal(await page.getAttribute(".menu__trigger", "aria-expanded"), "false");
+  // Leaving and coming back opens it on hover again.
+  await page.mouse.move(600, 600);
+  await page.hover(".menu__trigger");
+  await page.locator("#menu-panel").waitFor({ state: "visible" });
+  await context.close();
+});
+
+test("desktop: a long fly-out fits even in a very short window", async () => {
+  for (const viewport of [{ width: 1093, height: 520 }, { width: 1280, height: 480 }]) {
+    const { context, page } = await openPage(browser, { viewport });
+    await page.goto(base + "/");
+    await page.hover(".menu__trigger");
+    const viz = page.locator(".menu__list--level-1 > .menu__item", { hasText: "Visualizations" }).first();
+    await viz.locator(":scope > .menu__link").hover();
+    const list = viz.locator(":scope > .menu__list");
+    await list.waitFor({ state: "visible" });
+    const box = await list.boundingBox();
+    assert.ok(box.y + box.height <= viewport.height, `authors fly-out ends at ${box.y + box.height}px in a ${viewport.height}px window`);
+    // Its last entry can be scrolled into view and clicked.
+    const last = list.locator(".menu__link").last();
+    await last.scrollIntoViewIfNeeded();
+    const lastBox = await last.boundingBox();
+    assert.ok(lastBox.y + lastBox.height <= viewport.height, "last author out of reach");
+    await context.close();
+  }
+});
+
+test("phones: the Menu button keeps its name, and the header stays put when the sheet opens", async () => {
+  const { context, page } = await openPage(browser, { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  await page.goto(base + "/articles/visualization/best-practices/");
+  assert.equal(await page.getByRole("button", { name: "Menu" }).count(), 1);
+  await page.evaluate(() => window.scrollTo(0, 1500));
+  // Tap by coordinates: locator.tap() would scroll the page first.
+  const button = await page.locator(".menu__trigger").boundingBox();
+  const tapButton = () => page.touchscreen.tap(button.x + button.width / 2, button.y + button.height / 2);
+  await tapButton();
+  await page.locator("#menu-panel").waitFor({ state: "visible" });
+  const header = await page.locator(".site-header").boundingBox();
+  assert.equal(Math.round(header.y), 0, "the header scrolled away");
+  const trigger = await page.locator(".menu__trigger").boundingBox();
+  assert.ok(trigger.y >= 0 && trigger.y + trigger.height <= header.height, "the close button is off screen");
+  // Closing returns to the same place on the page.
+  await tapButton();
+  await page.locator("#menu-panel").waitFor({ state: "hidden" });
+  assert.equal(await page.evaluate(() => window.scrollY), 1500);
+  await context.close();
+});
+
+test("resizing while the sheet is open keeps the page from scrolling behind it", async () => {
+  const { context, page } = await openPage(browser, { viewport: { width: 700, height: 800 } });
+  await page.goto(base + "/");
+  await page.click(".menu__trigger");
+  assert.equal(await page.evaluate(() => document.documentElement.style.overflow), "hidden");
+  // The resize event arrives a moment after the window changes size.
+  const lockBecomes = (value) => page.waitForFunction((v) => document.documentElement.style.overflow === v, value, { timeout: 2000 });
+  await page.setViewportSize({ width: 1200, height: 800 });
+  await lockBecomes("");
+  await page.setViewportSize({ width: 700, height: 800 });
+  assert.ok(await panelIsVisible(page));
+  await lockBecomes("hidden");
+  await context.close();
+});
+
+test("vizzes without a Tableau Public preview get a titled tile instead of a blank image", async () => {
+  const { context, page } = await openPage(browser, { viewport: { width: 1280, height: 900 } });
+  await page.goto(base + "/visualizations/jonathan-drummey/");
+  const tiles = page.locator(".viz-card__no-preview");
+  assert.ok((await tiles.count()) > 0);
+  for (const img of await page.locator(".viz-card img").all()) assert.match(await img.getAttribute("src"), /\/4_3\.png$/);
+  // The author's card on /visualizations/ only previews real thumbnails.
+  await page.goto(base + "/visualizations/");
+  const strip = page.locator(".person-card", { hasText: "Jonathan Drummey" }).locator(".person-card__strip img");
+  assert.equal(await strip.count(), 3);
+  await context.close();
+});
+
+test("printing drops the header and uses dark text even in dark mode", async () => {
+  const { context, page } = await openPage(browser, { viewport: { width: 1024, height: 900 }, colorScheme: "dark" });
+  await page.goto(base + "/articles/data-manipulation/lod-expressions/");
+  await page.emulateMedia({ media: "print", colorScheme: "dark" });
+  assert.equal(await page.locator(".site-header").isVisible(), false);
+  const color = await page.locator("h1").evaluate((el) => getComputedStyle(el).color);
+  assert.equal(color, "rgb(0, 0, 0)");
+  await context.close();
+});
+
 test("touch screen: tapping opens a full-screen menu with expandable sections", async () => {
   const { context, page, errors } = await openPage(browser, { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   await page.goto(base + "/");
@@ -369,7 +517,54 @@ test("an article published in two places shows its alternate version", async () 
   assert.match(await alternate.getAttribute("href"), /^https:\/\/playfairdata\.com\//);
   assert.match(await alternate.textContent(), /Playfair Data, 18 Oct 2016/);
   // The ↗ icon stays inline (not styled as a block label).
-  assert.equal(await alternate.locator(".external").evaluate((el) => getComputedStyle(el).display), "inline-block");
+  assert.equal(await alternate.locator(".external").evaluate((el) => getComputedStyle(el).display), "inline");
+  await context.close();
+});
+
+test("the ↗ icon never wraps onto a line of its own", async () => {
+  for (const width of [390, 1366]) {
+    const { context, page } = await openPage(browser, { viewport: { width, height: 900 } });
+    for (const urlPath of ["/articles/data-manipulation/lod-expressions/", "/visualizations/ryan-sleeper/", "/quotes/data-manipulation/"]) {
+      await page.goto(base + urlPath);
+      await page.addStyleTag({ content: WIDE_TEXT });
+      const orphans = await page.$$eval(".external", (icons) =>
+        icons
+          .filter((icon) => {
+            // Compare the icon with the last character of the text before it.
+            const walker = document.createTreeWalker(icon.parentElement, NodeFilter.SHOW_TEXT);
+            let last = null;
+            for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+              if (icon.contains(node)) break;
+              if (node.textContent.trim() && !node.parentElement.closest(".visually-hidden")) last = node;
+            }
+            if (!last) return false;
+            const range = document.createRange();
+            const end = last.textContent.trimEnd().length;
+            range.setStart(last, end - 1);
+            range.setEnd(last, end);
+            return Math.abs(range.getBoundingClientRect().top - icon.getBoundingClientRect().top) > 6;
+          })
+          .map((icon) => icon.parentElement.textContent.trim().slice(0, 60)),
+      );
+      assert.deepEqual(orphans, [], `${urlPath} at ${width}px`);
+    }
+    await context.close();
+  }
+});
+
+test("cards: the whole card is clickable, but its link is named by the title only", async () => {
+  const { context, page } = await openPage(browser, { viewport: { width: 1280, height: 900 } });
+  await page.goto(base + "/articles/");
+  const link = page.getByRole("link", { name: "Data manipulation", exact: true });
+  assert.equal(await link.count(), 1);
+  // Click near the bottom-left corner of the card, far from the title.
+  const card = page.locator(".link-card", { has: link });
+  const box = await card.boundingBox();
+  await page.mouse.click(box.x + 30, box.y + box.height - 12);
+  await page.waitForURL("**/articles/data-manipulation/");
+  // The home page tiles work the same way.
+  await page.goto(base + "/");
+  assert.equal(await page.getByRole("link", { name: "Short quotes", exact: true }).count(), 2); // tile + footer (the menu is closed)
   await context.close();
 });
 

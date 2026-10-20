@@ -42,14 +42,15 @@
 {#
   linkCard(title, url, description, meta, color, preview)
   A card that links to another page on the site (a category, a subcategory,
-  a quote category…).
+  a quote category…). Only the title is the link, so screen readers announce
+  a short link name; CSS stretches its click area over the whole card.
     color    – category colour token (draws the accent stripe)
     preview  – optional list of strings shown as a short "includes" list
 #}
 {% macro linkCard(title, url, description, meta, color, preview) %}
-<a class="link-card" href="{{ url }}" data-color="{{ color or 'blue' }}">
+<div class="link-card" data-color="{{ color or 'blue' }}">
   <span class="link-card__stripe" aria-hidden="true"></span>
-  <span class="link-card__title">{{ title }}</span>
+  <a class="link-card__title" href="{{ url }}">{{ title }}</a>
   {%- if description %}<span class="link-card__description">{{ description }}</span>{% endif %}
   {%- if preview and preview.length %}
   <span class="link-card__preview">
@@ -57,7 +58,7 @@
   </span>
   {%- endif %}
   {%- if meta %}<span class="link-card__meta">{{ meta }}<span class="link-card__arrow" aria-hidden="true">→</span></span>{% endif %}
-</a>
+</div>
 {% endmacro %}
 
 {#
@@ -76,7 +77,7 @@
     {%- if a.published %}<span aria-hidden="true"> · </span><span>{{ a.published | readableDate }}</span>{% endif %}
   </p>
   <h3 class="article-card__title">
-    <a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.title }}<span class="external" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
+    <a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.title }}<span class="external" aria-hidden="true">&#8288;↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
   </h3>
   <p class="article-card__authors">
     {%- for author in a.authorLinks -%}
@@ -89,7 +90,7 @@
   {%- for alt in a.alternates %}
   <p class="article-card__alternate">
     <span class="article-card__label">Also published</span>
-    <a href="{{ alt.url }}" target="_blank" rel="noopener">{{ alt.publisher }}{% if alt.published %}, {{ alt.published | readableDate }}{% endif %}<span class="external" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
+    <a href="{{ alt.url }}" target="_blank" rel="noopener">{{ alt.publisher }}{% if alt.published %}, {{ alt.published | readableDate }}{% endif %}<span class="external" aria-hidden="true">&#8288;↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
     {%- if alt.note %} {{ alt.note }}{% endif %}
   </p>
   {%- endfor %}
@@ -114,13 +115,13 @@
 #}
 {% macro quoteCard(quote, color) %}
 <figure class="quote-card" data-color="{{ color or 'blue' }}">
-  <blockquote class="quote-card__text"><p>{{ quote.text }}</p></blockquote>
+  <blockquote class="quote-card__text"><p>{{ quote.text | smartQuotes }}</p></blockquote>
   <figcaption class="quote-card__credit">
     <span class="quote-card__author">
       {%- if quote.authorUrl %}<a href="{{ quote.authorUrl }}">{{ quote.author }}</a>{% else %}{{ quote.author }}{% endif -%}
     </span>
     {%- if quote.source %}
-    <cite class="quote-card__source"><a href="{{ quote.source.url }}" target="_blank" rel="noopener">{{ quote.source.title }}<span class="external" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></cite>
+    <cite class="quote-card__source"><a href="{{ quote.source.url }}" target="_blank" rel="noopener">{{ quote.source.title }}<span class="external" aria-hidden="true">&#8288;↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></cite>
     {%- endif %}
   </figcaption>
 </figure>
@@ -139,12 +140,17 @@
 {#
   vizCard(viz)
   A Tableau Public viz thumbnail that opens the interactive viz on Tableau
-  Public. `viz` comes from content/vizzes.json.
+  Public. `viz` comes from content/vizzes.json; its thumbnail is null when
+  Tableau Public has no preview image, and a plain tile is shown instead.
 #}
 {% macro vizCard(viz) %}
 <a class="viz-card" href="{{ viz.url }}" target="_blank" rel="noopener">
   <span class="viz-card__frame">
-    <img src="{{ viz.thumbnail }}" alt="" loading="lazy" decoding="async" width="400" height="300">
+    {%- if viz.thumbnail %}
+    <img src="{{ viz.thumbnail }}" alt="" loading="lazy" decoding="async" width="368" height="227">
+    {%- else %}
+    <span class="viz-card__no-preview" aria-hidden="true">No preview on Tableau Public</span>
+    {%- endif %}
   </span>
   <span class="viz-card__body">
     <span class="viz-card__title">{{ viz.title }}<span class="visually-hidden"> (opens on Tableau Public in a new tab)</span></span>
@@ -172,16 +178,17 @@
     </div>
   </div>
   <p class="person-card__bio">{{ person.bio }}</p>
-  {%- if person.gallery.vizzes.length %}
+  {%- set previews = person.gallery.vizzes | selectattr("thumbnail") %}
+  {%- if previews.length %}
   <div class="person-card__strip" aria-hidden="true">
-    {%- for viz in person.gallery.vizzes | batch(3) | first %}
-    <img src="{{ viz.thumbnail }}" alt="" loading="lazy" decoding="async" width="160" height="120">
+    {%- for viz in previews | batch(3) | first %}
+    <img src="{{ viz.thumbnail }}" alt="" loading="lazy" decoding="async" width="160" height="99">
     {%- endfor %}
   </div>
   {%- endif %}
   <p class="person-card__links">
-    <a class="button button--primary" href="{{ person.url }}">See {{ person.gallery.vizzes.length }} vizzes</a>
-    <a class="button" href="{{ person.tableauPublic }}" target="_blank" rel="noopener">Tableau Public profile<span class="external" aria-hidden="true">↗</span></a>
+    <a class="button button--primary" href="{{ person.url }}">See {{ person.gallery.vizzes.length }} vizzes<span class="visually-hidden"> by {{ person.name }}</span></a>
+    <a class="button" href="{{ person.tableauPublic }}" target="_blank" rel="noopener">Tableau Public profile<span class="external" aria-hidden="true">&#8288;↗</span><span class="visually-hidden"> of {{ person.name }} (opens in a new tab)</span></a>
   </p>
 </article>
 {% endmacro %}

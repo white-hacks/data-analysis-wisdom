@@ -102,6 +102,42 @@ test("Playfair originals are listed as alternates instead of duplicate cards", (
   assert.equal(titles.filter((t) => t.includes("psychological schemas")).length, 1);
 });
 
+test("no article card is shown twice on the same page", () => {
+  for (const topic of catalog.topics) {
+    const items = [...topic.placements.main, ...topic.placements.sections.flatMap((s) => s.items)];
+    const ids = items.map((item) => item.article.id);
+    assert.equal(new Set(ids).size, ids.length, `duplicate card on ${topic.key}`);
+  }
+});
+
+test("bylines match the sources (guest posts and single-author posts)", () => {
+  const authors = (id) => catalog.articles.find((a) => a.id === id).authors;
+  assert.deepEqual(authors("flerlage-include-exclude"), ["Kirk Munroe"]);
+  assert.deepEqual(authors("flerlage-playing-with-parameter-actions"), ["Kevin Flerlage"]);
+  assert.deepEqual(authors("flerlage-beyond-show-me"), ["Ken Flerlage"]);
+  assert.deepEqual(authors("li-three-lod-use-cases"), ["Romy Li"]);
+  // A quote's author is one of its article's authors (or "First author et
+  // al."), except in interviews, where the interviewee named in the title
+  // is quoted.
+  for (const quote of catalog.quotes) {
+    const source = quote.source;
+    const ok =
+      source.authors.includes(quote.author) ||
+      quote.author === `${source.authors[0]} et al.` ||
+      quote.author === source.authors.join(" & ") ||
+      source.title.includes(quote.author);
+    assert.ok(ok, `"${quote.text.slice(0, 40)}…" is credited to ${quote.author}, but ${source.id} is by ${source.authors.join(", ")}`);
+  }
+});
+
+test("viz thumbnails use the small preview image, or none when Tableau Public has no preview", () => {
+  for (const person of catalog.people) {
+    for (const viz of person.gallery.vizzes) {
+      if (viz.thumbnail !== null) assert.match(viz.thumbnail, /^https:\/\/public\.tableau\.com\/static\/images\/.+\/4_3\.png$/);
+    }
+  }
+});
+
 test("articles by featured people link to their Visualizations page", () => {
   const article = catalog.articles.find((a) => a.id === "lyons-top-15-lods");
   assert.deepEqual(article.authorLinks, [{ name: "Bethany Lyons", url: "/visualizations/bethany-lyons/" }]);

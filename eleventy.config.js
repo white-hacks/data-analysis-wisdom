@@ -20,7 +20,8 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 /**
  * Formats a "YYYY", "YYYY-MM" or "YYYY-MM-DD" string for display
  * ("2019-11" → "Nov 2019", "2019-11-22" → "22 Nov 2019").
- * Used by the article card.
+ * Called by the article card for publication dates (lib/validate.js makes
+ * sure every date in the content is a real one).
  *
  * @param {string|number|undefined} value
  * @returns {string}
@@ -35,22 +36,42 @@ function readableDate(value) {
 
 /**
  * Shortens large numbers for viz statistics (9271 → "9.3K", 4399555 → "4.4M").
- * Written by hand rather than with Intl's compact notation, whose output
- * ("9.3K" vs "9.3k") varies between Node.js versions.
+ * Called by the viz cards and the author pages. Written by hand rather than
+ * with Intl's compact notation, whose output ("9.3K" vs "9.3k") varies
+ * between Node.js versions.
  *
  * @param {number} value
  * @returns {string}
  */
 function compactNumber(value) {
   const n = Number(value) || 0;
-  const format = (x, suffix) => `${Number(x.toFixed(1))}${suffix}`;
-  if (Math.abs(n) >= 1e6) return format(n / 1e6, "M");
-  if (Math.abs(n) >= 1e3) return format(n / 1e3, "K");
+  const round = (x) => Number(x.toFixed(1));
+  // Compare after rounding, so 999,950 becomes "1M" rather than "1000K".
+  if (Math.abs(round(n / 1e3)) >= 1e3) return `${round(n / 1e6)}M`;
+  if (Math.abs(n) >= 1e3) return `${round(n / 1e3)}K`;
   return String(n);
 }
 
 /**
+ * Turns straight quotes and apostrophes into typographic ones
+ * (don't → don’t, "x" → “x”), so quotes typed either way look the same.
+ * Called by the quote cards; the content files may use either style.
+ *
+ * @param {string} text
+ * @returns {string}
+ */
+function smartQuotes(text) {
+  return String(text ?? "")
+    .replace(/'(?=\d)/g, "\u2019") // '90s
+    .replace(/(^|[\s(\[{\u2014\u2013-])"/g, "$1\u201C")
+    .replace(/"/g, "\u201D")
+    .replace(/(^|[\s(\[{\u2014\u2013-])'/g, "$1\u2018")
+    .replace(/'/g, "\u2019");
+}
+
+/**
  * Returns the bare host name of a URL for display ("https://www.vizwiz.com/x" → "vizwiz.com").
+ * Called by the author pages to label a personal website link.
  *
  * @param {string} url
  * @returns {string}
@@ -84,6 +105,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("readableDate", readableDate);
   eleventyConfig.addFilter("compactNumber", compactNumber);
   eleventyConfig.addFilter("hostname", hostname);
+  eleventyConfig.addFilter("smartQuotes", smartQuotes);
   /** Joins a site-relative path to the site's public address (for canonical/OG tags). */
   eleventyConfig.addFilter("absoluteUrl", (path, base) => new URL(path, base).href);
   /** True when `currentUrl` is `itemUrl` or one of its sub-pages (menu highlighting). */
@@ -109,3 +131,4 @@ module.exports = function (eleventyConfig) {
 module.exports.readableDate = readableDate;
 module.exports.compactNumber = compactNumber;
 module.exports.hostname = hostname;
+module.exports.smartQuotes = smartQuotes;
