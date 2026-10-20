@@ -2,8 +2,9 @@
 # Build, test and publish The Tableau Repo to GitHub Pages
 # =============================================================================
 # - Every push and pull request: run the tests, validate content, build.
-# - Pushes to the default branch (main): also publish _site to GitHub Pages,
-#   served at the custom domain in src/CNAME (thetableaurepo.com).
+# - Pushes to `main`: also publish _site to GitHub Pages, served at the
+#   custom domain in src/CNAME (thetableaurepo.com). Other branches only
+#   build and test, so work in progress never goes live.
 #
 # One-time setup in GitHub: Settings → Pages → Build and deployment →
 # Source: "GitHub Actions". See README.md for the DNS records.
@@ -46,14 +47,14 @@ jobs:
         run: npm run build
 
       - name: Upload site for GitHub Pages
-        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
   deploy:
     needs: build
-    if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       pages: write

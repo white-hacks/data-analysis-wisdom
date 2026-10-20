@@ -119,11 +119,11 @@ The last three use the internet. Behind a corporate proxy, prefix them with `NOD
 
 ## Publishing to thetableaurepo.com
 
-The workflow in `.github/workflows/deploy.yml` tests and builds every push, and publishes the default branch to GitHub Pages.
+The workflow in `.github/workflows/deploy.yml` tests and builds every push, and publishes the `main` branch to GitHub Pages. Other branches are built and tested but never published.
 
 One-time setup:
 
-1. **GitHub**: *Settings → Pages → Build and deployment → Source: GitHub Actions*. The custom domain comes from `src/CNAME`. Tick **Enforce HTTPS** once the certificate is issued.
+1. **GitHub**: merge the site into a `main` branch (and make it the default branch under *Settings → General*), then go to *Settings → Pages → Build and deployment → Source: GitHub Actions*. The custom domain comes from `src/CNAME`. Tick **Enforce HTTPS** once the certificate is issued.
 2. **DNS** at your domain registrar:
    - `A` records for `thetableaurepo.com` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
    - `CNAME` record for `www` → `<your-github-user>.github.io`
