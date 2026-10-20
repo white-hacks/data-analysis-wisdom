@@ -1,0 +1,1704 @@
+# =============================================================================
+# articles.yaml: every article listed on the site
+# =============================================================================
+# Each article is stored ONCE and placed on as many topic pages as it belongs
+# to via `placements`. This is how an article that the research guide lists in
+# several subcategories appears on every one of those pages.
+#
+# FIELDS
+#   id          Unique, URL-safe id. Quotes refer to articles by this id.
+#   title       Article title as published.
+#   authors     List of author names (display strings). Use the exact spelling
+#               used in people.yaml to link the name to a Visualizations page.
+#   publisher   Site or organisation that publishes the article.
+#   url         Link to the original article (the site never copies articles).
+#   published   Optional publication date: "YYYY", "YYYY-MM" or "YYYY-MM-DD".
+#   summary     One or two sentences describing the article.
+#   caveat      Optional warning shown on the card (e.g. login prompts).
+#   placements  Where the article appears. Each entry has:
+#     topic     "<category-slug>/<subcategory-slug>" (or just "miscellaneous")
+#     section   Optional section slug declared in categories.yaml
+#     note      Optional context shown only on that topic page (why the
+#               article matters there).
+#
+# Order within a topic page follows the order of this file.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# From the research guide
+# -----------------------------------------------------------------------------
+
+# --- Tableau basics › Data cleaning ------------------------------------------
+
+- id: tableau-data-interpreter
+  title: Clean Data from Excel, CSV, PDF, and Google Sheets with Data Interpreter
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/data_interpreter.htm
+  summary: How Data Interpreter detects headers and sub-tables, how to review its results, and when to follow up with pivots and splits.
+  placements:
+    - topic: tableau-basics/data-cleaning
+
+- id: tableau-prep-clean
+  title: Clean and Shape Data in Tableau Prep
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Prep Help
+  url: https://help.tableau.com/current/prep/en-us/prep_clean.htm
+  summary: Reference for every cleaning operation (filter, rename, split, group, remove), Prep's automatic recommendations, and which step types allow which operations.
+  placements:
+    - topic: tableau-basics/data-cleaning
+
+- id: kholodiy-cleaning-with-clicks
+  title: Cleaning data with clicks in Tableau Prep
+  authors: [Mila Kholodiy]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/mila-kholodiy/cleaning-data-with-clicks-in-tableau-prep/
+  summary: A beginner walk-through on a real Maldives tourism dataset covering missing values, data types, unpivoting and splitting.
+  placements:
+    - topic: tableau-basics/data-cleaning
+
+- id: wagner-split-and-pivot
+  title: Split and Pivot Your Data with Tableau Prep
+  authors: [K. Wagner]
+  publisher: InterWorks
+  url: https://interworks.com/blog/kwagner/2018/12/27/split-and-pivot-your-data-with-tableau-prep/
+  published: 2018-12-27
+  summary: A nine-step recipe for turning a concatenated field into tidy rows (split → pivot → clean), a classic Data School-style prep task.
+  placements:
+    - topic: tableau-basics/data-cleaning
+
+# --- Tableau basics › Data relationships -------------------------------------
+
+- id: tableau-relate-your-data
+  title: Relate Your Data
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/relate_tables.htm
+  summary: The core explanation of relationships (logical layer) vs. joins (physical layer) vs. blends, and why relationships avoid duplication and filtering problems.
+  placements:
+    - topic: tableau-basics/data-relationships
+
+- id: tableau-join-your-data
+  title: Join Your Data
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/joining_tables.htm
+  summary: Inner, left, right and full outer joins, matching data types on join fields, and when a join is still the right tool.
+  placements:
+    - topic: tableau-basics/data-relationships
+
+- id: tableau-union-your-data
+  title: Union Your Data
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/union.htm
+  summary: Unions append rows (whereas joins add columns), including how to merge mismatched field names.
+  placements:
+    - topic: tableau-basics/data-relationships
+
+- id: tableau-relationship-perf-options
+  title: Optimize Relationship Queries Using Performance Options
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/datasource_relationships_perfoptions.htm
+  summary: What the cardinality and referential-integrity settings do, and when you should (and shouldn't) change them.
+  placements:
+    - topic: tableau-basics/data-relationships
+
+- id: tableau-cardinality-ri
+  title: Cardinality and Referential Integrity
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/cardinality_and_ri.htm
+  summary: Defaults are Many and "Some records match"; cardinality decides whether aggregation happens before or after the join.
+  placements:
+    - topic: tableau-basics/data-relationships
+    - topic: extra/performance-optimization
+      note: Relationship-level performance, revisited from Data relationships.
+
+- id: tableau-assume-ri
+  title: Assuming Referential Integrity for Joins
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/joins_assume_refinteg.htm
+  summary: The physical-layer equivalent of performance options. Join culling with "Assume Referential Integrity" (inner joins only), and the risk of unreliable results if it's wrong.
+  placements:
+    - topic: tableau-basics/data-relationships
+
+- id: tableau-data-model
+  title: The Tableau Data Model
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/server/en-us/datasource_datamodel.htm
+  summary: A diagram-led explanation of the logical vs. physical layers introduced in 2020.2.
+  placements:
+    - topic: tableau-basics/data-relationships
+
+- id: gao-optimizing-relationships
+  title: Optimizing Relationships in Tableau
+  authors: [Calvin Gao]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/calvin-gao/optimizing-relationships-in-tableau/
+  summary: A plain-English take on high vs. low cardinality, 1:1 / 1:many / many:many, and why you need to be certain your data is unique before changing the defaults.
+  placements:
+    - topic: tableau-basics/data-relationships
+    - topic: extra/performance-optimization
+      note: Relationship-level performance, revisited from Data relationships.
+
+- id: interworks-relationships-performance
+  title: "Tableau Relationships: Performance, Joins and Referential Integrity"
+  authors: [Sebastian Deptalla]
+  publisher: InterWorks
+  url: https://interworks.com/blog/2022/08/31/tableau-relationships-performance-joins-and-referential-integrity/
+  published: 2022-08-31
+  summary: Part of a multi-post series showing how "All records match" stops full joins and how a cardinality of "One" makes Tableau join first and aggregate after, with a warning not to use these settings as filters.
+  placements:
+    - topic: tableau-basics/data-relationships
+    - topic: data-career-tips/companies-hiring
+      section: other-uk-employers
+      note: InterWorks, a global Tableau partner with a UK presence, publishes free technical posts like this one that show the depth expected of its consultants.
+
+# --- Tableau basics › Basic charting -----------------------------------------
+
+- id: sleeper-beautiful-bar-charts
+  title: 3 Ways to Make Beautiful Bar Charts in Tableau
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/3-ways-to-make-beautiful-bar-charts-in-tableau/
+  published: 2017-01-31
+  summary: Formatting, axis-ruler baselines and capped bars, built on the idea that bars exploit the preattentive attribute of length.
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: tableau-basics/basic-charting
+    - topic: visualization/chart-types
+      note: One of the two chart types Sleeper calls the backbone of business dashboards.
+
+- id: sleeper-lovely-line-graphs
+  title: 3 Ways to Make Lovely Line Graphs in Tableau
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/3-ways-to-make-lovely-line-graphs-in-tableau/
+  published: 2017-02-07
+  summary: Default-format clean-up, data-ink maximisation and dual-axis enhancements for trend charts.
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: tableau-basics/basic-charting
+    - topic: visualization/chart-types
+      note: One of the two chart types Sleeper calls the backbone of business dashboards.
+
+- id: sleeper-33-ways
+  title: 33 Ways to Tableau (free PDF compilation)
+  authors: [Ryan Sleeper]
+  publisher: ryansleeper.com
+  url: https://ryansleeper.com/wp-content/uploads/2018/04/33-Ways-to-Tableau-by-Ryan-Sleeper.pdf
+  summary: A free sampler of Practical Tableau chapters covering bar charts, line graphs, dual-axis combos, dashboard actions, alternatives to pies and more.
+  placements:
+    - topic: tableau-basics/basic-charting
+    - topic: visualization/best-practices
+      note: The single best free compendium of Sleeper's best practices (data-ink ratio, brand colours, avoiding unnecessary colour on bars).
+    - topic: visualization/dashboard-interactivity
+      note: See the chapter "3 Ways to Use Tableau Dashboard Actions" for practical uses of filter, highlight and URL actions that guide users from overview to detail.
+
+- id: flerlage-beyond-show-me
+  title: The 'Tableau Twins' Take You Beyond Show Me
+  authors: [Ken Flerlage, Kevin Flerlage]
+  publisher: The Flerlage Twins
+  url: https://www.flerlagetwins.com/2019/11/ShowMe2019.html
+  published: 2019-11
+  summary: Building charts beyond the Show Me panel once the basics are solid.
+  placements:
+    - topic: tableau-basics/basic-charting
+
+# --- Tableau basics › Data types ----------------------------------------------
+
+- id: tableau-data-types
+  title: Data Types
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/datafields_typesandroles_datatypes.htm
+  summary: Lists Tableau's data types (string, number, date, date & time, Boolean, geographic) and how to change them.
+  placements:
+    - topic: tableau-basics/data-types
+
+- id: tableau-type-conversion
+  title: Type Conversion
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/functions_functions_typeconversion.htm
+  summary: INT, FLOAT, STR, DATE, DATEPARSE and friends for converting types inside calculations.
+  placements:
+    - topic: tableau-basics/data-types
+    - topic: data-manipulation/calculated-fields
+      note: Casting between types inside calculations.
+
+- id: tableau-writing-calculations
+  title: Writing Calculations in Tableau
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/functions_operators.htm
+  summary: How data types determine which functions and operators are valid.
+  placements:
+    - topic: tableau-basics/data-types
+    - topic: data-manipulation/calculated-fields
+      note: "Calculation syntax: functions, fields, operators, literals and comments."
+
+- id: saini-blue-vs-green-guide
+  title: Tableau Data Types and Roles Guide
+  authors: [Anuj Saini]
+  publisher: Topfolio
+  url: https://www.topfolio.in/blog/tableau-data-types-and-roles
+  published: "2026"
+  summary: A guide that links data types to field roles and to discrete vs. continuous date behaviour.
+  placements:
+    - topic: tableau-basics/data-types
+
+# --- Tableau basics › Blue vs. green -------------------------------------------
+
+- id: tableau-dimensions-measures
+  title: Dimensions and Measures, Blue and Green
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/datafields_typesandroles.htm
+  summary: "The definitive reference: blue = discrete (headers), green = continuous (axes); strings and Booleans can never be continuous; a discrete measure is still aggregated."
+  placements:
+    - topic: tableau-basics/blue-vs-green
+    - topic: tableau-basics/dimensions-vs-measures
+      note: The same page is the canonical source for field roles too.
+
+- id: rotich-blue-and-green
+  title: Blue and Green, Dimensions and Measures
+  authors: [Faith Rotich]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/faith-rotich/dimensions-measures-discrete-continuous-blue-green/
+  summary: "Debunks \"dimensions are blue, measures are green\" with a memorable rule set: blue groups, green counts; dimensions split, measures fill."
+  placements:
+    - topic: tableau-basics/blue-vs-green
+
+- id: matos-blue-and-green-pill
+  title: The difference between Blue and Green pills in Tableau
+  authors: [Flavio Matos]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/flavio-matos/blue-and-green-pill/
+  summary: Worked examples, including Customer Name as a green measure.
+  placements:
+    - topic: tableau-basics/blue-vs-green
+
+- id: wishart-blue-vs-green
+  title: Blue vs Green and Dimensions vs Measures in Tableau
+  authors: [Emma Wishart]
+  publisher: The Data School Down Under
+  url: https://www.thedataschool.com.au/blogs/blue-vs-green-and-dimensions-vs-measures-in-tableau/
+  summary: A longer treatment of every discrete/continuous × dimension/measure combination and how each colours a view.
+  placements:
+    - topic: tableau-basics/blue-vs-green
+
+# --- Tableau basics › Dimensions vs. measures ----------------------------------
+
+- id: tucker-blue-vs-green
+  title: Blue vs. Green Pills & Dimensions vs. Measures
+  authors: [Marc-Anthony Tucker]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/marc-anthony-tucker/blue-vs-green-pills-dimensions-vs-measures/
+  summary: A crisp cheat-sheet mapping common Superstore fields to role, type and colour.
+  placements:
+    - topic: tableau-basics/dimensions-vs-measures
+
+- id: higson-dimensions-and-measures
+  title: Tableau Dimensions and Measures – What Are They?
+  authors: [Sophie Higson]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/sophie-higson/green-and-blue-pills-in-tableau-what-are-they/
+  summary: Explains how combining blue and green pills on Rows and Columns builds headers vs. axes, and invites you to test conversions yourself.
+  placements:
+    - topic: tableau-basics/dimensions-vs-measures
+
+# --- Visualization › Psychology -------------------------------------------------
+
+- id: sleeper-psychological-schemas
+  title: 3 ways psychological schemas can improve your data visualization
+  authors: [Ryan Sleeper]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/3-ways-psychological-schemas-can-improve-your-data-visualization-64600
+  published: 2017-01
+  summary: Spatial context, icons, shapes, symbols and colour schemas, and why disrupting audience expectations can lead them in the wrong direction.
+  placements:
+    - topic: visualization/psychology
+
+- id: sleeper-storytelling-color-tips
+  title: 3 storytelling with color tips to improve your data visualization
+  authors: [Ryan Sleeper]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/3-storytelling-color-tips-improve-your-data-visualization
+  published: 2019-09
+  summary: Reduce saturation, cut cognitive load (one bright highlight colour, the rest neutral) and leverage colour associations.
+  placements:
+    - topic: visualization/psychology
+
+- id: spengler-preattentive-attributes
+  title: Preattentive Attributes Comparison
+  authors: [Megan Spengler]
+  publisher: Playfair Data
+  url: https://playfairdata.com/preattentive-attributes-comparison/
+  published: 2024-10-19
+  summary: Compares colour, form, position and motion in Tableau examples, argues colour is the single most valuable preattentive attribute, and shows when to combine colour and shape.
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: visualization/psychology
+    - topic: data-career-tips/companies-hiring
+      section: other-uk-employers
+      note: Playfair Data, a US Tableau consultancy, publishes content that signals what top consultancies prize, strategy + design + engineering.
+
+- id: few-visual-perception
+  title: Tapping the Power of Visual Perception
+  authors: [Stephen Few]
+  publisher: Perceptual Edge
+  url: https://www.perceptualedge.com/articles/ie/visual_perception.pdf
+  published: 2004-09
+  summary: The classic primer, with a diagram of the visual perception system and the preattentive attributes most useful for data display.
+  placements:
+    - topic: visualization/psychology
+
+- id: healey-perception-in-visualization
+  title: Perception in Visualization
+  authors: [Christopher G. Healey]
+  publisher: North Carolina State University
+  url: https://www.csc2.ncsu.edu/faculty/healey/PP/
+  summary: The academic reference site on preattentive processing (Treisman, Julész theories), feature hierarchies and post-attentive vision, with interactive demos.
+  placements:
+    - topic: visualization/psychology
+
+- id: cleveland-mcgill-graphical-perception
+  title: "Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods"
+  authors: [William S. Cleveland, Robert McGill]
+  publisher: Journal of the American Statistical Association (course-hosted PDF)
+  url: https://math.pku.edu.cn/teachers/xirb/Courses/biostatistics/Biostatistics2016/GraphicalPerception_Jasa1984.pdf
+  published: "1984"
+  summary: The foundational experiment ranking encodings by accuracy (position > length > angle/area…), the scientific basis for "use bars, not pies."
+  caveat: A course-hosted copy of a JSTOR article; the hosting may not be permanent.
+  placements:
+    - topic: visualization/psychology
+
+- id: stasko-visual-perception
+  title: Visual Perception (CS 7450 lecture notes)
+  authors: [John Stasko]
+  publisher: Georgia Tech
+  url: https://faculty.cc.gatech.edu/~stasko/7450/16/Notes/perception.pdf
+  summary: Slide deck covering preattentive features, Gestalt laws, luminance and colour, and why to avoid rainbow scales.
+  placements:
+    - topic: visualization/psychology
+
+- id: sultanov-preattentive-gestalt
+  title: Preattentive Attributes and Gestalt Principles
+  authors: [Adam Sultanov]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/adam-sultanov/preattentive-attributes-and-gestalt-principles/
+  summary: "A short Data School primer: the four families of preattentive attributes (form, colour, position, movement) and the Gestalt principles of proximity, similarity, closure, enclosure and continuity."
+  placements:
+    - topic: visualization/psychology
+
+- id: pmc-oncological-preattentive
+  title: Visual Perception and Pre-Attentive Attributes in Oncological Data Visualisation
+  authors: [Authors listed on page]
+  publisher: PubMed Central (open access)
+  url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12292122/
+  summary: A recent peer-reviewed review of colour, shape, size, orientation and position as preattentive cues, with Gestalt and visual-hierarchy recommendations.
+  placements:
+    - topic: visualization/psychology
+
+# --- Visualization › Best practices ------------------------------------------
+
+- id: sleeper-storytelling-parallels
+  title: The Parallels Between Storytelling and Data Visualization
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/the-parallels-between-storytelling-and-data-visualization/
+  published: 2024-10-12
+  summary: Characters = fields, plot = insight, narrative = style; always answer "compared to what?" (period-over-period, vs. goal, benchmarks).
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: visualization/best-practices
+
+- id: sleeper-goal-surpluses
+  title: How to Color Goal Surpluses / Budget Excesses in Tableau Bar Charts
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/how-to-color-goal-surpluses-budget-excesses-in-tableau-bar-charts/
+  published: 2023-04-24
+  summary: A dual-axis technique to colour only the portion of a bar above target, a practical application of "compared to what?".
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: visualization/best-practices
+
+- id: sleeper-sixth-grade-tip
+  title: The best data-viz tip I learned in the sixth grade
+  authors: [Ryan Sleeper]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/best-data-viz-tip-i-learned-sixth-grade-66363
+  published: 2017-03-15
+  summary: "A failed reading-comprehension test teaches the lesson: know how you're being measured. Ask who the audience is and what the measurement of success is before designing anything."
+  placements:
+    - topic: visualization/best-practices
+    - topic: data-career-tips/the-work-itself
+      note: Before any client project, ask who the audience is and how success is measured.
+
+- id: murray-10-questions-sleeper
+  title: 10 Questions for Iron Viz Champion Ryan Sleeper
+  authors: [Dan Murray]
+  publisher: InterWorks
+  url: https://interworks.com/blog/dmurray/2015/04/17/10-questions-iron-viz-champion-ryan-sleeper/
+  published: 2015-04-17
+  summary: Sleeper on balancing data and design, and the tiny changes to marks, lines, borders, colours and layout that separate cookie-cutter from polished.
+  placements:
+    - topic: visualization/best-practices
+
+- id: flerlage-little-design
+  title: A Little Design Makes a World of Difference
+  authors: [Kevin Flerlage]
+  publisher: The Flerlage Twins
+  url: https://www.flerlagetwins.com/2021/07/a-little-design-makes-world-of.html
+  published: 2021-07
+  summary: Ten aesthetic techniques (header/footer containers, bar borders, scatterplot styling credited to Sleeper) for professional-looking dashboards.
+  placements:
+    - topic: visualization/best-practices
+
+# --- Visualization › Chart types --------------------------------------------
+
+- id: few-right-graph
+  title: "Eenie, Meenie, Minie, Moe: Selecting the Right Graph for Your Message"
+  authors: [Stephen Few]
+  publisher: Perceptual Edge
+  url: https://www.perceptualedge.com/articles/ie/the_right_graph.pdf
+  published: "2004"
+  summary: Maps the universe of quantitative messages (time series, ranking, part-to-whole, deviation, distribution, correlation, nominal comparison) to the right encodings.
+  placements:
+    - topic: visualization/chart-types
+
+- id: kriebel-visual-vocabulary
+  title: What I learned from recreating the Financial Times' Visual Vocabulary in Tableau
+  authors: [Andy Kriebel]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/what-i-learned-recreating-financial-times-visual-vocabulary-tableau-94516
+  summary: Nine relationship categories and 70+ chart types, each rebuilt in Tableau by the former Head Coach of The Data School.
+  placements:
+    - topic: visualization/chart-types
+
+- id: flerlage-chart-catalog
+  title: The Tableau Chart Catalog
+  authors: [Kevin Flerlage]
+  publisher: The Flerlage Twins
+  url: https://www.flerlagetwins.com/2019/08/the-tableau-chart-catalog_97.html
+  published: 2019-08
+  summary: A visual catalogue of 100 chart types from 74 authors, each linked to a how-to.
+  placements:
+    - topic: visualization/chart-types
+    - topic: extra/tableau-public-portfolio
+      note: A source of portfolio-worthy chart ideas.
+
+- id: datavizblog-chart-literacy
+  title: "Chart Literacy: Financial Times Visual Vocabulary, Andy Kriebel and Tableau, Part 3 of a Series"
+  authors: [Michael Sandberg]
+  publisher: Michael Sandberg's Data Visualization Blog
+  url: https://datavizblog.com/2023/04/21/chart-literacy-financial-times-visual-vocabulary-andy-kriebel-and-tableau-part-3-of-a-series/
+  published: 2023-04-21
+  summary: Context on how to use the Visual Vocabulary for chart selection.
+  placements:
+    - topic: visualization/chart-types
+
+# --- Visualization › Dashboards vs. stories -----------------------------------
+
+- id: caric-dashboards-or-story-points
+  title: "How to present your data in Tableau: Dashboards OR Story Points?"
+  authors: [Elena Caric]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/a/elena-caric/present-data-tableau-dashboards-story-points/
+  summary: Dashboards for simultaneous, cross-filtered exploration; story points for guided, sequential narratives.
+  placements:
+    - topic: visualization/dashboards-vs-stories
+
+- id: tableau-create-story
+  title: Create a Story
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/story_create.htm
+  summary: Story points, sizing, captions and formatting.
+  placements:
+    - topic: visualization/dashboards-vs-stories
+
+- id: tableau-story-example
+  title: Example – A Story That Examines a Trend
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/story_example.htm
+  summary: A worked earthquake-data story showing narrative sequencing.
+  placements:
+    - topic: visualization/dashboards-vs-stories
+
+- id: tableau-tutorial-story
+  title: "Step 7: Build a story to present"
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Get Started tutorial
+  url: https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-story.htm
+  summary: Frames a story as a slideshow of sheets and dashboards, contrasting it with an interactive dashboard.
+  placements:
+    - topic: visualization/dashboards-vs-stories
+
+# --- Visualization › Dashboard interactivity ----------------------------------
+
+- id: tableau-actions
+  title: Actions
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-gb/actions.htm
+  summary: The six action types (Filter, Highlight, Go to URL, Go to Sheet, Change Parameter, Change Set Values) and the order they run in.
+  placements:
+    - topic: visualization/dashboard-interactivity
+
+- id: sempere-dashboard-actions
+  title: Understanding Dashboard Actions in Tableau
+  authors: [Jorge Sempere]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/jorge-sempere/understanding-dashboard-actions-in-tableau/
+  summary: Walks through each action type with a Change Parameter example.
+  placements:
+    - topic: visualization/dashboard-interactivity
+
+- id: domoore-it-depends
+  title: "It Depends: Techniques for Filtering on Multiple Selections with Dashboard Actions in Tableau"
+  authors: [Brian Moore]
+  publisher: Do Mo(o)re With Data
+  url: https://domoorewithdata.com/2022/06/13/it-depends-techniques-for-filtering-on-multiple-selections-with-dashboard-actions-in-tableau/
+  published: 2022-06-13
+  summary: A decision framework comparing filter actions, set actions, set controls and parameter actions on performance vs. user experience.
+  placements:
+    - topic: visualization/dashboard-interactivity
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+      note: Recommends set actions when performance matters, parameter actions when user experience matters.
+
+# --- Data manipulation › Table calculations -----------------------------------
+
+- id: tableau-top-10-table-calcs
+  title: Top 10 Tableau table calculations
+  authors: [Tableau]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/top-10-tableau-table-calculations
+  summary: Ten practical recipes (running totals, percent of total, INDEX for weeks since opening, etc.) plus Compute Using vs. Specific Dimensions.
+  placements:
+    - topic: data-manipulation/table-calculations
+    - topic: data-manipulation/table-calculations
+      section: partitioning-vs-addressing
+      note: Partitioning fields define the scope; addressing defines the direction.
+
+- id: playfair-beginners-table-calcs
+  title: The Beginner's Guide to Tableau Table Calculations
+  authors: [Dan Bunker]
+  publisher: Playfair Data
+  url: https://playfairdata.com/the-beginners-guide-to-tableau-table-calculations/
+  published: 2022-11-06
+  summary: The virtual table, plus the three parts of a table calc (the calculation, partitioning field, addressing field).
+  caveat: Playfair Data asks for a free account to read past the introduction.
+  placements:
+    - topic: data-manipulation/table-calculations
+    - topic: data-manipulation/table-calculations
+      section: partitioning-vs-addressing
+      note: Checked boxes in Specific Dimensions = addressing; unchecked = partitioning.
+
+- id: coenterprise-table-calcs-101
+  title: "Tableau 101: Tableau Table Calculations, Part I"
+  authors: [Brett Miller]
+  publisher: CoEnterprise
+  url: https://www.coenterprise.com/blog/tableau-101-table-calculations-part-i/
+  summary: A level-100/101 walk-through of scope vs. direction and quick table calcs.
+  placements:
+    - topic: data-manipulation/table-calculations
+
+- id: drummey-partitioning
+  title: partitioning (tag archive)
+  authors: [Jonathan Drummey]
+  publisher: Drawing with Numbers
+  url: https://drawingwithnumbers.artisart.org/tag/partitioning/
+  summary: "From a Tableau Zen Master, including \"Counting from Nothing – A Double Remix\": addressing = \"computed along\", partitioning = \"for each\"; every dimension not addressing is partitioning."
+  placements:
+    - topic: data-manipulation/table-calculations
+      section: partitioning-vs-addressing
+
+- id: adventurer-mastering-table-calcs
+  title: "Mastering Table Calculations Pt. 1: From Basics to Advanced Settings"
+  authors: [Tableau Adventurer]
+  publisher: Tableau Adventurer
+  url: https://tableauadventurer.com/2024/05/31/mastering-table-calculations-pt-1-from-basics-to-advanced-settings/
+  published: 2024-05-31
+  summary: Partitioning "by position", restart behaviour and "At the level", demonstrated with paired INDEX() calcs.
+  placements:
+    - topic: data-manipulation/table-calculations
+      section: partitioning-vs-addressing
+
+- id: ecf-table-calcs-explained
+  title: "Tableau Table Calculations Explained: INDEX, RANK, WINDOW_SUM, and LOOKUP"
+  authors: [Export Calculated Fields]
+  publisher: Export Calculated Fields blog
+  url: https://exportcalculatedfields.com/blog/tableau-table-calculations-explained
+  summary: Why table calcs change when you add a dimension, why Specific Dimensions makes them stable, and why you should learn INDEX first.
+  placements:
+    - topic: data-manipulation/table-calculations
+      section: partitioning-vs-addressing
+    - topic: data-manipulation/lod-expressions
+      note: Ends with a practical rule for choosing between a table calculation and an LOD expression.
+
+# --- Data manipulation › LOD expressions --------------------------------------
+
+- id: lyons-top-15-lods
+  title: Top 15 LOD Expressions
+  authors: [Bethany Lyons]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/LOD-expressions
+  summary: "The canonical list: customer order frequency, cohorts, percent of total under filters, top deals per rep, daily active trends."
+  placements:
+    - topic: data-manipulation/lod-expressions
+
+- id: flerlage-20-lod-uses
+  title: 20 Uses for Tableau Level of Detail Calculations (LODs)
+  authors: [Ken Flerlage]
+  publisher: The Flerlage Twins
+  url: https://www.flerlagetwins.com/2020/02/lod-uses.html
+  published: 2020-02
+  summary: Twenty real-world use cases plus tips on order of operations and context filters.
+  placements:
+    - topic: data-manipulation/lod-expressions
+
+- id: flerlage-include-exclude
+  title: Understanding INCLUDE and EXCLUDE LODs
+  authors: [Kevin Flerlage]
+  publisher: The Flerlage Twins
+  url: https://www.flerlagetwins.com/2024/08/includeexclude.html
+  published: 2024-08
+  summary: Demystifies the two "relative" LODs and shows when INCLUDE is the most efficient tool.
+  placements:
+    - topic: data-manipulation/lod-expressions
+
+- id: li-three-lod-use-cases
+  title: Three Use Cases of LOD Expressions
+  authors: [Fayong Li]
+  publisher: The Data School Down Under
+  url: https://www.thedataschool.com.au/blogs/three-use-cases-of-lod-expressions/
+  summary: Order-frequency histograms and other FIXED-LOD patterns.
+  placements:
+    - topic: data-manipulation/lod-expressions
+
+- id: concord-lod-benchmarks
+  title: "Tableau 201: Using Level of Detail (LOD) Expressions to Create Powerful Benchmarks"
+  authors: [Concord]
+  publisher: Concord
+  url: https://www.concordusa.com/blog/tableau-201-using-level-of-detail-expressions-to-create-benchmarks
+  summary: Using EXCLUDE to build constant benchmarks for percent-difference KPIs.
+  placements:
+    - topic: data-manipulation/lod-expressions
+
+# --- Data manipulation › Calculated fields -------------------------------------
+# (Writing Calculations and Type Conversion are placed here from Data types.)
+
+- id: tableau-date-functions
+  title: Date Functions
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/functions_functions_date.htm
+  summary: DATEDIFF, DATEPART, DATETRUNC and #date# literals.
+  placements:
+    - topic: data-manipulation/calculated-fields
+
+- id: tableau-number-functions
+  title: Number Functions
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/functions_functions_number.htm
+  summary: ROUND, ABS, ZN and the rest of the numeric toolbox.
+  placements:
+    - topic: data-manipulation/calculated-fields
+
+# --- Data manipulation › Maps ---------------------------------------------------
+
+- id: tableau-custom-geocoding
+  title: Geocode Locations Tableau Does Not Recognize and Plot Them on a Map
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/custom_geocoding.htm
+  summary: Building the CSV and using Map › Geocoding › Import Custom Geocoding.
+  placements:
+    - topic: data-manipulation/maps
+
+- id: tableau-blending-vs-geocoding
+  title: Data Blending vs. Custom Geocoding
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/maps_customgeocode_datablend.htm
+  summary: Choosing between the two ways to plot unrecognised locations.
+  placements:
+    - topic: data-manipulation/maps
+
+- id: tableau-custom-territories
+  title: Create Territories on a Map
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/maps_custom_territories.htm
+  summary: Grouping geographies into custom sales or service territories.
+  placements:
+    - topic: data-manipulation/maps
+
+- id: tableau-geographic-roles
+  title: Assign Geographic Roles
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/maps_geographicroles.htm
+  summary: Setting geographic roles so Tableau generates latitude and longitude.
+  placements:
+    - topic: data-manipulation/maps
+
+# --- Data manipulation › Sets vs. parameters ----------------------------------
+
+- id: louks-kirwan-set-vs-parameter-actions
+  title: "Set Actions and Parameter Actions in Tableau: What's the difference and when to use them"
+  authors: [Gabriel Louks-Kirwan]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/gabriel-louks-kirwan/set-actions-and-parameter-actions-in-tableau-whats-the-difference-and-when-to-use-them/
+  summary: Sets are dynamic subsets (multi-value, in/out); parameters are a single user-controlled value feeding calculations.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+
+- id: drummey-parameter-as-data-source
+  title: "Parameter Actions: Using a parameter as a data source"
+  authors: [Jonathan Drummey]
+  publisher: Drawing with Numbers
+  url: https://drawingwithnumbers.artisart.org/parameter-actions-using-a-parameter-a-data-source/
+  summary: "The most rigorous comparison: source of values, required viz level of detail, available controls, single- vs. multi-select."
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+
+- id: tableau-set-actions
+  title: Set Actions
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/actions_sets.htm
+  summary: Creating set actions, with examples like proportional brushing. Note that set actions can't be used in Stories.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+
+- id: tableau-parameter-actions
+  title: Parameter Actions
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/actions_parameters.htm
+  summary: Changing a parameter by clicking marks, including aggregating multiple selected marks into one value.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+
+- id: tableau-parameter-actions-blog
+  title: "Parameter actions (now in beta) extend Tableau interactivity: Here's how and when to use them"
+  authors: [Filippos Lymperopoulos]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/parameter-actions-extend-interactivity
+  published: 2019-05-07
+  summary: "When parameter actions beat set actions: reference dates for table calcs, thresholds, spatial interactivity and input controls, often with zero extra calcs."
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+    - topic: data-manipulation/maps
+      note: Includes spatial examples of parameter actions on maps.
+
+- id: flerlage-playing-with-parameter-actions
+  title: "Playing with Parameter Actions: Tableau 2019.2"
+  authors: [Ken Flerlage, Kevin Flerlage]
+  publisher: The Flerlage Twins
+  url: https://www.flerlagetwins.com/2019/05/playing-with-parameter-actions-tableau_18.html
+  published: 2019-05
+  summary: Four key differences (multi-select vs. single, values not in the data source, etc.) and why set actions are better for drill-downs that need "remove all values" on clear.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+    - topic: data-manipulation/maps
+      note: Includes a flight-path MAKELINE / MAKEPOINT example driven by parameter actions.
+
+- id: sleeper-creative-parameter-actions
+  title: 3 Creative Ways to Use Tableau Parameter Actions
+  authors: [Ryan Sleeper]
+  publisher: Playfair Data
+  url: https://playfairdata.com/3-creative-ways-to-use-tableau-parameter-actions/
+  published: 2019-06-18
+  summary: Date-part toggles and measure-name swaps, and a reminder that multi-member selections are better served by set actions.
+  caveat: Playfair Data asks for a free account to read past the introduction and to watch the video.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+
+# --- Data career tips › The work itself ---------------------------------------
+
+- id: holland-client-projects-initiation
+  title: "Client Projects – Phase 1: Initiation Phase"
+  authors: [Amelia Holland]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/amelia-holland/client-projects-initiation-phase/
+  summary: "A requirements-gathering checklist: kick-off questions, user story, play the brief back, ask for branding and data dictionaries."
+  placements:
+    - topic: data-career-tips/the-work-itself
+
+- id: carter-first-client-project
+  title: Top 5 Tips to Succeeding in your First Client Project
+  authors: [Ellie Carter]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/a/ellie-carter/top-5-tips-to-succeeding-in-your-first-client-project/
+  summary: Research the client, ask questions, scope realistically, seek feedback, rehearse.
+  placements:
+    - topic: data-career-tips/the-work-itself
+
+- id: hitch-short-term-consultancy
+  title: Lessons Learned from a Short-Term Consultancy Project
+  authors: [Lisa Hitch]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/lisa-hitch/lessons-learned-from-a-short-term-consultancy-project/
+  summary: "Solo client placement lessons: scope tightly, under-promise and over-deliver, stay organised."
+  placements:
+    - topic: data-career-tips/the-work-itself
+
+- id: yuan-day-to-day
+  title: The Day-to-Day of a Data Schooler in Training
+  authors: [Elaine Yuan]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/elaine-yuan/the-day-to-day-of-a-data-schooler-in-training/
+  summary: The weekly rhythm from Monday kick-off to Friday client presentation, a model for time-boxed delivery.
+  placements:
+    - topic: data-career-tips/the-work-itself
+
+- id: helpscout-client-communication
+  title: 8 Actionable Client Communication Tips
+  authors: [Help Scout]
+  publisher: Help Scout
+  url: https://www.helpscout.com/blog/client-communication-best-practices/
+  summary: Replace vague words ("soon", "ASAP") with specific dates and quantities, and own mistakes quickly.
+  placements:
+    - topic: data-career-tips/the-work-itself
+
+# --- Data career tips › Companies hiring --------------------------------------
+
+- id: til-who-we-are
+  title: Who We Are
+  authors: [The Information Lab]
+  publisher: The Information Lab
+  url: https://www.theinformationlab.co.uk/about/til/
+  summary: Values (curiosity to learn, sharing knowledge, creativity, supporting the data community) of a Premier Tableau and Alteryx partner across the UK and Europe.
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: information-lab-data-school
+
+- id: data-school-about
+  title: About The Data School
+  authors: [The Data School]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/about/
+  summary: Four months of training, no CV or degree required; they look for curiosity, patience with messy data, presentation confidence and openness to feedback.
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: information-lab-data-school
+
+- id: data-school-apply
+  title: Apply to The Data School
+  authors: [The Data School]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/apply/
+  summary: "How to apply: build a Tableau Public viz on a topic you care about, send the link with a short note, then a video call and an in-person interview. No CV needed at this stage."
+  caveat: Cohort availability by city changes; check the page for current openings.
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: information-lab-data-school
+
+- id: stokes-nail-final-interview
+  title: How To Nail A Data School Final Interview
+  authors: [Joe Stokes]
+  publisher: The Information Lab
+  url: https://www.theinformationlab.co.uk/community/blog/how-to-nail-a-data-school-final-interview/
+  published: 2022-09-06
+  summary: Written after sitting on the DS35 panel. Practise the presentation, show you have applied earlier feedback, understand what a consultant does and why The Data School was founded, and let your personality show.
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: information-lab-data-school
+    - topic: data-career-tips/soft-skills
+      note: How you receive feedback is explicitly assessed in the final interview.
+
+- id: grasland-final-interview
+  title: What Actually Happens at a Data School Final Interview
+  authors: [Salome Grasland]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/salome-grasland/what-actually-happens-at-a-data-school-final-interview/
+  summary: "The current format: ~45 minutes, a dashboard built on a pre-sent dataset presented to a 3–4 person panel (recruitment, coaching, sales), a short live Tableau task, and behavioural questions."
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: information-lab-data-school
+
+- id: parry-ds-application-guide
+  title: A walk-through guide to the DS application process
+  authors: [Jack Parry]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/a/jack-parry/a-walk-through-guide-to-the-ds-application-process/
+  summary: Meet-and-greets, the screening call (talk through your viz iterations) and final interview advice.
+  caveat: Describes an older format (5-minute presentation, two panels); compare with Grasland's current description.
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: information-lab-data-school
+
+- id: data-school-successful-applications
+  title: Successful Applications
+  authors: [The Data School]
+  publisher: The Data School
+  url: https://thedataschool.com/successful/
+  summary: Galleries of initial vs. final-interview vizzes from successful applicants, showing the expected improvement after feedback.
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: information-lab-data-school
+    - topic: extra/tableau-public-portfolio
+      note: The most relevant portfolio benchmark if you're applying to The Data School.
+
+- id: data-school-build-your-team
+  title: Build Your Team
+  authors: [The Data School]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/hire/
+  summary: The client view of Data School consultants and their mix of technical and soft skills, with a JLL testimonial.
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: information-lab-data-school
+
+- id: rockborne-soft-skills
+  title: The Importance of Data Science Soft Skills
+  authors: [Hermione Lamb]
+  publisher: Rockborne
+  url: https://rockborne.com/graduates/blog/data-science-soft-skills/
+  published: 2023-09-25
+  summary: A London graduate data consultancy whose training covers stakeholder personas, assertiveness (pushing back on deadlines), presentations and data storytelling, a direct analogue to The Data School model.
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: other-uk-employers
+    - topic: data-career-tips/soft-skills
+      note: Stakeholder personas, assertive (not aggressive) pushback, presentation and storytelling drills.
+
+- id: atheon-analytics-blog
+  title: Atheon Analytics company blog
+  authors: [Atheon Analytics]
+  publisher: Medium
+  url: https://medium.com/@AtheonAnalytics
+  summary: UK grocery and retail analytics on a Tableau and Snowflake stack, with posts on Tableau Server performance.
+  caveat: Hosted on Medium; individual posts may hit the Medium metered wall.
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: other-uk-employers
+
+# --- Data career tips › Soft skills -------------------------------------------
+
+- id: matthias-inside-four-months
+  title: Inside Four Months of Data School
+  authors: [Jaden Matthias]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/jaden-matthias/inside-four-months-of-data-school/
+  summary: Presentation, scoping, project management and offering sketches for out-of-scope requests.
+  placements:
+    - topic: data-career-tips/soft-skills
+
+- id: consulting-success-skills
+  title: The 6 Essential Consulting Skills (Clients Want These)
+  authors: [Consulting Success]
+  publisher: Consulting Success
+  url: https://www.consultingsuccess.com/consulting-skills
+  summary: Communication first, then people skills, objectivity, and organisation and time management, with a 30-day writing exercise.
+  placements:
+    - topic: data-career-tips/soft-skills
+
+- id: tds-soft-skills-beat-technical
+  title: Soft Skills Beat Technical Skills in Data Analytics
+  authors: [TDS Archive]
+  publisher: Medium
+  url: https://medium.com/data-science/soft-skills-beat-technical-skills-in-data-analytics-57f56ca91361
+  summary: Turning metrics into actionable statements and managing stakeholders.
+  caveat: Medium may meter access.
+  placements:
+    - topic: data-career-tips/soft-skills
+
+# --- Extra › Performance optimization -----------------------------------------
+
+- id: tableau-optimize-workbook-performance
+  title: Optimize Workbook Performance
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/performance_tips.htm
+  summary: Start with the performance recorder; a slow data source makes everything slow.
+  placements:
+    - topic: extra/performance-optimization
+
+- id: tableau-performance-checklist
+  title: Tableau Workbook Performance Checklist
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Help
+  url: https://help.tableau.com/current/pro/desktop/en-us/perf_checklist.htm
+  summary: Limit data, use extract and data source filters, prefer native features to calcs. Context filters no longer speed up queries.
+  placements:
+    - topic: extra/performance-optimization
+
+- id: tableau-performance-recording-server
+  title: Create a Performance Recording
+  authors: [Tableau (official documentation)]
+  publisher: Tableau Server Help
+  url: https://help.tableau.com/current/server/en-us/perf_record_create_server.htm
+  summary: Recording and reading performance on Tableau Server.
+  placements:
+    - topic: extra/performance-optimization
+
+- id: tableau-performance-hub
+  title: Improve Dashboard Performance with Design Best Practices
+  authors: [Tableau]
+  publisher: Tableau
+  url: https://www.tableau.com/resources/performance
+  summary: "Tableau's performance hub: find bottlenecks with the Performance Recorder (Help › Settings and Performance), set goals per audience, then act on the Workbook Optimizer's recommendations (2022.1+)."
+  placements:
+    - topic: extra/performance-optimization
+
+# --- Extra › Certification prep ----------------------------------------------
+
+- id: learningtableau-specialist-guide
+  title: Tableau Desktop Specialist Exam Study Guide
+  authors: [LearningTableau]
+  publisher: LearningTableau
+  url: https://learningtableau.com/specialist-study-guide/
+  summary: Maps each exam domain to the relevant Help pages; 45 multiple-choice questions.
+  placements:
+    - topic: extra/certification-prep
+
+- id: yuan-desktop-specialist
+  title: Taking the Tableau Desktop Specialist Certification Exam
+  authors: [Elaine Yuan]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/elaine-yuan/taking-the-tableau-desktop-specialist-certification-exam/
+  summary: One hour, 45 questions, 750/1000 to pass, with free practice-test links.
+  placements:
+    - topic: extra/certification-prep
+
+- id: aharon-data-analyst-exam
+  title: How to Prepare for the Tableau Certified Data Analyst Exam
+  authors: [Keren Aharon]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/keren-aharon/how-to-prepare-for-the-tableau-data-analyst-certification-exam/
+  summary: The official prep guide, Preppin' Data practice, order of operations and Server knowledge.
+  placements:
+    - topic: extra/certification-prep
+
+- id: fiadotava-data-analyst-exam
+  title: Tableau Data Analyst Certification Exam
+  authors: [Volha Fiadotava]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/volha-fiadotava/tableau-data-analyst-certification-exam/
+  summary: 55 questions in 120 minutes across three sections; save after each lab.
+  placements:
+    - topic: extra/certification-prep
+
+- id: smoak-passed-data-analyst
+  title: How I Passed the Tableau Certified Data Analyst Exam
+  authors: [Anthony Smoak]
+  publisher: anthonysmoak.com
+  url: https://anthonysmoak.com/2022/12/04/how-i-passed-the-tableau-certified-data-analyst-exam/
+  published: 2022-12-04
+  summary: A first-person account of passing the exam.
+  caveat: Exam format and branding may have changed since; verify on the official exam guide.
+  placements:
+    - topic: extra/certification-prep
+
+# --- Extra › Tableau Public portfolio ------------------------------------------
+
+- id: digiacomo-7-ways-stand-out
+  title: 7 Ways to Stand Out and Secure Your Next Data Analytics Role
+  authors: [Olivia DiGiacomo]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/7-ways-stand-out-and-secure-your-next-data-analytics-role
+  summary: Build a Tableau Public portfolio, turn on "Hire Me", and network.
+  placements:
+    - topic: extra/tableau-public-portfolio
+
+# --- Miscellaneous ------------------------------------------------------------
+
+- id: dashboard-zoo-to-census
+  title: "From Dashboard Zoo to Census: A Case Study With Tableau Public"
+  authors: [Joanna Purich, Arjun Srinivasan, Michael Correll, Leilani Battle, Vidya Setlur, Anamaria Crisan]
+  publisher: NSF Public Access Repository (IEEE TVCG)
+  url: https://par.nsf.gov/servlets/purl/10625377
+  published: "2025"
+  summary: 25,620 dashboards drawn from Tableau Public's 5 million workbooks; 75% are interactive and bar charts appear in 60% of them.
+  placements:
+    - topic: miscellaneous
+
+- id: sleeper-tableau-blog-contributor
+  title: Ryan Sleeper – Tableau blog contributor page
+  authors: [Ryan Sleeper]
+  publisher: Tableau blog
+  url: https://www.tableau.com/about/blog/contributors/ryan-sleeper
+  summary: Index of Sleeper's free Tableau-blog articles (e.g. mobile-first dashboard design, going viral on Tableau Public).
+  placements:
+    - topic: miscellaneous
+
+- id: few-perceptual-edge-library
+  title: Perceptual Edge Library
+  authors: [Stephen Few]
+  publisher: Perceptual Edge
+  url: https://www.perceptualedge.com/library.php
+  summary: Free index of Few's articles and whitepapers on dashboards, graphs and perception.
+  placements:
+    - topic: miscellaneous
+
+# -----------------------------------------------------------------------------
+# Added: articles by featured experts (their own sites, The Information Lab,
+# The Data School and the Tableau blog), filed under the guide's topics.
+# -----------------------------------------------------------------------------
+
+# --- Andy Kriebel (VizWiz) ------------------------------------------------------
+
+- id: kriebel-clean-messy-data
+  title: How to Clean Messy Data in Tableau in Seconds!
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2025/08/data-interprete.html
+  published: 2025-08-14
+  summary: A video tutorial on using Data Interpreter to strip unnecessary headers and fix field names without leaving Tableau, then building a population pyramid from the cleaned data.
+  placements:
+    - topic: tableau-basics/data-cleaning
+
+- id: kriebel-split-custom-split-replace
+  title: How to Use Split, Custom Split, and Replace in Tableau
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2026/02/split.html
+  published: 2026-02-18
+  summary: Cleaning US county names with three text functions, and why a "simple" clean-up gets harder once real data (Louisiana's parishes, say) gets involved.
+  placements:
+    - topic: tableau-basics/data-cleaning
+
+- id: kriebel-get-started
+  title: Tableau Tutorial for Beginners (2025)
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2025/08/get-started.html
+  published: 2025-08-06
+  summary: A beginner's video course in one sitting. Import and clean data, build bar, line and map views, assemble an interactive dashboard and publish it.
+  placements:
+    - topic: tableau-basics/basic-charting
+
+- id: kriebel-quadrant-chart
+  title: How to Build a Quadrant Chart in Tableau
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2026/02/quadrant.html
+  published: 2026-02-25
+  summary: Turning a profit ratio vs. average discount scatterplot into a four-quadrant chart that surfaces outliers, opportunities and risk areas.
+  placements:
+    - topic: visualization/chart-types
+
+- id: kriebel-marimekko-alternative
+  title: The Marimekko Alternative
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2026/05/the-marimekko-alternative.html
+  published: 2026-05-12
+  summary: When stacked bars break down, this chart compares proportions across groups and shows each group's total, built with nested table calculations and reference lines.
+  placements:
+    - topic: visualization/chart-types
+    - topic: data-manipulation/table-calculations
+
+- id: kriebel-design-mistakes
+  title: Fix These 5 Tableau Dashboard Mistakes Today
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2026/03/design-mistakes.html
+  published: 2026-03-31
+  summary: Misused colour, too many charts, ignoring the audience, over-complicated layouts and forgotten interactivity, and how to fix each one.
+  placements:
+    - topic: visualization/best-practices
+
+- id: kriebel-highlight-vs-filter
+  title: "Highlight vs Filter Actions in Tableau: When Should You Use Each?"
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2026/03/highlight-vs-filter.html
+  published: 2026-03-09
+  summary: An end-to-end example showing how highlight actions guide attention, how filter actions change the view, and how to combine both.
+  placements:
+    - topic: visualization/dashboard-interactivity
+
+- id: kriebel-worksheet-actions-on-dashboards
+  title: How to Make Your Worksheet Actions Work on a Dashboard
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2026/04/broken-actions.html
+  published: 2026-04-22
+  summary: Why worksheet actions break once a sheet sits on a dashboard, and the fix (Dashboard › Actions › Edit, then switch the source to the dashboard).
+  placements:
+    - topic: visualization/dashboard-interactivity
+
+- id: kriebel-proportional-brushing
+  title: Proportional Brushing in Tableau with Set Actions
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2025/10/brushing.html
+  published: 2025-10-13
+  summary: Show how a selection contributes to a second chart without filtering anything away, using set actions.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+    - topic: visualization/dashboard-interactivity
+
+- id: kriebel-drill-down-set-actions
+  title: How to Drill Down in Tableau Using Set Actions
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2025/10/how-to-drill-down-in-tableau-using-set.html
+  published: 2025-10-21
+  summary: A step-by-step bar chart drill-down built with set actions instead of "faking" it with extra sheets.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+
+- id: kriebel-two-values-one-parameter
+  title: How to Add Two Values to One Parameter in Tableau
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2025/07/multi-value-parameter.html
+  published: 2025-07-24
+  summary: A dynamic date range from a single parameter, using parameter actions, LODs and a reference band.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+
+- id: kriebel-count-weekdays
+  title: How to Count Only Weekdays Between Any Two Dates in Tableau
+  authors: [Andy Kriebel]
+  publisher: VizWiz
+  url: https://www.vizwiz.com/2026/04/count-weekdays.html
+  published: 2026-04-28
+  summary: A parameter-action date range selector plus DATEPART weekday logic wrapped in an LOD, so weekends drop out of the count.
+  placements:
+    - topic: data-manipulation/calculated-fields
+
+# --- Bethany Lyons (Tableau blog) -----------------------------------------------
+
+- id: lyons-relationships-data-modeling
+  title: "Relationships: Data modeling in Tableau"
+  authors: [Bethany Lyons]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/relationships-tableau-data-model
+  published: 2020-05-11
+  summary: The launch explanation of relationships in 2020.2. Less upfront prep, more use cases per data source, and greater trust because relationships always preserve every measure.
+  placements:
+    - topic: tableau-basics/data-relationships
+
+- id: lyons-relationships-tips
+  title: "Relationships, part 2: Tips and Tricks"
+  authors: [Bethany Lyons]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/relationships-part-2-tips-and-tricks
+  published: 2020-05-27
+  summary: How filters and row-level calculations behave across related tables, and how to count rows in a higher-granularity table with a primary key.
+  placements:
+    - topic: tableau-basics/data-relationships
+
+- id: lyons-relationships-questions
+  title: "Relationships: Asking questions across multiple related tables"
+  authors: [Bethany Lyons]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/relationships-asking-questions-across-multiple-related-tables
+  published: 2020-06-12
+  summary: Using sets, LOD expressions and aggregate calculations across related tables, with a downloadable bookstore workbook.
+  placements:
+    - topic: tableau-basics/data-relationships
+    - topic: data-manipulation/lod-expressions
+      note: Shows how cardinality across related tables decides which level of aggregation answers your question.
+
+- id: lyons-set-actions-comparisons
+  title: 8 ways to bring powerful new comparisons to viz audiences with Tableau set actions
+  authors: [Bethany Lyons]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/8-ways-bring-powerful-new-comparisons-viz-audiences-set-actions-97207
+  published: 2018-11-06
+  summary: Selection as percent of total, period-over-period growth, comparisons to a selected baseline and more, each with a worked dashboard.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+    - topic: visualization/dashboard-interactivity
+
+- id: lyons-set-actions-analytic-concepts
+  title: 8 analytic concepts to express with Tableau set actions
+  authors: [Bethany Lyons]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/8-analytic-concepts-express-tableau-set-actions-99108
+  published: 2018-12-10
+  summary: Filtering on relationships, OR filters, ranks computed across all data and moving averages over filtered-out periods, all driven by set actions.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+
+- id: lyons-set-actions-advanced-analytics
+  title: Designing advanced analytics applications with Tableau set actions
+  authors: [Bethany Lyons]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/designing-advanced-analytics-applications-tableau-set-actions-100554
+  published: 2019-01-31
+  summary: Pairing set actions with correlation, clustering and percentiles to put interactive statistical tools in business users' hands.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+
+# --- Ryan Sleeper (Tableau blog) -------------------------------------------------
+
+- id: sleeper-mobile-first
+  title: 5 tips for mobile-first dashboard design in Tableau
+  authors: [Ryan Sleeper]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/5-tips-mobile-first-tableau-dashboard-design
+  published: 2019-12-03
+  summary: When to design mobile-first, scrolling several sheets at once without default scroll bars, device-specific layouts, and tooltips that save precious screen space.
+  placements:
+    - topic: visualization/best-practices
+
+- id: sleeper-go-viral
+  title: 5 Tips for Making Your Tableau Public Viz Go Viral
+  authors: [Ryan Sleeper]
+  publisher: Tableau blog
+  url: https://www.tableau.com/blog/5-tips-making-your-tableau-public-viz-go-viral
+  published: 2016-03-08
+  summary: Find a compelling story, balance data and design, use the words people search for, and get your work discovered by a larger audience.
+  placements:
+    - topic: extra/tableau-public-portfolio
+
+# --- Shreya Arya (The Data School, DataVizFairy) -------------------------------
+
+- id: arya-plan-your-prep
+  title: "Tableau Prep: Plan your Prep!"
+  authors: [Shreya Arya]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/shreya-arya/tableau-prep-plan-your-prep/
+  summary: Sketch your cleaning steps before you open Tableau Prep, a lesson from Shreya's first Prep session with Carl Allchin.
+  placements:
+    - topic: tableau-basics/data-cleaning
+
+- id: arya-b2vb-multiple-data-sources
+  title: Using multiple DATA SOURCES (B2VB tips)
+  authors: [Shreya Arya]
+  publisher: DataVizFairy
+  url: https://datavizfairy.co.uk/b2vb-tips/using-multiple-data-sources/
+  summary: Eight illustrated tips for combining data sources to expand your analysis, from the Back to Viz Basics community project.
+  placements:
+    - topic: tableau-basics/data-relationships
+
+- id: arya-lollipop-chart
+  title: How to create a Lollipop Chart in Tableau
+  authors: [Shreya Arya]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/shreya-arya/how-to-create-a-lollipop-chart-in-tableau/
+  published: 2023-11-07
+  summary: A beginner-friendly build of a bar chart with a shape at the end of the line, plus ideas for custom shapes.
+  placements:
+    - topic: tableau-basics/basic-charting
+
+- id: arya-booleans
+  title: Understanding Booleans in Tableau
+  authors: [Shreya Arya]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/shreya-arya/booleans-in-tableau/
+  summary: What a Boolean is, how comparison and logical operators create one, and how to spot the T|F symbol in the data pane.
+  placements:
+    - topic: tableau-basics/data-types
+
+- id: arya-avoid-these-colours
+  title: Avoid using these colours together
+  authors: [Shreya Arya]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/shreya-arya/my-tableau-tip-1/
+  published: 2023-04-15
+  summary: Two colour pairings Shreya always avoids and why, starting with red and green for accessibility.
+  placements:
+    - topic: visualization/psychology
+
+- id: arya-custom-colour-palette
+  title: Adding a custom colour palette to Tableau Desktop
+  authors: [Shreya Arya]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/shreya-arya/adding-a-custom-colour-palette-to-tableau-desktop-my-tableau-tip-3/
+  published: 2023-04-15
+  summary: Editing the Preferences file in My Tableau Repository to add your own colour palettes.
+  placements:
+    - topic: visualization/psychology
+
+- id: arya-b2vb-colour
+  title: Using COLOUR (B2VB tips)
+  authors: [Shreya Arya]
+  publisher: DataVizFairy
+  url: https://datavizfairy.co.uk/b2vb-tips/b2vb-tips-using-colour/
+  summary: Eight illustrated tips on using colour strategically to elevate key data points.
+  placements:
+    - topic: visualization/psychology
+
+- id: arya-custom-shapes
+  title: Adding Custom Shapes into Tableau Desktop
+  authors: [Shreya Arya]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/shreya-arya/adding-custom-shapes-into-tableau-desktop/
+  published: 2023-11-07
+  summary: Finding transparent icons, adding them to My Tableau Repository and using them as marks, so you're no longer limited to the built-in shapes.
+  placements:
+    - topic: visualization/best-practices
+
+- id: arya-accessibility-screen-readers
+  title: Accessibility and Screen Readers (Dashboard Week, Day 1)
+  authors: [Shreya Arya]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/shreya-arya/accessibility_and_screen_readers/
+  published: 2023-07-24
+  summary: Accessible, inclusive and universal design, and a redesign of a dashboard for screen-reader users.
+  placements:
+    - topic: visualization/best-practices
+
+- id: arya-b2vb-wireframe
+  title: Build a better WIREFRAME (B2VB tips)
+  authors: [Shreya Arya]
+  publisher: DataVizFairy
+  url: https://datavizfairy.co.uk/b2vb-tips/build-a-better-wireframe/
+  summary: Eleven illustrated tips for wireframing a dashboard before building it, so the design supports business goals.
+  placements:
+    - topic: visualization/best-practices
+
+- id: arya-b2vb-ban-kpi
+  title: Build a better BAN / KPI (B2VB tips)
+  authors: [Shreya Arya]
+  publisher: DataVizFairy
+  url: https://datavizfairy.co.uk/b2vb-tips/build-a-better-ban-kpi/
+  summary: Nine illustrated tips for big-number KPIs that support quick decision-making.
+  placements:
+    - topic: visualization/best-practices
+
+- id: arya-b2vb-explanatory-analysis
+  title: Explanatory ANALYSIS (B2VB tips)
+  authors: [Shreya Arya]
+  publisher: DataVizFairy
+  url: https://datavizfairy.co.uk/b2vb-tips/explanatory-analysis/
+  summary: Nine illustrated tips for turning data into clear, actionable answers that highlight the important insight.
+  placements:
+    - topic: visualization/dashboards-vs-stories
+
+- id: arya-b2vb-dashboard-filters
+  title: Dashboard FILTERS (B2VB tips)
+  authors: [Shreya Arya]
+  publisher: DataVizFairy
+  url: https://datavizfairy.co.uk/b2vb-tips/dashboard-filters/
+  summary: Eleven illustrated tips for filters that help users narrow the data and focus on what matters most.
+  placements:
+    - topic: visualization/dashboard-interactivity
+
+- id: arya-b2vb-percent-of-total
+  title: Percent of Total (B2VB tips)
+  authors: [Shreya Arya]
+  publisher: DataVizFairy
+  url: https://datavizfairy.co.uk/b2vb-tips/percent-of-total/
+  summary: Six chart ideas for percent-of-total calculations that reveal the relative significance of each element.
+  placements:
+    - topic: data-manipulation/table-calculations
+
+- id: arya-comments-in-calculations
+  title: Writing comments into your Tableau calculations
+  authors: [Shreya Arya]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/shreya-arya/writing-comments-into-your-calculations/
+  published: 2023-05-03
+  summary: Two ways to comment a calculation so colleagues, and future you, can follow its logic.
+  placements:
+    - topic: data-manipulation/calculated-fields
+
+- id: arya-b2vb-date-functions
+  title: DATE Functions (B2VB tips)
+  authors: [Shreya Arya]
+  publisher: DataVizFairy
+  url: https://datavizfairy.co.uk/b2vb-tips/date-functions/
+  summary: Eight illustrated tips for analysing periods and spotting performance cycles with date functions.
+  placements:
+    - topic: data-manipulation/calculated-fields
+
+- id: arya-parameter-drill-down
+  title: How to build a Parameter Drill-down in Tableau
+  authors: [Shreya Arya]
+  publisher: DataVizFairy
+  url: https://datavizfairy.co.uk/blog/how-to-build-a-parameter-drill-down-in-tableau/
+  summary: A step-by-step drill-down from Category to Sub-Category, Manufacturer and Product Name, driven by parameters and dashboard actions, with a dynamic title and a reset button.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+
+- id: arya-1-hour-makeover-monday
+  title: The 1-hour Makeover Monday Challenge
+  authors: [Shreya Arya]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/shreya-arya/the-1-hour-makeover-monday-challenge/
+  summary: Why consultants practise building a viz in one hour, and why analysis comes before design when time is short.
+  placements:
+    - topic: extra/tableau-public-portfolio
+    - topic: data-career-tips/the-work-itself
+      note: Time-boxed delivery practice. Prioritise the analysis, then present it clearly.
+
+- id: arya-resources-to-learn-tableau
+  title: Resources to learn Tableau Desktop
+  authors: [Shreya Arya]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/shreya-arya/resources-to-learn-tableau-desktop/
+  published: 2023-08-02
+  summary: Shreya's recommended YouTube channels, blogs, Tableau Public and community projects (Makeover Monday, Back 2 Viz Basics, Workout Wednesday) for anyone starting out.
+  placements:
+    - topic: miscellaneous
+
+# --- Eve Thomas (The Data School) ---------------------------------------------
+
+- id: thomas-hexbin-density-map
+  title: How to create a density map in Tableau using Hexbins
+  authors: [Eve Thomas]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/a/eve-thomas/how-to-create-a-density-map-in-tableau-using-hexbins/
+  published: 2019-09-29
+  summary: Building a hexbin density map from latitude and longitude, all in Tableau, with no Alteryx needed.
+  placements:
+    - topic: data-manipulation/maps
+
+- id: thomas-highlight-parameter-action
+  title: Creating a simple highlight parameter action in Tableau
+  authors: [Eve Thomas]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/a/eve-thomas/creating-a-simple-highlight-parameter-action-in-tableau/
+  published: 2019-09-24
+  summary: A step-by-step guide to the parameter action behind her Makeover Monday viz, from creating the parameter to wiring the dashboard action.
+  placements:
+    - topic: data-manipulation/sets-vs-parameters
+      section: set-actions-vs-parameter-actions
+
+- id: thomas-qa-exam
+  title: Passing the Tableau QA Exam (second time's the charm!)
+  authors: [Eve Thomas]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/a/eve-thomas/passing-the-tableau-qa-exam-second-times-the-charm/
+  published: 2019-12-02
+  summary: Practical exam-day advice from a second attempt. Ask for help, skip and flag hard questions, and label a sheet and data source per question.
+  placements:
+    - topic: extra/certification-prep
+
+- id: thomas-meet-and-greet
+  title: Why attend a Meet & Greet at The Data School?
+  authors: [Eve Thomas]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/a/eve-thomas/why-to-attend-a-meet-greet-at-the-data-school/
+  published: 2019-08-10
+  summary: How the bi-monthly meet & greet gives applicants insider advice, and how to make the most of it.
+  placements:
+    - topic: data-career-tips/companies-hiring
+      section: information-lab-data-school
+
+# --- Lorna Brown (The Data School) --------------------------------------------
+
+- id: brown-wow2024-w46
+  title: "#WOW2024 W46: DataFam Europe Live"
+  authors: [Lorna Brown]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/lorna-brown/wow2024-w46-datafam-europe-live/
+  published: "2024"
+  summary: A live Workout Wednesday challenge mapping London attractions and the nearest tube stops, with relationship calculations, distance rings and a parameter action.
+  placements:
+    - topic: data-manipulation/maps
+
+- id: brown-what-did-it-take-ds57
+  title: What did it take to get into DS57
+  authors: [Lorna Brown]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/lorna-brown/what-did-it-take-to-get-into-ds57/
+  published: 2026-03-11
+  summary: The Tableau Public profiles of the applicants who joined cohort DS57 in March 2026, a current benchmark for applications.
+  placements:
+    - topic: extra/tableau-public-portfolio
+    - topic: data-career-tips/companies-hiring
+      section: information-lab-data-school
+
+- id: brown-visual-cv
+  title: DS57 Dashboard Week Day 4 – The Visual CV
+  authors: [Lorna Brown]
+  publisher: The Data School UK
+  url: https://www.thedataschool.co.uk/lorna-brown/ds57-dbw-4/
+  published: 2026-06-08
+  summary: A Dashboard Week brief to build a public, interactive CV from your own career data, a good template for a portfolio piece.
+  placements:
+    - topic: extra/tableau-public-portfolio
+
+# --- Scott Foster (Consulting Synergy) ----------------------------------------
+
+- id: foster-cost-of-wasted-data
+  title: "Data: what is the true cost of the data we waste?"
+  authors: [Scott Foster]
+  publisher: Consulting Synergy
+  url: https://consultingsynergyltd.com/2020/07/14/first-blog-post/
+  published: 2020-07-14
+  summary: A worked survey example showing how analysing the data you already collect can target resources and cut avoidable costs.
+  placements:
+    - topic: data-career-tips/the-work-itself
+
+# --- The Information Lab blog -------------------------------------------------
+
+- id: houghton-right-data-model
+  title: Choosing the Right Data Model for Analytics
+  authors: [Paul Houghton]
+  publisher: The Information Lab
+  url: https://www.theinformationlab.co.uk/community/blog/choosing-the-right-data-model-for-analytics/
+  published: 2025-10-07
+  summary: Why a One Big Table model eases the move from spreadsheets to the cloud, and when a Medallion approach takes over.
+  placements:
+    - topic: tableau-basics/data-relationships
+
+- id: blackburn-clustered-bar
+  title: How to make a Clustered Bar Chart
+  authors: [Ellen Blackburn]
+  publisher: The Information Lab
+  url: https://www.theinformationlab.co.uk/community/blog/how-to-make-a-clustered-bar-chat/
+  published: 2025-07-17
+  summary: A simple clustered-bar technique picked up at Tableau Conference 2025, built from a regular bar chart and blank subtotals.
+  placements:
+    - topic: tableau-basics/basic-charting
+
+- id: blackburn-hover-highlight-kpis
+  title: Removing the hover highlight from KPIs
+  authors: [Ellen Blackburn]
+  publisher: The Information Lab
+  url: https://www.theinformationlab.co.uk/community/blog/removing-the-hover-highlight-from-kp-is/
+  published: 2025-07-24
+  summary: How to get rid of the black box that appears when users hover over text and KPI sheets, while keeping tooltips working.
+  placements:
+    - topic: visualization/dashboard-interactivity
+
+- id: blackburn-hidden-functions
+  title: Exploring Tableau's Hidden Functions
+  authors: [Ellen Blackburn]
+  publisher: The Information Lab
+  url: https://www.theinformationlab.co.uk/community/blog/Exploring-Hidden-Functions/
+  published: 2025-07-16
+  summary: RANDOM(), LEAST()/GREATEST() and SYS_NUMBIN, and what each is useful for.
+  placements:
+    - topic: data-manipulation/calculated-fields
+
+- id: allenby-custom-shapes-haywire
+  title: Custom shapes going haywire in Tableau? Here's why and how to fix it!
+  authors: [Jonathan Allenby]
+  publisher: The Information Lab
+  url: https://www.theinformationlab.co.uk/community/blog/custom-shapes-going-haywire-in-tableau-here-s-why-and-how-to-fix-it/
+  published: 2026-04-22
+  summary: Why custom maps and shapefiles started rendering unpredictably on Tableau Public, Server and Cloud, and a free local tool to fix them.
+  placements:
+    - topic: data-manipulation/maps
+
+- id: driver-why-isnt-anyone-using
+  title: Why Isn't Anyone Using Your Analytics Platform?
+  authors: [Thierry Driver]
+  publisher: The Information Lab
+  url: https://www.theinformationlab.co.uk/community/blog/why-isnt-anyone-using-your-analytics-platform/
+  published: 2025-12-16
+  summary: "Four blockers that kill analytics adoption: leadership that doesn't walk the talk, no time to work differently, training without purpose, and no data community. Plus how to address each."
+  placements:
+    - topic: data-career-tips/the-work-itself

@@ -1,0 +1,17 @@
+---
+# /articles/ – links to the six article categories.
+layout: layouts/base.njk
+title: Articles
+description: Free Tableau articles organised by topic, from Tableau basics and visualization to data manipulation and data career tips.
+---
+{% from "macros/components.njk" import pageHeader, linkCard with context %}
+{{ pageHeader("Articles", "Free articles chosen for anyone mastering Tableau or heading for a data consultancy role. Pick a category to see its topics.", [], catalog.stats.articles ~ " articles in " ~ (catalog.categories | length) ~ " categories") }}
+
+<section class="container section">
+  <div class="card-grid">
+    {%- for category in catalog.categories %}
+      {%- set meta = (category.topics | length) ~ " topics · " ~ category.articleCount ~ " articles" if category.topics.length else category.articleCount ~ " articles" -%}
+      {{ linkCard(category.title, category.url, category.description, meta, category.color, category.topicTitles) }}
+    {%- endfor %}
+  </div>
+</section>

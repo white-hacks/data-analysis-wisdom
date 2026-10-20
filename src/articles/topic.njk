@@ -1,0 +1,56 @@
+---
+# /articles/<category>/<subcategory>/ – one page per subcategory (generated
+# by pagination over catalog.topics). Lists every article placed in the
+# topic, then the guide's unnumbered sections, the takeaway, and a few
+# quotes from the topic.
+layout: layouts/base.njk
+pagination:
+  data: catalog.topics
+  size: 1
+  alias: topic
+  addAllPagesToCollections: true
+permalink: "/articles/{{ topic.categorySlug }}/{{ topic.slug }}/"
+eleventyComputed:
+  title: "{{ topic.title }}"
+  description: "{{ topic.description }}"
+  accent: "{{ topic.color }}"
+---
+{% from "macros/components.njk" import pageHeader, articleList, quoteGrid, callout with context %}
+{{ pageHeader(topic.title, topic.description, [{ title: "Articles", url: "/articles/" }, { title: topic.categoryTitle, url: topic.categoryUrl }], topic.placements.count ~ " articles") }}
+
+{%- if topic.takeaway %}
+<div class="container section section--tight">
+  {{ callout(topic.takeaway.title, topic.takeaway.text, topic.color) }}
+</div>
+{%- endif %}
+
+{%- if topic.placements.main.length %}
+<section class="container section">
+  {{ articleList(topic.placements.main) }}
+</section>
+{%- endif %}
+
+{%- for section in topic.placements.sections %}
+{%- if section.items.length %}
+<section class="container section" id="{{ section.slug }}">
+  <h2 class="section__title">{{ section.title }}</h2>
+  {{ articleList(section.items) }}
+</section>
+{%- endif %}
+{%- endfor %}
+
+{%- if topic.quotes.length %}
+<section class="container section">
+  <div class="section__heading">
+    <h2 class="section__title">Quotes on {{ topic.title | lower }}</h2>
+    <a class="section__more" href="{{ topic.quotesUrl }}#{{ topic.slug }}">All {{ topic.categoryTitle | lower }} quotes →</a>
+  </div>
+  {{ quoteGrid(topic.quotes.slice(0, 3), topic.color) }}
+</section>
+{%- endif %}
+
+{# Previous / next subcategory within the same category. #}
+<nav class="container section pager" aria-label="More topics in {{ topic.categoryTitle }}">
+  {%- if topic.previous %}<a class="pager__link" href="{{ topic.previous.url }}"><span>Previous topic</span>{{ topic.previous.title }}</a>{% else %}<span></span>{% endif %}
+  {%- if topic.next %}<a class="pager__link pager__link--next" href="{{ topic.next.url }}"><span>Next topic</span>{{ topic.next.title }}</a>{% endif %}
+</nav>

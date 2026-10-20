@@ -1,0 +1,14 @@
+---
+# Shown by GitHub Pages for any address that doesn't exist.
+layout: layouts/base.njk
+title: Page not found
+permalink: /404.html
+eleventyExcludeFromCollections: true
+---
+{% from "macros/components.njk" import pageHeader with context %}
+{{ pageHeader("Page not found", "That page isn't in the repo. Try the menu, or start from one of the sections below.") }}
+<section class="container section">
+  <ul class="chips">
+    {%- for item in catalog.navigation %}<li><a class="chip" href="{{ item.url }}">{{ item.title }}</a></li>{% endfor %}
+  </ul>
+</section>

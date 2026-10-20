@@ -1,0 +1,206 @@
+# =============================================================================
+# categories.yaml: the topic tree shared by the Articles and Short quotes pages
+# =============================================================================
+# The tree mirrors the numbered headings of the research guide
+# "Tableau Mastery & Data Consultancy Careers" (numbers are dropped on purpose).
+#
+# HOW TO EDIT
+#   - Each category becomes a page:      /articles/<category-slug>/
+#                                        /quotes/<category-slug>/
+#   - Each subcategory becomes a page:   /articles/<category-slug>/<subcategory-slug>/
+#   - Order in this file = order on the site and in the menu.
+#   - Slugs are used in URLs and in `placements` (articles.yaml) and `topic`
+#     (quotes.yaml), so rename them everywhere at once if you ever change one.
+#
+# FIELDS
+#   slug           URL-safe id (lowercase, hyphens)
+#   title          Display title
+#   color          Accent colour token defined in src/assets/css/main.css:
+#                  blue, orange, aqua, yellow, magenta, green, violet or red.
+#                  These are a colour-blind-checked set used in this order;
+#                  keep neighbouring categories in this order.
+#   description    One-line summary shown on cards
+#   subcategories  List of child topics (may be empty: see "miscellaneous")
+#     slug / title / description   as above
+#     sections     Optional unnumbered sub-headings from the guide (e.g. the
+#                  "Special section" blocks). Articles opt into a section via
+#                  `placements[].section` in articles.yaml.
+#     takeaway     Optional { title, text } summary box from the guide.
+# =============================================================================
+
+- slug: tableau-basics
+  title: Tableau basics
+  color: blue
+  description: Cleaning, relating and typing your data, and the building blocks of every Tableau chart.
+  subcategories:
+    - slug: data-cleaning
+      title: Data cleaning
+      description: Data Interpreter, Tableau Prep and the split-pivot-clean routine.
+
+    - slug: data-relationships
+      title: Data relationships
+      description: Joins vs. unions, cardinality, referential integrity and performance options.
+      takeaway:
+        title: Takeaway
+        text: >-
+          Default to relationships. Use joins only when you want duplication or
+          filtering. Use unions when you are stacking like-for-like tables. Only
+          touch Performance Options when you have verified the data's shape.
+
+    - slug: basic-charting
+      title: Basic charting
+      description: Bars, lines and going beyond the Show Me panel.
+
+    - slug: data-types
+      title: Data types
+      description: Strings, numbers, dates, Booleans and geographic fields, and how to convert them.
+
+    - slug: blue-vs-green
+      title: Blue vs. green and discrete vs. continuous
+      description: "What pill colours really mean: headers vs. axes."
+
+    - slug: dimensions-vs-measures
+      title: Dimensions vs. measures
+      description: Field roles, and how they combine with pill colour on a view.
+
+- slug: visualization
+  title: Visualization
+  color: orange
+  description: Perception science, design best practice, chart choice, storytelling and interactivity.
+  subcategories:
+    - slug: psychology
+      title: Psychology
+      description: Colour, design, shapes and perception research.
+
+    - slug: best-practices
+      title: Best practices
+      description: Ryan Sleeper and others on polishing and framing a viz.
+
+    - slug: chart-types
+      title: Chart types and their best use cases
+      description: Matching the message to the right encoding.
+
+    - slug: dashboards-vs-stories
+      title: Dashboards vs. stories
+      description: Simultaneous exploration vs. guided, sequential narrative.
+      takeaway:
+        title: Note
+        text: >-
+          Tableau "Stories" (story points) are not the same as the AI "Data
+          Stories" feature, which Tableau retired in January 2025 (2025.1).
+
+    - slug: dashboard-interactivity
+      title: Dashboard interactivity tips
+      description: Filter, highlight, URL, sheet, parameter and set actions.
+      takeaway:
+        title: When to use interactivity
+        text: >-
+          Add actions when they answer the user's next question (drill-down,
+          highlight across sheets, "what-if"). Avoid them when the audience
+          consumes the dashboard statically (PDF, email) or when the action hides
+          a key insight behind a click. Explanatory, presentation-style work
+          should make the insight visible without interaction.
+
+- slug: data-manipulation
+  title: Data manipulation
+  color: aqua
+  description: Table calculations, LODs, calculated fields, maps, sets and parameters.
+  subcategories:
+    - slug: table-calculations
+      title: Table calculations
+      description: Running totals, percent of total, INDEX and how table calcs are computed.
+      sections:
+        - slug: partitioning-vs-addressing
+          title: Partitioning vs. addressing
+      takeaway:
+        title: Mental model
+        text: >-
+          Partitions restart the calculation; addressing defines the path it
+          walks within each partition. Always set Specific Dimensions for
+          anything you'll present.
+
+    - slug: lod-expressions
+      title: LOD expressions
+      description: FIXED, INCLUDE and EXCLUDE level of detail expressions.
+
+    - slug: calculated-fields
+      title: Tableau calculated fields and their language
+      description: Syntax, date, number and type-conversion functions.
+
+    - slug: maps
+      title: Maps
+      description: Geographic roles, custom geocoding and territories.
+
+    - slug: sets-vs-parameters
+      title: Sets vs. parameters
+      description: Dynamic subsets vs. single user-controlled values.
+      sections:
+        - slug: set-actions-vs-parameter-actions
+          title: Set actions vs. parameter actions
+      takeaway:
+        title: Rule of thumb
+        text: >-
+          One value driving a calculation → parameter action. Many members in or
+          out of a group, especially for proportional brushing or "selected vs.
+          rest" → set action.
+
+- slug: data-career-tips
+  title: Data career tips
+  color: yellow
+  description: Consultancy craft, who hires Tableau talent, and the soft skills that set consultants apart.
+  subcategories:
+    - slug: the-work-itself
+      title: Tips on the work itself
+      description: Analysis, timely delivery and consultancy.
+
+    - slug: companies-hiring
+      title: Companies that hire data analysts and consultants
+      description: A UK and London focus, starting with The Information Lab and The Data School.
+      sections:
+        - slug: information-lab-data-school
+          title: The Information Lab / The Data School (London)
+        - slug: other-uk-employers
+          title: Other UK/London data consultancies and employers of Tableau talent
+      takeaway:
+        title: What these employers consistently want
+        text: >-
+          Tableau fluency demonstrated in a public portfolio; clear communication
+          with non-technical clients; curiosity and patience with messy data;
+          coachability (visible improvement after feedback); and, for The Data
+          School, the right to work in the UK.
+
+    - slug: soft-skills
+      title: Soft skills every brilliant consultant has
+      description: And how to improve them.
+      takeaway:
+        title: How to improve
+        text: >-
+          (1) Present every practice viz out loud in 5 minutes. (2) Ask a peer
+          for critique and ship a v2 that visibly applies it. (3) Write a weekly
+          blog explaining one concept (the Data School habit). (4) Restate every
+          brief back in one sentence before building.
+
+- slug: extra
+  title: Extra
+  color: magenta
+  description: Performance optimization, certification prep and building a Tableau Public portfolio.
+  subcategories:
+    - slug: performance-optimization
+      title: Performance optimization
+      description: Performance recordings, checklists and relationship-level tuning.
+
+    - slug: certification-prep
+      title: Certification prep
+      description: Desktop Specialist and Certified Data Analyst exams.
+
+    - slug: tableau-public-portfolio
+      title: Tableau Public portfolio building
+      description: Stand out with a public body of work.
+
+# Miscellaneous has no subcategories in the guide, so its page lists its
+# articles directly (place articles with `topic: miscellaneous`).
+- slug: miscellaneous
+  title: Miscellaneous
+  color: green
+  description: Research on Tableau Public dashboards and libraries worth bookmarking.
+  subcategories: []

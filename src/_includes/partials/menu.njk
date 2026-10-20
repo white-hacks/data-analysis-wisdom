@@ -1,0 +1,57 @@
+{#
+  partials/menu.njk
+  ----------------------------------------------------------------------------
+  The main menu. It stays hidden until the cursor hovers over the "Menu"
+  button; then it lists Home, Articles, Visualizations and Short quotes.
+  Hovering an entry that has sub-pages opens a fly-out listing those
+  sub-pages (Articles → categories → subcategories).
+
+  Data: catalog.navigation, built by buildNavigation() in lib/catalog.js.
+  Behaviour:
+    - Desktop (mouse): opened purely by CSS :hover / :focus-within
+      (see "Menu" in src/assets/css/main.css).
+    - Touch screens and keyboard: src/assets/js/menu.js toggles the
+      `is-open` / `is-expanded` classes when buttons are tapped.
+
+  The tree is at most three levels deep, so it is written as three nested
+  loops rather than a recursive macro to keep it easy to read.
+#}
+{%- set currentUrl = page.url -%}
+<nav class="menu" aria-label="Main menu" data-menu>
+  <button class="menu__trigger" type="button" aria-expanded="false" aria-controls="menu-panel">
+    <span class="menu__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    <span class="menu__label">Menu</span>
+  </button>
+
+  <div class="menu__panel" id="menu-panel">
+    <ul class="menu__list menu__list--level-1">
+      {%- for item in catalog.navigation %}
+      {%- set hasChildren = item.children | length -%}
+      <li class="menu__item{% if hasChildren %} menu__item--parent{% endif %}{% if currentUrl | isWithin(item.url) and hasChildren %} is-expanded{% endif %}">
+        <a class="menu__link{% if currentUrl | isWithin(item.url) %} is-active{% endif %}" href="{{ item.url }}"{% if currentUrl == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
+        {%- if hasChildren %}
+        <button class="menu__expand" type="button" aria-expanded="{{ 'true' if currentUrl | isWithin(item.url) else 'false' }}" aria-label="Show the {{ item.title }} pages"></button>
+        <ul class="menu__list menu__list--level-2">
+          {%- for child in item.children %}
+          {%- set childHasChildren = child.children | length -%}
+          <li class="menu__item{% if childHasChildren %} menu__item--parent{% endif %}{% if currentUrl | isWithin(child.url) and childHasChildren %} is-expanded{% endif %}">
+            <a class="menu__link{% if currentUrl | isWithin(child.url) %} is-active{% endif %}" href="{{ child.url }}"{% if currentUrl == child.url %} aria-current="page"{% endif %}>{{ child.title }}</a>
+            {%- if childHasChildren %}
+            <button class="menu__expand" type="button" aria-expanded="{{ 'true' if currentUrl | isWithin(child.url) else 'false' }}" aria-label="Show the {{ child.title }} pages"></button>
+            <ul class="menu__list menu__list--level-3">
+              {%- for grandchild in child.children %}
+              <li class="menu__item">
+                <a class="menu__link{% if currentUrl == grandchild.url %} is-active{% endif %}" href="{{ grandchild.url }}"{% if currentUrl == grandchild.url %} aria-current="page"{% endif %}>{{ grandchild.title }}</a>
+              </li>
+              {%- endfor %}
+            </ul>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</nav>

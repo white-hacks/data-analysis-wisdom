@@ -1,0 +1,114 @@
+# =============================================================================
+# people.yaml: featured experts shown on the Visualizations pages
+# =============================================================================
+# Each person gets a page at /visualizations/<slug>/ with a gallery of their
+# Tableau Public vizzes. The gallery data lives in content/vizzes.json and is
+# refreshed with:
+#     npm run fetch:vizzes
+#
+# HOW TO ADD SOMEONE
+#   1. Add an entry below (order here = order on the site and in the menu).
+#   2. Run `npm run fetch:vizzes -- --only <slug>` to download their vizzes.
+#   3. Use the same spelling of their name in articles.yaml / quotes.yaml so
+#      their articles and quotes link to their page automatically.
+#
+# FIELDS
+#   slug           URL-safe id for their page.
+#   name           Display name (must match the spelling used in articles).
+#   tableauPublic  Their Tableau Public profile URL (…/app/profile/<name>).
+#   website        Optional personal or company site.
+#   affiliation    Short line under the name.
+#   bio            One or two sentences, written by us from public sources.
+# =============================================================================
+
+- slug: andy-kriebel
+  name: Andy Kriebel
+  tableauPublic: https://public.tableau.com/app/profile/andy.kriebel
+  website: https://www.vizwiz.com/
+  affiliation: Next-Level Tableau · VizWiz · former Head Coach, The Data School
+  bio: >-
+    Founder of Next-Level Tableau and creator of the VizWiz blog. As Head Coach
+    of The Data School he trained its consultants, and he is a Tableau Hall of
+    Fame Visionary.
+
+- slug: ryan-sleeper
+  name: Ryan Sleeper
+  tableauPublic: https://public.tableau.com/app/profile/osmguy
+  website: https://ryansleeper.com/
+  affiliation: Founder & Principal, Playfair Data
+  bio: >-
+    Founder of Playfair Data, Iron Viz champion, Tableau Visionary and author
+    of Practical Tableau. His writing on schemas, colour and storytelling
+    anchors the Visualization section of this site.
+
+- slug: shreya-arya
+  name: Shreya Arya
+  tableauPublic: https://public.tableau.com/app/profile/shreya.arya
+  website: https://datavizfairy.co.uk/
+  affiliation: DataVizFairy · Data School UK graduate
+  bio: >-
+    Data School UK graduate and creator of DataVizFairy. A two-time Tableau
+    Visionary, Tableau Public Ambassador and 15-time Viz of the Day winner, she
+    won the 2024 Vizzie for Best Designer and co-leads Back to Viz Basics.
+
+- slug: eve-thomas
+  name: Eve Thomas
+  tableauPublic: https://public.tableau.com/app/profile/eve.thomas
+  affiliation: Data School UK graduate
+  bio: >-
+    Data School UK graduate and former Information Lab consultant. A six-time
+    Viz of the Day winner, she co-leads community projects including
+    #DiversityinData and #Viz2Educate.
+
+- slug: lorna-brown
+  name: Lorna Brown
+  tableauPublic: https://public.tableau.com/app/profile/lorna.eden
+  affiliation: The Information Lab · The Data School
+  bio: >-
+    Joined The Data School UK's second cohort in 2015 and now works on The
+    Information Lab's core team. She co-leads Workout Wednesday, wrote the
+    Tableau Desktop Cookbook (2021) and is a Tableau Hall of Fame Visionary.
+
+- slug: bethany-lyons
+  name: Bethany Lyons
+  tableauPublic: https://public.tableau.com/app/profile/bethany.lyons
+  affiliation: Tableau
+  bio: >-
+    Author of Tableau's canonical "Top 15 LOD Expressions" and of the Tableau
+    blog series that introduced set actions and relationships.
+
+- slug: scott-foster
+  name: Scott Foster
+  tableauPublic: https://public.tableau.com/app/profile/s.foster
+  website: https://consultingsynergyltd.com/
+  affiliation: Director & Principal Consultant, Consulting Synergy Ltd
+  bio: >-
+    Bristol-based consultant specialising in business and data analysis,
+    process improvement and data visualisation for data-led change programmes.
+
+- slug: ken-flerlage
+  name: Ken Flerlage
+  tableauPublic: https://public.tableau.com/app/profile/ken.flerlage
+  website: https://www.flerlagetwins.com/
+  affiliation: The Flerlage Twins · Moxy Analytics
+  bio: >-
+    Tableau Visionary Hall of Famer who writes The Flerlage Twins blog with
+    his twin brother Kevin, known for custom charts and practical LOD guides.
+
+- slug: kevin-flerlage
+  name: Kevin Flerlage
+  tableauPublic: https://public.tableau.com/app/profile/kevin.flerlage
+  website: https://www.flerlagetwins.com/
+  affiliation: The Flerlage Twins · Moxy Analytics
+  bio: >-
+    Tableau Visionary Hall of Famer and co-author of The Flerlage Twins blog,
+    including the Tableau Chart Catalog and many dashboard design guides.
+
+- slug: jonathan-drummey
+  name: Jonathan Drummey
+  tableauPublic: https://public.tableau.com/app/profile/jonathan.drummey
+  website: https://drawingwithnumbers.artisart.org/
+  affiliation: Drawing with Numbers
+  bio: >-
+    Tableau Zen Master behind the Drawing with Numbers blog, known for
+    rigorous deep dives into table calculations, partitioning and actions.

@@ -1,0 +1,914 @@
+{
+  "andy-kriebel": {
+    "profileName": "andy.kriebel",
+    "displayName": "Andy Kriebel",
+    "avatarUrl": "https://public.tableau.com/avatar/9f570512-d432-4242-b0c7-d1e44b7a3e6b.jpeg",
+    "workbookCount": 1529,
+    "followers": 18628,
+    "fetchedAt": "2026-10-20",
+    "vizzes": [
+      {
+        "title": "Visual Vocabulary",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/VisualVocabulary/VisualVocabulary",
+        "thumbnail": "https://public.tableau.com/static/images/Vi/VisualVocabulary/VisualVocabulary/1.png",
+        "views": 4399555,
+        "favorites": 9271
+      },
+      {
+        "title": "11 Charts for Comparing Two Measures",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/11ChartsforComparingTwoMeasures/COMPARISONS",
+        "thumbnail": "https://public.tableau.com/static/images/11/11ChartsforComparingTwoMeasures/COMPARISONS/1.png",
+        "views": 22384,
+        "favorites": 472
+      },
+      {
+        "title": "18 Ways to Visualize Bar Charts",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/18WaystoVisualizeBarCharts/BarCharts",
+        "thumbnail": "https://public.tableau.com/static/images/18/18WaystoVisualizeBarCharts/BarCharts/1.png",
+        "views": 19618,
+        "favorites": 435
+      },
+      {
+        "title": "Counting New York's Pigeons",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/PigeonSightingsKPIs/AllKPIs",
+        "thumbnail": "https://public.tableau.com/static/images/Pi/PigeonSightingsKPIs/AllKPIs/1.png",
+        "views": 12117,
+        "favorites": 354
+      },
+      {
+        "title": "18 Ways to Display KPIs | Next-Level Tableau",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/18WaystoDisplayKPIsNext-LevelTableau/NLT",
+        "thumbnail": "https://public.tableau.com/static/images/18/18WaystoDisplayKPIsNext-LevelTableau/NLT/1.png",
+        "views": 7656,
+        "favorites": 334
+      },
+      {
+        "title": "Sample Soft Drink Sales",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/SampleSoftDrinkSales/SoftSalesDashboard",
+        "thumbnail": "https://public.tableau.com/static/images/Sa/SampleSoftDrinkSales/SoftSalesDashboard/1.png",
+        "views": 43738,
+        "favorites": 310
+      },
+      {
+        "title": "KPI Designs",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/KPIDesigns_17141266132150/Dashboard1",
+        "thumbnail": "https://public.tableau.com/static/images/KP/KPIDesigns_17141266132150/Dashboard1/1.png",
+        "views": 9348,
+        "favorites": 269
+      },
+      {
+        "title": "Company Profitability Status",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/CompanyProfitabilityStatus/Dashboard1",
+        "thumbnail": "https://public.tableau.com/static/images/Co/CompanyProfitabilityStatus/Dashboard1/1.png",
+        "views": 9986,
+        "favorites": 239
+      },
+      {
+        "title": "Build a Perfect Calendar with Map Layers",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/BuildaPerfectCalendarwithMapLayers/Heatmap",
+        "thumbnail": "https://public.tableau.com/static/images/Bu/BuildaPerfectCalendarwithMapLayers/Heatmap/1.png",
+        "views": 8018,
+        "favorites": 195
+      },
+      {
+        "title": "60ish Ways to Visualize Time",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/60ishWaystoVisualizeTime/Designs",
+        "thumbnail": "https://public.tableau.com/static/images/60/60ishWaystoVisualizeTime/Designs/1.png",
+        "views": 5745,
+        "favorites": 188
+      },
+      {
+        "title": "11 Ways to Compare Two Measures | Next-Level Tableau",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/ComparingTwoMeasures/Charts",
+        "thumbnail": "https://public.tableau.com/static/images/Co/ComparingTwoMeasures/Charts/1.png",
+        "views": 6650,
+        "favorites": 168
+      },
+      {
+        "title": "Visualizing Time - Chicago TUG - March 2024",
+        "url": "https://public.tableau.com/app/profile/andy.kriebel/viz/VisualizingTime-ChicagoTUG-March2024/TUG",
+        "thumbnail": "https://public.tableau.com/static/images/Vi/VisualizingTime-ChicagoTUG-March2024/TUG/1.png",
+        "views": 3651,
+        "favorites": 147
+      }
+    ]
+  },
+  "ryan-sleeper": {
+    "profileName": "osmguy",
+    "displayName": "Ryan Sleeper",
+    "avatarUrl": "https://public.tableau.com/avatar/22eddb07-23c9-40eb-b47d-f177e0b1703c.jpeg",
+    "workbookCount": 54,
+    "followers": 5497,
+    "fetchedAt": "2026-10-20",
+    "vizzes": [
+      {
+        "title": "Super Sample Superstore",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/SuperSampleSuperstore/SuperDescriptive",
+        "thumbnail": "https://public.tableau.com/static/images/Su/SuperSampleSuperstore/SuperDescriptive/1.png",
+        "views": 223073,
+        "favorites": 548
+      },
+      {
+        "title": "BLOCKBUSTER",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/BLOCKBUSTER/BLOCKBUSTER",
+        "thumbnail": "https://public.tableau.com/static/images/BL/BLOCKBUSTER/BLOCKBUSTER/1.png",
+        "views": 111689,
+        "favorites": 514
+      },
+      {
+        "title": "Tableau 201",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/Tableau201/Tableau201",
+        "thumbnail": "https://public.tableau.com/static/images/Ta/Tableau201/Tableau201/1.png",
+        "views": 37337,
+        "favorites": 275
+      },
+      {
+        "title": "My US Stock Portfolio",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/MyUSStockPortfolio/MyUSStockPortfolio",
+        "thumbnail": "https://public.tableau.com/static/images/My/MyUSStockPortfolio/MyUSStockPortfolio/1.png",
+        "views": 29472,
+        "favorites": 139
+      },
+      {
+        "title": "Odds of Going Pro in Sports",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/OddsofGoingProinSports/OddsofGoingProinSports",
+        "thumbnail": "https://public.tableau.com/static/images/Od/OddsofGoingProinSports/OddsofGoingProinSports/1.png",
+        "views": 213036,
+        "favorites": 61
+      },
+      {
+        "title": "50 Years of AFC vs NFC Matchups",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/50YearsofAFCvsNFCMatchups/50YearsofAFCvs_NFCMatchups",
+        "thumbnail": "https://public.tableau.com/static/images/50/50YearsofAFCvsNFCMatchups/50YearsofAFCvs_NFCMatchups/1.png",
+        "views": 74946,
+        "favorites": 58
+      },
+      {
+        "title": "Where's Ryan?",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/WheresRyan/WheresRyan",
+        "thumbnail": "https://public.tableau.com/static/images/Wh/WheresRyan/WheresRyan/1.png",
+        "views": 33822,
+        "favorites": 56
+      },
+      {
+        "title": "Super Bowl Margins of Victory",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/SuperBowlMarginsofVictory/SuperBowlMarginsofVictory",
+        "thumbnail": "https://public.tableau.com/static/images/Su/SuperBowlMarginsofVictory/SuperBowlMarginsofVictory/1.png",
+        "views": 17068,
+        "favorites": 42
+      },
+      {
+        "title": "2015 World Series Ticket Prices",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/2015WorldSeriesTicketPrices/2015WorldSeriesTicketPrices",
+        "thumbnail": "https://public.tableau.com/static/images/20/2015WorldSeriesTicketPrices/2015WorldSeriesTicketPrices/1.png",
+        "views": 364205,
+        "favorites": 40
+      },
+      {
+        "title": "NFL Concussions by Collision Source",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/NFLConcussionsbyCollisionSource/WhatcollisionscausethemostconcussionsintheNFL",
+        "thumbnail": "https://public.tableau.com/static/images/NF/NFLConcussionsbyCollisionSource/WhatcollisionscausethemostconcussionsintheNFL/1.png",
+        "views": 45738,
+        "favorites": 39
+      },
+      {
+        "title": "Tableau Toggle",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/TableauToggle/TableauToggle",
+        "thumbnail": "https://public.tableau.com/static/images/Ta/TableauToggle/TableauToggle/1.png",
+        "views": 6597,
+        "favorites": 37
+      },
+      {
+        "title": "NBA Records by Player",
+        "url": "https://public.tableau.com/app/profile/osmguy/viz/NBARecordsbyPlayer/NBARecordsbyPlayer",
+        "thumbnail": "https://public.tableau.com/static/images/NB/NBARecordsbyPlayer/NBARecordsbyPlayer/1.png",
+        "views": 19156,
+        "favorites": 32
+      }
+    ]
+  },
+  "shreya-arya": {
+    "profileName": "shreya.arya",
+    "displayName": "Shreya Arya",
+    "avatarUrl": "https://public.tableau.com/avatar/4976f6f2-f0fd-4806-98b2-9e0fb0e2f284.jpeg",
+    "workbookCount": 73,
+    "followers": 3761,
+    "fetchedAt": "2026-10-20",
+    "vizzes": [
+      {
+        "title": "Walt Disney Movies | #DataPlusMovies | VOTD ",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/WaltDisneyMoviesDataPlusMovies/WaltDisneyMovies",
+        "thumbnail": "https://public.tableau.com/static/images/Wa/WaltDisneyMoviesDataPlusMovies/WaltDisneyMovies/1.png",
+        "views": 35572,
+        "favorites": 622
+      },
+      {
+        "title": "Google Analytics Dashboard | Back 2 Viz Basics | VOTD",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/B2VBGoogleAnalyticsDashboardBack2VizBasics/GoogleAnalytics",
+        "thumbnail": "https://public.tableau.com/static/images/B2/B2VBGoogleAnalyticsDashboardBack2VizBasics/GoogleAnalytics/1.png",
+        "views": 33208,
+        "favorites": 607
+      },
+      {
+        "title": "Hospital ER Dashboard | #RWFD",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/HospitalERDashboardRWFD_17193077080150/Overview",
+        "thumbnail": "https://public.tableau.com/static/images/Ho/HospitalERDashboardRWFD_17193077080150/Overview/1.png",
+        "views": 36670,
+        "favorites": 591
+      },
+      {
+        "title": "Higher Education Admissions Dashboard | VOTD",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/HigherEducationAdmissionsDashboard/Overview",
+        "thumbnail": "https://public.tableau.com/static/images/Hi/HigherEducationAdmissionsDashboard/Overview/1.png",
+        "views": 74559,
+        "favorites": 559
+      },
+      {
+        "title": "Call Center Dashboard | #RWFD",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/CallCenterDashboardRWFD_17158904502890/Overview",
+        "thumbnail": "https://public.tableau.com/static/images/Ca/CallCenterDashboardRWFD_17158904502890/Overview/1.png",
+        "views": 33510,
+        "favorites": 527
+      },
+      {
+        "title": "KYOTO, JAPAN | Cherry blossom seasonality | #B2VB | VOTD",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/KYOTOJAPANCherryblossomseasonalityB2VB/CherryBlossoms",
+        "thumbnail": "https://public.tableau.com/static/images/KY/KYOTOJAPANCherryblossomseasonalityB2VB/CherryBlossoms/1.png",
+        "views": 20620,
+        "favorites": 520
+      },
+      {
+        "title": "PlayStation – Top N Games | #B2VB x #GamesNightViz",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/PlayStationTopNGamesB2VBxGamesNightViz/PlaystationGames-TopN",
+        "thumbnail": "https://public.tableau.com/static/images/Pl/PlayStationTopNGamesB2VBxGamesNightViz/PlaystationGames-TopN/1.png",
+        "views": 51781,
+        "favorites": 394
+      },
+      {
+        "title": "Customised Donut Charts | Map Layers Demo | VOTD",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/CustomisedDonutChartsMapLayersDemo/Demo",
+        "thumbnail": "https://public.tableau.com/static/images/Cu/CustomisedDonutChartsMapLayersDemo/Demo/1.png",
+        "views": 12324,
+        "favorites": 349
+      },
+      {
+        "title": "Twitter Analytics Dashboard | #RWFD",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/TwitterAnalyticsDashboardRWFD/Overview",
+        "thumbnail": "https://public.tableau.com/static/images/Tw/TwitterAnalyticsDashboardRWFD/Overview/1.png",
+        "views": 10911,
+        "favorites": 303
+      },
+      {
+        "title": "A spring full of British blossoms | VOTD",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/AspringfullofBritishBlossoms/BritishBlossoms",
+        "thumbnail": "https://public.tableau.com/static/images/As/AspringfullofBritishBlossoms/BritishBlossoms/1.png",
+        "views": 4160,
+        "favorites": 262
+      },
+      {
+        "title": "Solar Energy Dashboard | #RWFD | VOTD",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/SolarEnergyDashboardRWFD_16900452395200/SolarEnergyDashboard",
+        "thumbnail": "https://public.tableau.com/static/images/So/SolarEnergyDashboardRWFD_16900452395200/SolarEnergyDashboard/1.png",
+        "views": 21320,
+        "favorites": 257
+      },
+      {
+        "title": "Taylor Swift - Spotify Audio Features | Back 2 Viz Basics",
+        "url": "https://public.tableau.com/app/profile/shreya.arya/viz/TaylorSwift-SpotifyAudioFeaturesBack2VizBasics/Spotify",
+        "thumbnail": "https://public.tableau.com/static/images/Ta/TaylorSwift-SpotifyAudioFeaturesBack2VizBasics/Spotify/1.png",
+        "views": 7490,
+        "favorites": 221
+      }
+    ]
+  },
+  "eve-thomas": {
+    "profileName": "eve.thomas",
+    "displayName": "Eve Thomas",
+    "avatarUrl": "https://public.tableau.com/avatar/578cacb6-959c-4d41-b679-b80026f5f2b6.jpeg",
+    "workbookCount": 108,
+    "followers": 1183,
+    "fetchedAt": "2026-10-20",
+    "vizzes": [
+      {
+        "title": "#Viz2educate | TORNADO",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/TORNADO_16067845788300/Dashboard22",
+        "thumbnail": "https://public.tableau.com/static/images/TO/TORNADO_16067845788300/Dashboard22/1.png",
+        "views": 18289,
+        "favorites": 297
+      },
+      {
+        "title": "Mapping the Trees of London",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/MappingtheTreesofLondon/Dashboard1",
+        "thumbnail": "https://public.tableau.com/static/images/Ma/MappingtheTreesofLondon/Dashboard1/1.png",
+        "views": 14945,
+        "favorites": 173
+      },
+      {
+        "title": "BIGFOOT SIGHTINGS #IRONQUEST",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/BIGFOOTSIGHTINGSIRONQUEST/BigfootSightingsIronQuest",
+        "thumbnail": "https://public.tableau.com/static/images/BI/BIGFOOTSIGHTINGSIRONQUEST/BigfootSightingsIronQuest/1.png",
+        "views": 10814,
+        "favorites": 159
+      },
+      {
+        "title": "A HISTORY OF NOTABLE BLACK ACHIEVEMENTS | 1738-2021",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/AHISTORYOFNOTABLEBLACKACHIEVEMENTS1738-2019/NotableAchievements",
+        "thumbnail": "https://public.tableau.com/static/images/AH/AHISTORYOFNOTABLEBLACKACHIEVEMENTS1738-2019/NotableAchievements/1.png",
+        "views": 10811,
+        "favorites": 129
+      },
+      {
+        "title": "STOP AND SEARCH - City of London and Met Police Stats",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/STOPANDSEARCH-CityofLondonandMetPoliceStats/StopandSearch-LondonPolice",
+        "thumbnail": "https://public.tableau.com/static/images/ST/STOPANDSEARCH-CityofLondonandMetPoliceStats/StopandSearch-LondonPolice/1.png",
+        "views": 9724,
+        "favorites": 111
+      },
+      {
+        "title": "Rainfall in London",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/RainfallinLondon/RainfallinLondon",
+        "thumbnail": "https://public.tableau.com/static/images/Ra/RainfallinLondon/RainfallinLondon/1.png",
+        "views": 2080,
+        "favorites": 99
+      },
+      {
+        "title": "GRAND SLAM - WOMENS'S RESULTS | 2000-2020",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/GRANDSLAM-WOMENSSRESULTS2000-2020/Dashboard1",
+        "thumbnail": "https://public.tableau.com/static/images/GR/GRANDSLAM-WOMENSSRESULTS2000-2020/Dashboard1/1.png",
+        "views": 858,
+        "favorites": 62
+      },
+      {
+        "title": "A History of The Nobel Prize",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/NobelPrizesWinners-GenderandRacialEquality/TheNobelPrize",
+        "thumbnail": "https://public.tableau.com/static/images/No/NobelPrizesWinners-GenderandRacialEquality/TheNobelPrize/1.png",
+        "views": 1066,
+        "favorites": 47
+      },
+      {
+        "title": "#MakeoverMonday - Diverging Opinions on Transatlantic Alliance",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/MakeoverMonday-DivergingOpinionsonTransatlanticAlliance/Dashboard12",
+        "thumbnail": "https://public.tableau.com/static/images/Ma/MakeoverMonday-DivergingOpinionsonTransatlanticAlliance/Dashboard12/1.png",
+        "views": 432,
+        "favorites": 35
+      },
+      {
+        "title": "IRONWOMAN",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/IRONWOMAN_16074759773840/Dashboard12",
+        "thumbnail": "https://public.tableau.com/static/images/IR/IRONWOMAN_16074759773840/Dashboard12/1.png",
+        "views": 541,
+        "favorites": 33
+      },
+      {
+        "title": "Political Party Donations:  2001-2019",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/PoliticalPartyDonations2001-2019/Dashboard2",
+        "thumbnail": "https://public.tableau.com/static/images/Po/PoliticalPartyDonations2001-2019/Dashboard2/1.png",
+        "views": 729,
+        "favorites": 30
+      },
+      {
+        "title": "Tech Companies in Scotland #MakeoverMonday",
+        "url": "https://public.tableau.com/app/profile/eve.thomas/viz/TechCompaniesinScotlandMakeoverMonday/Dashboard2",
+        "thumbnail": "https://public.tableau.com/static/images/Te/TechCompaniesinScotlandMakeoverMonday/Dashboard2/1.png",
+        "views": 543,
+        "favorites": 29
+      }
+    ]
+  },
+  "lorna-brown": {
+    "profileName": "lorna.eden",
+    "displayName": "Lorna Brown",
+    "avatarUrl": "https://public.tableau.com/avatar/4475e5d7-5575-4a8c-b2f0-d410cff878a9.jpeg",
+    "workbookCount": 343,
+    "followers": 5086,
+    "fetchedAt": "2026-10-20",
+    "vizzes": [
+      {
+        "title": "#Data20 Speed Tipping Favourites",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/Data20SpeedTippingFavourites/Slide3",
+        "thumbnail": "https://public.tableau.com/static/images/Da/Data20SpeedTippingFavourites/Slide3/1.png",
+        "views": 11197,
+        "favorites": 175
+      },
+      {
+        "title": "#WOW2023 W7",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/WOW2023W7/WOW2023W7",
+        "thumbnail": "https://public.tableau.com/static/images/WO/WOW2023W7/WOW2023W7/1.png",
+        "views": 16926,
+        "favorites": 151
+      },
+      {
+        "title": "Betfred Super League 2020",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/BetfredSuperLeague2020/PlayerAnalysis",
+        "thumbnail": "https://public.tableau.com/static/images/Be/BetfredSuperLeague2020/PlayerAnalysis/1.png",
+        "views": 10400,
+        "favorites": 118
+      },
+      {
+        "title": "#Data19 Tableau Speed Tipping - Lorna Eden",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/Data19TableauSpeedTipping-LornaEden/Data19SpeedTipping",
+        "thumbnail": "https://public.tableau.com/static/images/Da/Data19TableauSpeedTipping-LornaEden/Data19SpeedTipping/1.png",
+        "views": 10302,
+        "favorites": 113
+      },
+      {
+        "title": "#Data22 Tableau Speed Tips (Advanced) Lorna Brown",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/Data22TableauSpeedTopsAdvancedLornaBrown/Intro",
+        "thumbnail": "https://public.tableau.com/static/images/Da/Data22TableauSpeedTopsAdvancedLornaBrown/Intro/1.png",
+        "views": 3578,
+        "favorites": 70
+      },
+      {
+        "title": "#IronViz 2019 Europe - World in Energy",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/IronViz2019Europe-WorldinEnergy/IronVizEurope-Energy",
+        "thumbnail": "https://public.tableau.com/static/images/Ir/IronViz2019Europe-WorldinEnergy/IronVizEurope-Energy/1.png",
+        "views": 1932,
+        "favorites": 55
+      },
+      {
+        "title": "#IronViz 2019 - #IronFarming Agriculture",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/IronViz2019-Agriculture/GameboardStartHere",
+        "thumbnail": "https://public.tableau.com/static/images/Ir/IronViz2019-Agriculture/GameboardStartHere/1.png",
+        "views": 8148,
+        "favorites": 39
+      },
+      {
+        "title": "Tallest Water Slides #IronViz",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/TallestWaterSlidesIronViz/TallestWaterSlides",
+        "thumbnail": "https://public.tableau.com/static/images/Ta/TallestWaterSlidesIronViz/TallestWaterSlides/1.png",
+        "views": 1273,
+        "favorites": 37
+      },
+      {
+        "title": "#WorkoutWednesday2019 Week 51",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/WorkoutWednesday2019Week51/SalesPerformance",
+        "thumbnail": "https://public.tableau.com/static/images/Wo/WorkoutWednesday2019Week51/SalesPerformance/1.png",
+        "views": 6635,
+        "favorites": 35
+      },
+      {
+        "title": "#TableauTipTuesday Week 33 - How to label both ends of the % of total bars",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/TableauTipTuesdayWeek33-Howtolabelbothendsoftheoftotalbars/TableauTipTuesdayWeek33-HowtolabelbothendsoftheofTotalBars",
+        "thumbnail": "https://public.tableau.com/static/images/Ta/TableauTipTuesdayWeek33-Howtolabelbothendsoftheoftotalbars/TableauTipTuesdayWeek33-HowtolabelbothendsoftheofTotalBars/1.png",
+        "views": 1727,
+        "favorites": 34
+      },
+      {
+        "title": "#TC21 Speed Tipping #Data21",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/TC21SpeedTippingData21/Intro",
+        "thumbnail": "https://public.tableau.com/static/images/TC/TC21SpeedTippingData21/Intro/1.png",
+        "views": 1893,
+        "favorites": 33
+      },
+      {
+        "title": "#TC18 - Lorna Eden | Speed Tipping Session Video & Workbook",
+        "url": "https://public.tableau.com/app/profile/lorna.eden/viz/TC18-LornaEdenSpeedTippingSessionVideoWorkbook/Cover",
+        "thumbnail": "https://public.tableau.com/static/images/TC/TC18-LornaEdenSpeedTippingSessionVideoWorkbook/Cover/1.png",
+        "views": 2416,
+        "favorites": 32
+      }
+    ]
+  },
+  "bethany-lyons": {
+    "profileName": "bethany.lyons",
+    "displayName": "Bethany Lyons",
+    "avatarUrl": null,
+    "workbookCount": 95,
+    "followers": 1230,
+    "fetchedAt": "2026-10-20",
+    "vizzes": [
+      {
+        "title": "Map drill down",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/Mapdrilldown_0/Mapdrilldown",
+        "thumbnail": "https://public.tableau.com/static/images/Ma/Mapdrilldown_0/Mapdrilldown/1.png",
+        "views": 3866,
+        "favorites": 40
+      },
+      {
+        "title": "Example 3 - Difference in Rank",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/Example3-DifferenceinRank/Gif",
+        "thumbnail": "https://public.tableau.com/static/images/Ex/Example3-DifferenceinRank/Gif/1.png",
+        "views": 89071,
+        "favorites": 39
+      },
+      {
+        "title": "What's new in 2019.2",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/Whatsnewin2019_2/DecisionMakingApp",
+        "thumbnail": "https://public.tableau.com/static/images/Wh/Whatsnewin2019_2/DecisionMakingApp/1.png",
+        "views": 2314,
+        "favorites": 36
+      },
+      {
+        "title": "Single Member Drill Down",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/SingleMemberDrillDown/GIF",
+        "thumbnail": "https://public.tableau.com/static/images/Si/SingleMemberDrillDown/GIF/1.png",
+        "views": 74221,
+        "favorites": 35
+      },
+      {
+        "title": "Calculate Rank Before Filters",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/CalculateRankBeforeFilters/GIF",
+        "thumbnail": "https://public.tableau.com/static/images/Ca/CalculateRankBeforeFilters/GIF/1.png",
+        "views": 67956,
+        "favorites": 35
+      },
+      {
+        "title": "Stock Comparison Tool",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/StockComparisonTool/Gif",
+        "thumbnail": "https://public.tableau.com/static/images/St/StockComparisonTool/Gif/1.png",
+        "views": 20929,
+        "favorites": 34
+      },
+      {
+        "title": "Cluster Analysis for Outlier Detection",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/ClusterAnalysisforOutlierDetection/Gif",
+        "thumbnail": "https://public.tableau.com/static/images/Cl/ClusterAnalysisforOutlierDetection/Gif/1.png",
+        "views": 21783,
+        "favorites": 28
+      },
+      {
+        "title": "Example 2 - Proportional Brushing",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/Example2-ProportionalBrushing/Gif",
+        "thumbnail": "https://public.tableau.com/static/images/Ex/Example2-ProportionalBrushing/Gif/1.png",
+        "views": 90556,
+        "favorites": 27
+      },
+      {
+        "title": "Market Basket Analysis",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/MarketBasketAnalysis_4/MarketBasketAnalysis",
+        "thumbnail": "https://public.tableau.com/static/images/Ma/MarketBasketAnalysis_4/MarketBasketAnalysis/1.png",
+        "views": 42244,
+        "favorites": 26
+      },
+      {
+        "title": "Comparing Distributions with Percentiles",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/ComparingDistributionswithPercentiles/GIF",
+        "thumbnail": "https://public.tableau.com/static/images/Co/ComparingDistributionswithPercentiles/GIF/1.png",
+        "views": 16880,
+        "favorites": 25
+      },
+      {
+        "title": "Competitor Benchmarking",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/CompetitorBenchmarking/CompetitorBenchmarking",
+        "thumbnail": "https://public.tableau.com/static/images/Co/CompetitorBenchmarking/CompetitorBenchmarking/1.png",
+        "views": 55605,
+        "favorites": 24
+      },
+      {
+        "title": "Market Basket Analysis - Set Actions",
+        "url": "https://public.tableau.com/app/profile/bethany.lyons/viz/MarketBasketAnalysis-SetActions/MarketBasketAnalysis",
+        "thumbnail": "https://public.tableau.com/static/images/Ma/MarketBasketAnalysis-SetActions/MarketBasketAnalysis/1.png",
+        "views": 2012,
+        "favorites": 23
+      }
+    ]
+  },
+  "scott-foster": {
+    "profileName": "s.foster",
+    "displayName": "S Foster",
+    "avatarUrl": "https://public.tableau.com/avatar/1de20134-5f21-4ecb-ab52-c623f7bb49f6.jpeg",
+    "workbookCount": 8,
+    "followers": 0,
+    "fetchedAt": "2026-10-20",
+    "vizzes": [
+      {
+        "title": "UN DATA WORLD POPULATION LIFE EXPECTANCY",
+        "url": "https://public.tableau.com/app/profile/s.foster/viz/UNDATAWORLDPOPULATIONLIFEEXPECTENCY/Annimation",
+        "thumbnail": "https://public.tableau.com/static/images/UN/UNDATAWORLDPOPULATIONLIFEEXPECTENCY/Annimation/1.png",
+        "views": 78,
+        "favorites": 0
+      },
+      {
+        "title": "Big Lottery Data 2004-2014",
+        "url": "https://public.tableau.com/app/profile/s.foster/viz/Book9_15959597049730/Dashboard1",
+        "thumbnail": "https://public.tableau.com/static/images/Bo/Book9_15959597049730/Dashboard1/1.png",
+        "views": 73,
+        "favorites": 0
+      },
+      {
+        "title": "Utilisation of Meeting Rooms",
+        "url": "https://public.tableau.com/app/profile/s.foster/viz/UtilisationofMeetingRooms/Dashboard1",
+        "thumbnail": "https://public.tableau.com/static/images/Ut/UtilisationofMeetingRooms/Dashboard1/1.png",
+        "views": 70,
+        "favorites": 0
+      },
+      {
+        "title": "Fifa 2018 player and Club Stats",
+        "url": "https://public.tableau.com/app/profile/s.foster/viz/Fifa2018playerandClubStats/Dashboard1",
+        "thumbnail": "https://public.tableau.com/static/images/Fi/Fifa2018playerandClubStats/Dashboard1/1.png",
+        "views": 61,
+        "favorites": 0
+      },
+      {
+        "title": "Analysis of Start up data",
+        "url": "https://public.tableau.com/app/profile/s.foster/viz/AnalysisofStartupdata/TheStartupQuardrent",
+        "thumbnail": "https://public.tableau.com/static/images/An/AnalysisofStartupdata/TheStartupQuardrent/1.png",
+        "views": 58,
+        "favorites": 0
+      },
+      {
+        "title": "Cohort Analysis",
+        "url": "https://public.tableau.com/app/profile/s.foster/viz/CohortAnalysis_15966221636500/Dashboard1",
+        "thumbnail": "https://public.tableau.com/static/images/Co/CohortAnalysis_15966221636500/Dashboard1/1.png",
+        "views": 55,
+        "favorites": 0
+      },
+      {
+        "title": "WIP Tableau Training",
+        "url": "https://public.tableau.com/app/profile/s.foster/viz/WIPTableauTraining/Sheet1",
+        "thumbnail": "https://public.tableau.com/static/images/WI/WIPTableauTraining/Sheet1/1.png",
+        "views": 52,
+        "favorites": 0
+      },
+      {
+        "title": "WIP fin analysis for web",
+        "url": "https://public.tableau.com/app/profile/s.foster/viz/WIPfinanalysisforweb/Dashboard2",
+        "thumbnail": "https://public.tableau.com/static/images/WI/WIPfinanalysisforweb/Dashboard2/1.png",
+        "views": 46,
+        "favorites": 0
+      }
+    ]
+  },
+  "ken-flerlage": {
+    "profileName": "ken.flerlage",
+    "displayName": "Ken Flerlage",
+    "avatarUrl": "https://public.tableau.com/avatar/02ab58b5-16c8-4f53-8cb3-d0c4fc293577.jpeg",
+    "workbookCount": 363,
+    "followers": 9662,
+    "fetchedAt": "2026-10-20",
+    "vizzes": [
+      {
+        "title": "Datafam Colors",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/DatafamColors/StartPage",
+        "thumbnail": "https://public.tableau.com/static/images/Da/DatafamColors/StartPage/1.png",
+        "views": 56081,
+        "favorites": 1098
+      },
+      {
+        "title": "Date Calculation Cheat Sheet",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/DateCalculationCheatSheet/Intro",
+        "thumbnail": "https://public.tableau.com/static/images/Da/DateCalculationCheatSheet/Intro/1.png",
+        "views": 43242,
+        "favorites": 996
+      },
+      {
+        "title": "Text Analysis Starter Kit",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/TextAnalysisStarterKit/00ChartMenu",
+        "thumbnail": "https://public.tableau.com/static/images/Te/TextAnalysisStarterKit/00ChartMenu/1.png",
+        "views": 44839,
+        "favorites": 918
+      },
+      {
+        "title": "Tableau Legend Alternatives",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/TableauLegendAlternatives/Main",
+        "thumbnail": "https://public.tableau.com/static/images/Ta/TableauLegendAlternatives/Main/1.png",
+        "views": 23253,
+        "favorites": 595
+      },
+      {
+        "title": "20 Use Cases for LOD Calculations",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/20UseCasesforLODCalculations/00",
+        "thumbnail": "https://public.tableau.com/static/images/20/20UseCasesforLODCalculations/00/1.png",
+        "views": 23905,
+        "favorites": 529
+      },
+      {
+        "title": "10 Gauge Designs",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/10GaugeDesigns/Gauges",
+        "thumbnail": "https://public.tableau.com/static/images/10/10GaugeDesigns/Gauges/1.png",
+        "views": 15100,
+        "favorites": 520
+      },
+      {
+        "title": "Winners & Losers of the Coronavirus Stock Market",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/WinnersLosersoftheCoronavirusStockMarket/StockMarket",
+        "thumbnail": "https://public.tableau.com/static/images/Wi/WinnersLosersoftheCoronavirusStockMarket/StockMarket/1.png",
+        "views": 24852,
+        "favorites": 358
+      },
+      {
+        "title": "Sankey Funnel Template",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/SankeyFunnelTemplate/Sankey",
+        "thumbnail": "https://public.tableau.com/static/images/Sa/SankeyFunnelTemplate/Sankey/1.png",
+        "views": 35002,
+        "favorites": 340
+      },
+      {
+        "title": "Tableau Set Control Use Cases",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/TableauSetControlUseCases/SetControl",
+        "thumbnail": "https://public.tableau.com/static/images/Ta/TableauSetControlUseCases/SetControl/1.png",
+        "views": 34649,
+        "favorites": 320
+      },
+      {
+        "title": "The Widening Divide",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/TheWideningDivide/01",
+        "thumbnail": "https://public.tableau.com/static/images/Th/TheWideningDivide/01/1.png",
+        "views": 48626,
+        "favorites": 312
+      },
+      {
+        "title": "The Law & Order Universe",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/TheLawOrderUniverse/LawOrder",
+        "thumbnail": "https://public.tableau.com/static/images/Th/TheLawOrderUniverse/LawOrder/1.png",
+        "views": 20465,
+        "favorites": 293
+      },
+      {
+        "title": "Fun with 2019.2 Parameter Actions",
+        "url": "https://public.tableau.com/app/profile/ken.flerlage/viz/Funwith2019_2ParameterActions/_Main",
+        "thumbnail": "https://public.tableau.com/static/images/Fu/Funwith2019_2ParameterActions/_Main/1.png",
+        "views": 13882,
+        "favorites": 266
+      }
+    ]
+  },
+  "kevin-flerlage": {
+    "profileName": "kevin.flerlage",
+    "displayName": "Kevin Flerlage",
+    "avatarUrl": "https://public.tableau.com/avatar/cf5c7f5a-3891-4292-9fea-e53fb8401ab7.jpeg",
+    "workbookCount": 221,
+    "followers": 10265,
+    "fetchedAt": "2026-10-20",
+    "vizzes": [
+      {
+        "title": "The Tableau Chart Catalog",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/TheTableauChartCatalog/TableauChartExamples",
+        "thumbnail": "https://public.tableau.com/static/images/Th/TheTableauChartCatalog/TableauChartExamples/1.png",
+        "views": 461313,
+        "favorites": 6369
+      },
+      {
+        "title": "22 Different BAN Designs",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/22DifferentBANDesigns/BANDesigns",
+        "thumbnail": "https://public.tableau.com/static/images/22/22DifferentBANDesigns/BANDesigns/1.png",
+        "views": 27700,
+        "favorites": 857
+      },
+      {
+        "title": "Buttons (with PowerPoint Template)",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/ButtonswithPowerPointTemplate/Buttons",
+        "thumbnail": "https://public.tableau.com/static/images/Bu/ButtonswithPowerPointTemplate/Buttons/1.png",
+        "views": 41410,
+        "favorites": 776
+      },
+      {
+        "title": "Playing with Parameter Actions",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/PlayingwithParameterActions/LandingPage",
+        "thumbnail": "https://public.tableau.com/static/images/Pl/PlayingwithParameterActions/LandingPage/1.png",
+        "views": 66105,
+        "favorites": 769
+      },
+      {
+        "title": "Movie Money",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/MovieMoney_15813400492150/MovieMoney",
+        "thumbnail": "https://public.tableau.com/static/images/Mo/MovieMoney_15813400492150/MovieMoney/1.png",
+        "views": 39202,
+        "favorites": 675
+      },
+      {
+        "title": "Simple Steps for Better Design",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/SimpleStepsforBetterDesign/TitlePage",
+        "thumbnail": "https://public.tableau.com/static/images/Si/SimpleStepsforBetterDesign/TitlePage/1.png",
+        "views": 101272,
+        "favorites": 609
+      },
+      {
+        "title": "A Little Design Makes a World of Difference",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/ALittleDesignMakesaWorldofDifference/ALittleDesignMakesaWorldofDifference",
+        "thumbnail": "https://public.tableau.com/static/images/AL/ALittleDesignMakesaWorldofDifference/ALittleDesignMakesaWorldofDifference/1.png",
+        "views": 29952,
+        "favorites": 564
+      },
+      {
+        "title": "Curvy Bump Chart & Slope Chart TEMPLATE",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/CurvyBumpChartSlopeChartTEMPLATE/CurvyBumpChartDisplay",
+        "thumbnail": "https://public.tableau.com/static/images/Cu/CurvyBumpChartSlopeChartTEMPLATE/CurvyBumpChartDisplay/1.png",
+        "views": 17028,
+        "favorites": 478
+      },
+      {
+        "title": "Cases for Collapsible Containers",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/CasesforCollapsibleContainers/UseCasesforCollapsibleContainers",
+        "thumbnail": "https://public.tableau.com/static/images/Ca/CasesforCollapsibleContainers/UseCasesforCollapsibleContainers/1.png",
+        "views": 36640,
+        "favorites": 421
+      },
+      {
+        "title": "Superstore Regional Sales Scorecard with Targets",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/SuperstoreRegionalSalesScorecardwithTargets/Scorecard",
+        "thumbnail": "https://public.tableau.com/static/images/Su/SuperstoreRegionalSalesScorecardwithTargets/Scorecard/1.png",
+        "views": 17123,
+        "favorites": 406
+      },
+      {
+        "title": "Pairing Food with Wine & Beer",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/PairingFoodwithWineBeer/WineFoodPairings",
+        "thumbnail": "https://public.tableau.com/static/images/Pa/PairingFoodwithWineBeer/WineFoodPairings/1.png",
+        "views": 17185,
+        "favorites": 209
+      },
+      {
+        "title": "4 Years on Tableau Public",
+        "url": "https://public.tableau.com/app/profile/kevin.flerlage/viz/4YearsonTableauPublic/4YearsonTableauPublic",
+        "thumbnail": "https://public.tableau.com/static/images/4Y/4YearsonTableauPublic/4YearsonTableauPublic/1.png",
+        "views": 9546,
+        "favorites": 206
+      }
+    ]
+  },
+  "jonathan-drummey": {
+    "profileName": "jonathan.drummey",
+    "displayName": "Jonathan Drummey",
+    "avatarUrl": null,
+    "workbookCount": 198,
+    "followers": 1477,
+    "fetchedAt": "2026-10-20",
+    "vizzes": [
+      {
+        "title": "conditional formatting v4",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/conditionalformattingv4/CrosstabofManyColors",
+        "thumbnail": "https://public.tableau.com/static/images/co/conditionalformattingv4/CrosstabofManyColors/1.png",
+        "views": 1171811,
+        "favorites": 213
+      },
+      {
+        "title": "The Next N Table Calculations",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/TheNextNTableCalculations/9_NestingTableCalculations",
+        "thumbnail": "https://public.tableau.com/static/images/Th/TheNextNTableCalculations/9_NestingTableCalculations/1.png",
+        "views": 109943,
+        "favorites": 92
+      },
+      {
+        "title": "bars and lines",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/barsandlines/Introduction",
+        "thumbnail": "https://public.tableau.com/static/images/ba/barsandlines/Introduction/1.png",
+        "views": 164135,
+        "favorites": 41
+      },
+      {
+        "title": "parameter as data source",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/parameterasdatasource/Basicoperations",
+        "thumbnail": "https://public.tableau.com/static/images/pa/parameterasdatasource/Basicoperations/1.png",
+        "views": 850,
+        "favorites": 19
+      },
+      {
+        "title": "hiding selection borders",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/hidingselectionborders/HidingSelectionBorders",
+        "thumbnail": "https://public.tableau.com/static/images/hi/hidingselectionborders/HidingSelectionBorders/1.png",
+        "views": 8250,
+        "favorites": 17
+      },
+      {
+        "title": "dynamic parameter from blend",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/dynamicparameterfromblend/SalesRange",
+        "thumbnail": "https://public.tableau.com/static/images/dy/dynamicparameterfromblend/SalesRange/1.png",
+        "views": 774940,
+        "favorites": 14
+      },
+      {
+        "title": "Marimekko/mosaic plot",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/marimekko-mosaicplot/MarimekkowGT",
+        "thumbnail": "https://public.tableau.com/static/images/ma/marimekko-mosaicplot/MarimekkowGT/1.png",
+        "views": 283588,
+        "favorites": 14
+      },
+      {
+        "title": "duration formatting",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/durationformatting/Aggwtotal-right",
+        "thumbnail": "https://public.tableau.com/static/images/du/durationformatting/Aggwtotal-right/1.png",
+        "views": 22714,
+        "favorites": 14
+      },
+      {
+        "title": "Filter Action as Parameter",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/FilterActionasParameter/uniondashboard",
+        "thumbnail": "https://public.tableau.com/static/images/Fi/FilterActionasParameter/uniondashboard/1.png",
+        "views": 779410,
+        "favorites": 10
+      },
+      {
+        "title": "process control charts",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/processcontrolcharts/charts",
+        "thumbnail": "https://public.tableau.com/static/images/pr/processcontrolcharts/charts/1.png",
+        "views": 25168,
+        "favorites": 8
+      },
+      {
+        "title": "deselect filter action button v4",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/deselectfilteractionbuttonv4/STARTHERE",
+        "thumbnail": "https://public.tableau.com/static/images/de/deselectfilteractionbuttonv4/STARTHERE/1.png",
+        "views": 865,
+        "favorites": 8
+      },
+      {
+        "title": "dashed lines",
+        "url": "https://public.tableau.com/app/profile/jonathan.drummey/viz/dashedlines/SolidandDashed",
+        "thumbnail": "https://public.tableau.com/static/images/da/dashedlines/SolidandDashed/1.png",
+        "views": 96281,
+        "favorites": 7
+      }
+    ]
+  }
+}

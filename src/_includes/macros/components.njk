@@ -1,0 +1,189 @@
+{#
+  macros/components.njk
+  ----------------------------------------------------------------------------
+  Reusable building blocks. Import the ones a page needs:
+
+    {% from "macros/components.njk" import pageHeader, articleCard with context %}
+
+  Each macro is documented above its definition: what it renders and which
+  data it expects. `with context` is only needed for macros that use filters
+  registered in eleventy.config.js (all of them, to be safe).
+#}
+
+{#
+  pageHeader(title, intro, trail, meta)
+  The coloured header at the top of every inner page.
+    title  – page heading (h1)
+    intro  – optional paragraph under it
+    trail  – breadcrumb list: [{ title, url }, …] (the current page is added automatically)
+    meta   – optional short line of counts, e.g. "12 articles · 4 quotes"
+#}
+{% macro pageHeader(title, intro, trail, meta) %}
+<header class="page-header">
+  <div class="container">
+    {%- if trail and trail.length %}
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        {%- for crumb in trail %}
+        <li><a href="{{ crumb.url }}">{{ crumb.title }}</a></li>
+        {%- endfor %}
+        <li aria-current="page">{{ title }}</li>
+      </ol>
+    </nav>
+    {%- endif %}
+    <h1 class="page-header__title">{{ title }}</h1>
+    {%- if intro %}<p class="page-header__intro">{{ intro }}</p>{% endif %}
+    {%- if meta %}<p class="page-header__meta">{{ meta }}</p>{% endif %}
+  </div>
+</header>
+{% endmacro %}
+
+{#
+  linkCard(title, url, description, meta, color, preview)
+  A card that links to another page on the site (a category, a subcategory,
+  a quote category…).
+    color    – category colour token (draws the accent stripe)
+    preview  – optional list of strings shown as a short "includes" list
+#}
+{% macro linkCard(title, url, description, meta, color, preview) %}
+<a class="link-card" href="{{ url }}" data-color="{{ color or 'blue' }}">
+  <span class="link-card__stripe" aria-hidden="true"></span>
+  <span class="link-card__title">{{ title }}</span>
+  {%- if description %}<span class="link-card__description">{{ description }}</span>{% endif %}
+  {%- if preview and preview.length %}
+  <span class="link-card__preview">
+    {%- for line in preview %}<span>{{ line }}</span>{% endfor -%}
+  </span>
+  {%- endif %}
+  {%- if meta %}<span class="link-card__meta">{{ meta }}<span class="link-card__arrow" aria-hidden="true">→</span></span>{% endif %}
+</a>
+{% endmacro %}
+
+{#
+  articleCard(item)
+  One article in a topic list. `item` is { article, note } as produced by
+  collectPlacements() in lib/catalog.js. The title opens the original
+  article in a new tab; featured authors link to their Visualizations page.
+#}
+{% macro articleCard(item) %}
+{%- set a = item.article -%}
+<article class="article-card">
+  <p class="article-card__meta">
+    <span class="article-card__publisher">{{ a.publisher }}</span>
+    {%- if a.published %}<span aria-hidden="true"> · </span><span>{{ a.published | readableDate }}</span>{% endif %}
+  </p>
+  <h3 class="article-card__title">
+    <a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.title }}<span class="external" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
+  </h3>
+  <p class="article-card__authors">
+    {%- for author in a.authorLinks -%}
+      {%- if author.url %}<a href="{{ author.url }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif -%}
+      {%- if not loop.last %}, {% endif -%}
+    {%- endfor -%}
+  </p>
+  <p class="article-card__summary">{{ a.summary }}</p>
+  {%- if item.note %}<p class="article-card__note"><span>Why it's here</span> {{ item.note }}</p>{% endif %}
+  {%- if a.caveat %}<p class="article-card__caveat">{{ a.caveat }}</p>{% endif %}
+</article>
+{% endmacro %}
+
+{#
+  articleList(items)
+  A responsive grid of article cards.
+#}
+{% macro articleList(items) %}
+<div class="card-grid card-grid--articles">
+  {%- for item in items %}{{ articleCard(item) }}{% endfor %}
+</div>
+{% endmacro %}
+
+{#
+  quoteCard(quote, color)
+  One short quote with its author and a link to the source article.
+  `quote` is a decorated quote from lib/catalog.js (has .source and .authorUrl).
+#}
+{% macro quoteCard(quote, color) %}
+<figure class="quote-card" data-color="{{ color or 'blue' }}">
+  <blockquote class="quote-card__text"><p>{{ quote.text }}</p></blockquote>
+  <figcaption class="quote-card__credit">
+    <span class="quote-card__author">
+      {%- if quote.authorUrl %}<a href="{{ quote.authorUrl }}">{{ quote.author }}</a>{% else %}{{ quote.author }}{% endif -%}
+    </span>
+    {%- if quote.source %}
+    <cite class="quote-card__source"><a href="{{ quote.source.url }}" target="_blank" rel="noopener">{{ quote.source.title }}<span class="external" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></cite>
+    {%- endif %}
+  </figcaption>
+</figure>
+{% endmacro %}
+
+{#
+  quoteGrid(quotes, color)
+  Quotes laid out in balanced columns.
+#}
+{% macro quoteGrid(quotes, color) %}
+<div class="quote-grid">
+  {%- for quote in quotes %}{{ quoteCard(quote, color) }}{% endfor %}
+</div>
+{% endmacro %}
+
+{#
+  vizCard(viz)
+  A Tableau Public viz thumbnail that opens the interactive viz on Tableau
+  Public. `viz` comes from content/vizzes.json.
+#}
+{% macro vizCard(viz) %}
+<a class="viz-card" href="{{ viz.url }}" target="_blank" rel="noopener">
+  <span class="viz-card__frame">
+    <img src="{{ viz.thumbnail }}" alt="" loading="lazy" decoding="async" width="400" height="300">
+  </span>
+  <span class="viz-card__body">
+    <span class="viz-card__title">{{ viz.title }}<span class="visually-hidden"> (opens on Tableau Public in a new tab)</span></span>
+    <span class="viz-card__stats">{{ viz.favorites | compactNumber }} favourites · {{ viz.views | compactNumber }} views</span>
+  </span>
+</a>
+{% endmacro %}
+
+{#
+  personCard(person)
+  An author on the Visualizations page: their name links to their page on
+  this site, and a second link goes straight to their Tableau Public profile.
+#}
+{% macro personCard(person) %}
+<article class="person-card">
+  <div class="person-card__top">
+    {%- if person.gallery.avatarUrl %}
+    <img class="avatar" src="{{ person.gallery.avatarUrl }}" alt="" width="64" height="64" loading="lazy">
+    {%- else %}
+    <span class="avatar avatar--initials" aria-hidden="true">{{ person.name | first }}</span>
+    {%- endif %}
+    <div>
+      <h2 class="person-card__name"><a href="{{ person.url }}">{{ person.name }}</a></h2>
+      <p class="person-card__affiliation">{{ person.affiliation }}</p>
+    </div>
+  </div>
+  <p class="person-card__bio">{{ person.bio }}</p>
+  {%- if person.gallery.vizzes.length %}
+  <div class="person-card__strip" aria-hidden="true">
+    {%- for viz in person.gallery.vizzes | batch(3) | first %}
+    <img src="{{ viz.thumbnail }}" alt="" loading="lazy" decoding="async" width="160" height="120">
+    {%- endfor %}
+  </div>
+  {%- endif %}
+  <p class="person-card__links">
+    <a class="button button--primary" href="{{ person.url }}">See {{ person.gallery.vizzes.length }} vizzes</a>
+    <a class="button" href="{{ person.tableauPublic }}" target="_blank" rel="noopener">Tableau Public profile<span class="external" aria-hidden="true">↗</span></a>
+  </p>
+</article>
+{% endmacro %}
+
+{#
+  callout(title, text, color)
+  A highlighted box for the guide's takeaways and notes.
+#}
+{% macro callout(title, text, color) %}
+<aside class="callout" data-color="{{ color or 'blue' }}">
+  <p class="callout__title">{{ title }}</p>
+  <p class="callout__text">{{ text }}</p>
+</aside>
+{% endmacro %}

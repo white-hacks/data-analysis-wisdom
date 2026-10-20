@@ -1,0 +1,59 @@
+---
+# Home page: states what the site is about and points to the three sections.
+layout: layouts/base.njk
+---
+{%- set stats = catalog.stats -%}
+{%- set maxCount = 0 -%}
+{%- for category in catalog.categories %}{% if category.articleCount > maxCount %}{% set maxCount = category.articleCount %}{% endif %}{% endfor -%}
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <p class="eyebrow">{{ catalog.site.url | hostname }}</p>
+      <h1 class="hero__title">Tableau data visualization <span>tips &amp; principles</span></h1>
+      <p class="hero__lede">
+        The Tableau Repo is a curated library of the best free Tableau writing, from The Information Lab,
+        The Data School, Playfair Data, the Tableau blog and the experts who teach the community.
+        It's organised so you can learn the craft one topic at a time, see what great work looks like,
+        and keep the best advice close at hand.
+      </p>
+    </div>
+
+    {# Small bar chart: how many articles each category holds. Each bar links to its category. #}
+    <figure class="mini-chart" aria-labelledby="mini-chart-title">
+      <figcaption id="mini-chart-title" class="mini-chart__title">Articles by category</figcaption>
+      <ol class="mini-chart__rows">
+        {%- for category in catalog.categories %}
+        <li>
+          <a class="mini-chart__row" href="{{ category.url }}" data-color="{{ category.color }}" title="{{ category.title }}: {{ category.articleCount }} articles">
+            <span class="mini-chart__label">{{ category.title }}</span>
+            <span class="mini-chart__track">
+              <span class="mini-chart__bar" style="--value: {{ (category.articleCount / maxCount * 100) | round(1) }}%"></span>
+              <span class="mini-chart__value">{{ category.articleCount }}</span>
+            </span>
+          </a>
+        </li>
+        {%- endfor %}
+      </ol>
+    </figure>
+  </div>
+</section>
+
+<section class="container section" aria-label="Sections">
+  <div class="card-grid card-grid--sections">
+    <a class="section-tile" href="/articles/" data-color="blue">
+      <span class="section-tile__count">{{ stats.articles }}</span>
+      <span class="section-tile__title">Articles</span>
+      <span class="section-tile__text">Hand-picked reading in {{ catalog.categories | length }} categories and {{ stats.topics }} topics, from data cleaning to landing a consultancy job.</span>
+    </a>
+    <a class="section-tile" href="/visualizations/" data-color="orange">
+      <span class="section-tile__count">{{ stats.vizzes }}</span>
+      <span class="section-tile__title">Visualizations</span>
+      <span class="section-tile__text">Standout Tableau Public work from {{ stats.people }} experts, with a link to each author's full profile.</span>
+    </a>
+    <a class="section-tile" href="/quotes/" data-color="aqua">
+      <span class="section-tile__count">{{ stats.quotes }}</span>
+      <span class="section-tile__title">Short quotes</span>
+      <span class="section-tile__text">Memorable lines from the articles, word for word, arranged by the same categories.</span>
+    </a>
+  </div>
+</section>

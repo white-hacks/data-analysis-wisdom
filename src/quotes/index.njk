@@ -1,0 +1,19 @@
+---
+# /quotes/ – links to one quotes page per article category.
+layout: layouts/base.njk
+title: Short quotes
+description: Memorable lines from Tableau experts, quoted word for word from the articles on The Tableau Repo and arranged by topic.
+accent: aqua
+---
+{% from "macros/components.njk" import pageHeader, linkCard with context %}
+{{ pageHeader("Short quotes", "Memorable lines from the articles on this site, quoted word for word and arranged by the same categories as the articles. Every quote links to its source.", [], catalog.stats.quotes ~ " quotes in " ~ (catalog.categories | length) ~ " categories") }}
+
+<section class="container section">
+  <div class="card-grid">
+    {%- for category in catalog.categories %}
+      {%- set q = category.featuredQuote -%}
+      {%- set preview = ["“" ~ q.text ~ "” (" ~ q.author ~ ")"] if q else [] -%}
+      {{ linkCard(category.title, category.quotesUrl, null, category.quoteCount ~ " quotes", category.color, preview) }}
+    {%- endfor %}
+  </div>
+</section>

@@ -1,0 +1,17 @@
+# =============================================================================
+# site.yaml: site-wide settings used by every page
+# =============================================================================
+name: The Tableau Repo
+url: https://thetableaurepo.com
+tagline: Tableau data visualization tips & principles
+description: >-
+  The Tableau Repo collects Tableau data visualization tips & principles from
+  the community's best teachers: articles, Tableau Public visualizations and
+  short quotes from The Information Lab, The Data School, Playfair Data, the
+  Flerlage Twins, Tableau Public authors and more.
+# Shown in the footer.
+footerNote: >-
+  Articles, quotes and visualizations belong to their authors. Every card
+  links to the original. The Tableau Repo is an independent reading list and
+  is not affiliated with Tableau, Salesforce, The Information Lab or The Data
+  School.

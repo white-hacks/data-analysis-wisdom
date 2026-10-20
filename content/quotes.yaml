@@ -1,0 +1,442 @@
+# =============================================================================
+# quotes.yaml: short, memorable statements taken word for word from the
+# articles listed in articles.yaml
+# =============================================================================
+# Every quote must appear VERBATIM in its source article. Run
+#   npm run verify:quotes
+# to re-check them against the live pages (see scripts/verify-quotes.js).
+#
+# FIELDS
+#   text     The exact words from the article. Use a leading or trailing "…"
+#            when the quote starts or ends mid-sentence.
+#   author   The person (or organisation) who said or wrote it.
+#   article  The `id` of the source article in articles.yaml. The quote card
+#            links to that article.
+#   topic    Optional "<category>/<subcategory>" (or "miscellaneous") where the
+#            quote is shown. Defaults to the article's first placement.
+#
+# Quotes are grouped on the Short quotes pages by topic, in file order.
+# =============================================================================
+
+# --- Tableau basics ------------------------------------------------------------
+
+- text: You might just want to remove the word "County" from your geographic names. But then you hit real data.
+  author: Andy Kriebel
+  article: kriebel-split-custom-split-replace
+
+- text: Considering both performance and ease of use, prepping your data before it enters Tableau Desktop has many benefits.
+  author: K. Wagner
+  article: wagner-split-and-pivot
+
+- text: One huge takeaway from our first lesson with Carl Allchin was how helpful planning out your steps in advance is!
+  author: Shreya Arya
+  article: arya-plan-your-prep
+
+- text: While joins can filter data, relationships always preserve all measures. Now important values like money can never go missing.
+  author: Bethany Lyons
+  article: lyons-relationships-data-modeling
+
+- text: The golden rule of relationships that will allow you to generate any join type is that all records from measure tables are always retained.
+  author: Bethany Lyons
+  article: lyons-relationships-data-modeling
+
+- text: If you get results you didn't expect, before you dig into SQL log files for an explanation, make sure you can describe the relationships in your data—and your question—in plain English.
+  author: Bethany Lyons
+  article: lyons-relationships-questions
+
+- text: These options are more performative, however, you must be 100% certain that your data is unique.
+  author: Calvin Gao
+  article: gao-optimizing-relationships
+
+- text: We recommend using relationships as your first approach to combining your data because it makes data preparation and analysis easier and more intuitive.
+  author: Tableau Help
+  article: tableau-relate-your-data
+
+- text: Simplicity beats purity every time when it comes to adoption.
+  author: Paul Houghton
+  article: houghton-right-data-model
+
+- text: By plotting X & Y coordinates, we can draw virtually anything in Tableau.
+  author: Ken Flerlage
+  article: flerlage-beyond-show-me
+
+- text: A Lollipop chart is essentially a bar chart with a shape at the end of the line.
+  author: Shreya Arya
+  article: arya-lollipop-chart
+
+- text: A boolean is any calculation that returns as True / False.
+  author: Shreya Arya
+  article: arya-booleans
+
+- text: Blue pills however in fact correspond to discrete data and green pills to continuous data.
+  author: Flavio Matos
+  article: matos-blue-and-green-pill
+
+- text: Though numerical data is usually a continuous measure, there are cases where you may want numerical data to be a discrete dimension.
+  author: Emma Wishart
+  article: wishart-blue-vs-green
+
+- text: Those little pills — the colors, the types, the debate of discrete vs continuous — they determine whether your data whispers insightful stories or just sits there looking pretty.
+  author: Marc-Anthony Tucker
+  article: tucker-blue-vs-green
+
+- text: Understand these, and you're not just building charts, you're telling stories.
+  author: Marc-Anthony Tucker
+  article: tucker-blue-vs-green
+
+# --- Visualization --------------------------------------------------------------
+
+- text: Tap into your audience's schemas and you improve their experience; disrupt their schemas and you run the risk of leading your audience in the wrong direction.
+  author: Ryan Sleeper
+  article: sleeper-psychological-schemas
+
+- text: There's a thin line between graphics that enhance a data visualization and chartjunk, but when done tastefully, graphics have the ability to provide much more information than words alone.
+  author: Ryan Sleeper
+  article: sleeper-psychological-schemas
+
+- text: You should always be trying to reduce the burden on your audience and make it as easy as possible to find insights.
+  author: Ryan Sleeper
+  article: sleeper-storytelling-color-tips
+
+- text: Double-encoding can be a powerful tool when kept simple and used for a specific purpose, such as accessibility.
+  author: Megan Spengler
+  article: spengler-preattentive-attributes
+
+- text: The degree to which your data presentation effectively and efficiently communicates depends on how well you tap into the power of visual perception.
+  author: Stephen Few
+  article: few-visual-perception
+
+- text: If you want someone to make sense of the graph as a whole, then you must limit the number of data components that encode distinct meanings to seven at most—and safer yet, to no more than five.
+  author: Stephen Few
+  article: few-visual-perception
+
+- text: Don't use the rainbow color scale for quantitative data
+  author: John Stasko
+  article: stasko-visual-perception
+
+- text: …radical surgery on these popular types of graphs is needed…
+  author: William S. Cleveland & Robert McGill
+  article: cleveland-mcgill-graphical-perception
+
+- text: 'Preattentive attributes are exactly what they sound like: characteristics that we perceive before we have focused our attention that influence how we categorize information.'
+  author: Adam Sultanov
+  article: sultanov-preattentive-gestalt
+
+- text: When it comes to visual design and knowing your audience, it's always best to be inclusive and use colour palettes that everyone can easily view.
+  author: Shreya Arya
+  article: arya-avoid-these-colours
+
+- text: Strategic use of colour can elevate key data points, enhancing clarity and facilitating quicker comprehension.
+  author: Shreya Arya
+  article: arya-b2vb-colour
+
+- text: I think the entire point of data visualization is to leverage visualization to communicate data in a way that provokes action.
+  author: Ryan Sleeper
+  article: murray-10-questions-sleeper
+
+- text: I think the most successful vizzes have a mix of good data, quality, design, simplicity, understandability, interesting topics and, last – but possibly most important – luck.
+  author: Ryan Sleeper
+  article: murray-10-questions-sleeper
+
+- text: …how you are measured should dictate your approach to a data visualization project, or for that matter, work projects in general.
+  author: Ryan Sleeper
+  article: sleeper-sixth-grade-tip
+
+- text: I hate when things feel cramped and my favorite way to control this is the use of white space (I don't like using lines or borders).
+  author: Kevin Flerlage
+  article: flerlage-little-design
+
+- text: These simple dashboard design tips will help you build cleaner, more actionable dashboards that feel less like data dumps and more like real business tools.
+  author: Andy Kriebel
+  article: kriebel-design-mistakes
+
+- text: Wireframes enable collaborative design, resulting in products that truly support business goals.
+  author: Shreya Arya
+  article: arya-b2vb-wireframe
+
+- text: Adding custom shapes to your charts in Tableau Desktop can open you up a world of creativity.
+  author: Shreya Arya
+  article: arya-custom-shapes
+
+- text: Simply put, categorical data tells us what and quantitative data tells us how much.
+  author: Stephen Few
+  article: few-right-graph
+
+- text: Quantitative data without related categorical data is useless.
+  author: Stephen Few
+  article: few-right-graph
+
+- text: We're all in the never-ending search for resources that will help us pick the "best" chart for the situation.
+  author: Andy Kriebel
+  article: kriebel-visual-vocabulary
+
+- text: Stacked bars are fine. But once you need to compare proportions across groups AND show the actual totals, they start to break down.
+  author: Andy Kriebel
+  article: kriebel-marimekko-alternative
+
+- text: Quadrant charts are one of the most effective ways to compare performance across two measures and quickly identify outliers, opportunities, and risk areas.
+  author: Andy Kriebel
+  article: kriebel-quadrant-chart
+
+- text: It should allow you to better understand these charts, their use cases, and what they represent, but more importantly, this should act as inspiration for your next visualization.
+  author: Kevin Flerlage
+  article: flerlage-chart-catalog
+
+- text: Pick a story point if you don't want the audience to see the answer right away or you want to lead them through a step by step process.
+  author: Elena Caric
+  article: caric-dashboards-or-story-points
+
+- text: Explanatory analysis transforms data into clear and actionable answers, highlighting important insights in a way that's easy to understand.
+  author: Shreya Arya
+  article: arya-b2vb-explanatory-analysis
+
+- text: Instead of creating multiple static visuals to answer every possible question, dashboard actions allow users to interact directly with the data and explore insights on their own.
+  author: Jorge Sempere
+  article: sempere-dashboard-actions
+
+- text: Most dashboards rely on filters. But sometimes your users need context, not isolation.
+  author: Andy Kriebel
+  article: kriebel-proportional-brushing
+  topic: visualization/dashboard-interactivity
+
+- text: We have to decide what's more important, ease of use for our users, or ease of setup for ourselves.
+  author: Brian Moore
+  article: domoore-it-depends
+
+- text: Filters are a powerful tool in Tableau or any BI tool, allowing you to narrow down your data and focus on what matters most.
+  author: Shreya Arya
+  article: arya-b2vb-dashboard-filters
+
+# --- Data manipulation ---------------------------------------------------------
+
+- text: 'Table calculations rely on two types of fields: addressing and partitioning fields. The key to understanding table calcs is to know how these fields work.'
+  author: Tableau
+  article: tableau-top-10-table-calcs
+
+- text: This is why table calculations are fast but limited, and why LOD expressions are powerful but expensive.
+  author: Export Calculated Fields
+  article: ecf-table-calcs-explained
+  topic: data-manipulation/table-calculations
+
+- text: Learn INDEX first, because it teaches partitioning without any distraction from values.
+  author: Export Calculated Fields
+  article: ecf-table-calcs-explained
+
+- text: If you are like me and won't rest until you understand every detail of Tableau's functionality, then this post is for you.
+  author: Jonathan Drummey
+  article: drummey-partitioning
+
+- text: Options are computed based on what you (visually) got as a table on your screen, based on columns and rows.
+  author: Tableau Adventurer
+  article: adventurer-mastering-table-calcs
+
+- text: Percent of Total calculations offer insight into data, by revealing the relative significance of individual elements.
+  author: Shreya Arya
+  article: arya-b2vb-percent-of-total
+
+- text: Level of Detail (LOD) Expressions allows people to express powerful concepts using simple statements.
+  author: Bethany Lyons
+  article: lyons-top-15-lods
+
+- text: Again, Tableau will always aggregate your data to the level of detail in the view.
+  author: Kevin Flerlage
+  article: flerlage-include-exclude
+
+- text: To be able to use LODs accurately and efficiently, it is key to understand both the granularity of the data set and what elements affect the level of detail on the view.
+  author: Fayong Li
+  article: li-three-lod-use-cases
+
+- text: If the answer should be the same no matter how you slice the view, use FIXED.
+  author: Export Calculated Fields
+  article: ecf-table-calcs-explained
+  topic: data-manipulation/lod-expressions
+
+- text: Tableau generally works best when your data is "tall and skinny" so whenever I can put my data in that format, I try to.
+  author: Ken Flerlage
+  article: flerlage-20-lod-uses
+
+- text: We have found this approach to be a simple alternative to table calculations that provides a more consistent, user-friendly, and foolproof result.
+  author: Concord
+  article: concord-lod-benchmarks
+
+- text: In general, adding comments can help improve the overall clarity and understanding of your work...
+  author: Shreya Arya
+  article: arya-comments-in-calculations
+
+- text: Stop doing this in Excel. Tableau has a cleaner, more powerful way to count only the weekdays between any two dates.
+  author: Andy Kriebel
+  article: kriebel-count-weekdays
+
+- text: Date functions make it easy to analyse periods and spot performance cycles.
+  author: Shreya Arya
+  article: arya-b2vb-date-functions
+
+- text: A geographic role associates each value in a field with a latitude and longitude value.
+  author: Tableau Help
+  article: tableau-geographic-roles
+
+- text: …if you don't have Alteryx to hand or you just want to improve your Tableau skills then here is an alternative way to make a density map in Tableau using hexbins.
+  author: Eve Thomas
+  article: thomas-hexbin-density-map
+
+- text: Unlike sets, which contain multiple values, a parameter stores only a single value at a time.
+  author: Gabriel Louks-Kirwan
+  article: louks-kirwan-set-vs-parameter-actions
+
+- text: If you need to select more than one dimension member, you may be better off using set actions.
+  author: Ryan Sleeper
+  article: sleeper-creative-parameter-actions
+
+- text: While filters only keep data in a selection, sets split data into two groups—in or out of the selection.
+  author: Bethany Lyons
+  article: lyons-set-actions-comparisons
+
+- text: Set actions make interactivity more expressive, providing precise control on dashboard design without any programming.
+  author: Bethany Lyons
+  article: lyons-set-actions-analytic-concepts
+
+- text: Through simple visual interactions in Tableau, you can spread the expertise of trained analysts and data scientists broadly across your organisation.
+  author: Bethany Lyons
+  article: lyons-set-actions-advanced-analytics
+
+- text: Most people think parameters can only hold one value. But what if I told you… you can hack them to hold two?
+  author: Andy Kriebel
+  article: kriebel-two-values-one-parameter
+
+- text: It means you can get to insights faster and design flexible experiences that your stakeholders can leverage to ask more questions.
+  author: Filippos Lymperopoulos
+  article: tableau-parameter-actions-blog
+
+# --- Data career tips -----------------------------------------------------------
+
+- text: Do not assume the client knows exactly what they want.
+  author: Amelia Holland
+  article: holland-client-projects-initiation
+
+- text: Managing the client's expectations about what you can realistically achieve within the week is so important, you don't want to over promise and under deliver!
+  author: Ellie Carter
+  article: carter-first-client-project
+
+- text: 'Yes, you have heard it a lot, the #1 data consultant skill is to scope well.'
+  author: Lisa Hitch
+  article: hitch-short-term-consultancy
+
+- text: Hiding a mistake and having a client discover it themselves costs far more trust than owning it upfront ever would.
+  author: Help Scout
+  article: helpscout-client-communication
+
+- text: 'The first question I ask going into any data visualization project is: Who is the audience?'
+  author: Ryan Sleeper
+  article: sleeper-sixth-grade-tip
+  topic: data-career-tips/the-work-itself
+
+- text: Start with the business question, not the tool feature.
+  author: Thierry Driver
+  article: driver-why-isnt-anyone-using
+
+- text: The charts are just a means to that end, not the end itself.
+  author: Thierry Driver
+  article: driver-why-isnt-anyone-using
+
+- text: The way I see it, you should prioritise your analytics, but still consider how you can present this in a clear and concise way.
+  author: Shreya Arya
+  article: arya-1-hour-makeover-monday
+  topic: data-career-tips/the-work-itself
+
+- text: Today we produce and consume vast quantities of data every second of every day but what is the cost of the data we do not use properly?
+  author: Scott Foster
+  article: foster-cost-of-wasted-data
+
+- text: We are looking for someone who can communicate clearly, stay curious under pressure, and work well with other people. Someone we would be comfortable putting in front of a client.
+  author: Salome Grasland
+  article: grasland-final-interview
+
+- text: We want to understand what you found, why it matters, and how you decided to show it.
+  author: Salome Grasland
+  article: grasland-final-interview
+
+- text: Make sure any feedback you received has been brought into your work for the final stage - we will be looking out for this!
+  author: Joe Stokes
+  article: stokes-nail-final-interview
+
+- text: You get paid to learn.
+  author: The Data School
+  article: data-school-about
+
+- text: You may find it surprising but at this point we don't need to see a CV, just some data analysis about a topic you are passionate about.
+  author: The Data School
+  article: data-school-apply
+
+- text: Using data which you have a personal interest in will make building your viz far more exciting and enjoyable.
+  author: Jack Parry
+  article: parry-ds-application-guide
+
+- text: Almost everyone who currently works at The Data School attended a meet & greet before securing a place.
+  author: Eve Thomas
+  article: thomas-meet-and-greet
+
+- text: We are trying to simulate a true consulting environment. Show us you can accept, consider and action all of the feedback you have received throughout the process.
+  author: Joe Stokes
+  article: stokes-nail-final-interview
+  topic: data-career-tips/soft-skills
+
+- text: However, it is often overlooked that data science soft skills such as communication, data storytelling, and confidence, are equally important.
+  author: Hermione Lamb
+  article: rockborne-soft-skills
+  topic: data-career-tips/soft-skills
+
+- text: Because better communication feeds every other skill.
+  author: Consulting Success
+  article: consulting-success-skills
+
+- text: Over the course of these projects, I became much more confident presenting and really enjoyed working with real data to solve real problems.
+  author: Jaden Matthias
+  article: matthias-inside-four-months
+
+# --- Extra ----------------------------------------------------------------------
+
+- text: The majority of slow dashboards are caused by poor design—in particular, too many charts on a single dashboard, or trying to show too much data at once.
+  author: Tableau Help
+  article: tableau-performance-checklist
+
+- text: Remember that all environments are different and there is no simple cure for workbook performance.
+  author: Tableau Help
+  article: tableau-performance-checklist
+
+- text: The bigger and more complicated the data, the longer it takes to interpret and render.
+  author: Tableau Help
+  article: tableau-optimize-workbook-performance
+
+- text: …my first point of advice for any future data schoolers who also struggle with exams is to simply ask for help.
+  author: Eve Thomas
+  article: thomas-qa-exam
+
+- text: I would recommend doing some preppin data challenges, especially more simple ones used to clean data, for the tableau prep section of the exam.
+  author: Keren Aharon
+  article: aharon-data-analyst-exam
+
+- text: If you don't provide your data stories in a well-packaged design, you drastically minimize the chances of your work spreading, and thus, it is consumed and acted on by fewer people.
+  author: Ryan Sleeper
+  article: sleeper-go-viral
+
+- text: "My stance stems from how I define the purpose of data visualization: to find and share actionable stories that are based in quantitative evidence."
+  author: Ryan Sleeper
+  article: sleeper-go-viral
+
+- text: "Pro tip: The more vizzes you create, the higher likelihood you may get nominated for Tableau Public's Viz of the Day (VOTD)."
+  author: Olivia DiGiacomo
+  article: digiacomo-7-ways-stand-out
+
+- text: Today's challenge focuses on the benefit of maintaining a public, interactive professional profile and mastering the ability to sell your own data expertise.
+  author: Lorna Brown
+  article: brown-visual-cv
+
+# --- Miscellaneous --------------------------------------------------------------
+
+- text: We found that bar charts were the most common visualization type, appearing in 15,392 out of 25,620 (60%) dashboards.
+  author: Joanna Purich et al.
+  article: dashboard-zoo-to-census
+
+- text: Everyone has their own skills, strengths and areas of development - for this reason, you should never compare your Tableau journey to anyone elses!
+  author: Shreya Arya
+  article: arya-resources-to-learn-tableau

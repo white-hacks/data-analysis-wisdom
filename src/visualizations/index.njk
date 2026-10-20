@@ -1,0 +1,16 @@
+---
+# /visualizations/ – one card per featured author. Each card links to the
+# author's page on this site and straight to their Tableau Public profile.
+layout: layouts/base.njk
+title: Visualizations
+description: Standout Tableau Public visualizations from Andy Kriebel, Ryan Sleeper, Shreya Arya, Eve Thomas, Lorna Brown and other Tableau experts, arranged by author.
+accent: orange
+---
+{% from "macros/components.njk" import pageHeader, personCard with context %}
+{{ pageHeader("Visualizations", "Tableau Public work from the people behind the articles, arranged by author. Open an author to see their most-favourited vizzes, or go straight to their Tableau Public profile.", [], catalog.stats.people ~ " authors · " ~ catalog.stats.vizzes ~ " vizzes") }}
+
+<section class="container section">
+  <div class="card-grid card-grid--people">
+    {%- for person in catalog.people %}{{ personCard(person) }}{% endfor %}
+  </div>
+</section>

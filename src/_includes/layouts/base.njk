@@ -1,0 +1,46 @@
+{#
+  layouts/base.njk
+  ----------------------------------------------------------------------------
+  The HTML shell shared by every page: <head>, header with the hover menu,
+  main content area and footer.
+
+  Page front matter it reads:
+    title        Page title (shown before " · The Tableau Repo"); omit on the home page.
+    description  Meta description; defaults to the site description.
+    accent       Category colour token for the page (blue, orange, aqua, …).
+#}
+{%- set site = catalog.site -%}
+{%- set pageTitle = (title ~ " · " ~ site.name) if title else (site.name ~ " · " ~ site.tagline) -%}
+{%- set pageDescription = description or site.description -%}
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDescription }}">
+  <link rel="canonical" href="{{ page.url | absoluteUrl(site.url) }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDescription }}">
+  <meta property="og:url" content="{{ page.url | absoluteUrl(site.url) }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1a19" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/menu.js" defer></script>
+</head>
+<body data-color="{{ accent or 'blue' }}">
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include "partials/header.njk" %}
+  <main id="main" class="site-main">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+</body>
+</html>

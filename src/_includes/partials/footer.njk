@@ -1,0 +1,20 @@
+{#
+  partials/footer.njk
+  ----------------------------------------------------------------------------
+  Site footer: name, tagline, the four main sections and the credits note.
+  Included once, by layouts/base.njk.
+#}
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__about">
+      <p class="site-footer__name">{{ catalog.site.name }}</p>
+      <p class="site-footer__tagline">{{ catalog.site.tagline }}</p>
+    </div>
+    <ul class="site-footer__links">
+      {%- for item in catalog.navigation %}
+      <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+      {%- endfor %}
+    </ul>
+    <p class="site-footer__note">{{ catalog.site.footerNote }}</p>
+  </div>
+</footer>
